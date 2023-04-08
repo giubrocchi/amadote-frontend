@@ -38,7 +38,7 @@ function App() {
       </form>
       {imageUrl && (
         <div>
-          <img src={imageUrl} alt="Uploaded image" />
+          <img src={imageUrl} alt="Uploaded" />
           <p>Image URL: {imageUrl}</p>
         </div>
       )}
