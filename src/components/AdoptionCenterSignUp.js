@@ -88,7 +88,7 @@ function AdoptionCenterSignUp() {
     reader.onloadend = async () => {
       const pdfBase64 = reader.result.replace('data:', '').replace(/^.+,/, '');
 
-      const response = await fetch('http://amadote-api.azurewebsites.net/api/adoptionCenter', {
+      const response = await fetch('https://amadote-api.azurewebsites.net/api/adoptionCenter', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
