@@ -112,7 +112,7 @@ function AdoptionCenterSignUp() {
 
       if(response.status === 400) showErrorAlert('Preencha todos os campos corretamente.');
       else if(response.status === 401) showErrorAlert('E-mail já cadastrado!');
-      else if(response.status !== 202) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
+      else if(response.status === 500) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
     }
     reader.readAsDataURL(registrationDocument);
   };
