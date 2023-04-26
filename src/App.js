@@ -1,49 +1,27 @@
-import React, { useState } from 'react';
+import { React } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  const [image, setImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+import Header from './components/utils/Header';
+import SignUp from './components/SignUp';
+import Home from './components/Home';
 
-  const handleImageUpload = async (e) => {
-    e.preventDefault();
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <><Header /><Home /></>
+  },
+  {
+    path: '/entrar',
+    element: <><Header /><SignUp /></>
+  },
+]);
 
-    const response = await fetch('http://localhost:8080/api/tutorials', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ file: image }),
-    });
-
-    const { imageUrl } = await response.json();
-    setImageUrl(imageUrl);
-  };
-
-  const handleImageChange = (e) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-
-    reader.onload = () => {
-      setImage(reader.result);
-    };
-  };
-
+export default function App() {
   return (
-    <div>
-      <h1>Image Uploader</h1>
-      <form onSubmit={handleImageUpload}>
-        <input type="file" onChange={handleImageChange} />
-        <button type="submit">Upload</button>
-      </form>
-      {imageUrl && (
-        <div>
-          <img src={imageUrl} alt="Uploaded" />
-          <p>Image URL: {imageUrl}</p>
-        </div>
-      )}
-    </div>
-  );
+    <>
+      
+      <RouterProvider router={router} className='router'/>
+    </>
+  )
 }
-
-export default App;

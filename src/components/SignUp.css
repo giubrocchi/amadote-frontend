@@ -1,0 +1,22 @@
+.signUpSelect{
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 5px 10px #919191;
+  margin: 0px 30px;
+  border-radius: 15px;
+  padding: 5px 30px;
+}
+
+.signUpUser{
+  display: flex;
+  flex-direction: row;
+  margin: 50px 0px;
+}
+
+.signUpBody{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}

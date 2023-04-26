@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Inter:regular,bold');
+
+.signUpForm{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+.signUpInput{
+  font-family: Inter;
+  font-size: 18px;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.3);
+  padding: 6px 10px;
+  margin-bottom: 20px;
+}
+
+.signUpFile{
+  font-family: Inter;
+  font-size: 18px;
+}
+
+::-webkit-file-upload-button{
+  font-family: Inter;
+  background-color: #D2D2D2;
+  border: 0px;
+  border-radius: 30px;
+  padding: 5px 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.signUpButton{
+  font-size: 18px;
+  font-family: Inter;
+  font-weight: bold;
+  background-color: #D2D2D2;
+  border: 0px;
+  border-radius: 30px;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
