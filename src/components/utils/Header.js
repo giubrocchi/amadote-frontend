@@ -1,13 +1,11 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.css';
 
-export default function Header() {
-  const [path, setPath] = useState('inicio');
+export default function Header({path}) {
   const navigate = useNavigate();
 
   function handleButtonClick(tabName){
-    setPath(tabName);
     navigate(`/${tabName}`);
   }
 

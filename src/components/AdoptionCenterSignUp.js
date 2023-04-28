@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './AdoptionCenterSignUp.css';
 import toast, { Toaster } from 'react-hot-toast';
+import { apiBaseUrl } from '../links';
+import { ThreeDots } from 'react-loader-spinner';
 
 function AdoptionCenterSignUp() {
   const [registrationDocument, setPdfFile] = useState(null);
@@ -16,6 +18,7 @@ function AdoptionCenterSignUp() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [district, setDistrict] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setPdfFile(event.target.files[0]);
@@ -86,9 +89,10 @@ function AdoptionCenterSignUp() {
 
     const reader = new FileReader();
     reader.onloadend = async () => {
-      const pdfBase64 = reader.result.replace('data:', '').replace(/^.+,/, '');
+      setLoading(true);
 
-      const response = await fetch('https://amadote-api.azurewebsites.net/api/adoptionCenter', {
+      const pdfBase64 = reader.result.replace('data:', '').replace(/^.+,/, '');
+      const response = await fetch(`${apiBaseUrl}/api/adoptionCenter`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -110,9 +114,27 @@ function AdoptionCenterSignUp() {
         }),
       });
 
+      setLoading(false);
+
       if(response.status === 400) showErrorAlert('Preencha todos os campos corretamente.');
       else if(response.status === 401) showErrorAlert('E-mail já cadastrado!');
       else if(response.status === 500) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
+      else{
+        toast.success('Sua solicitação de cadastro foi realizada com sucesso!', {duration: 5000});
+        event.target.reset();
+        setCorporateName('');
+        setTelephone('');
+        setEmail('');
+        setPassword('');
+        setCNPJ('');
+        setStreetName('');
+        setNumber('');
+        setComplement('');
+        setZipCode('');
+        setCity('');
+        setState('');
+        setDistrict('');
+      }
     }
     reader.readAsDataURL(registrationDocument);
   };
@@ -137,7 +159,10 @@ function AdoptionCenterSignUp() {
         <input type="text" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
         <input type="password" className='signUpInput' required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
         <input type="file" className='signUpFile' required accept=".pdf" onChange={handleFileChange} />
-        <button type="submit" className='signUpButton'>Solicitar cadastro</button>
+        <button type="submit" className='signUpButton'>
+          {!loading && 'Solicitar cadastro'}
+          {loading && <ThreeDots height='21' radius='9' color="#1C3144" ariaLabel="three-dots-loading"/>}
+        </button>
       </form>
       <Toaster/>
     </div>

@@ -34,9 +34,11 @@
   font-size: 18px;
   font-family: Inter;
   font-weight: bold;
-  background-color: #D2D2D2;
+  justify-content: center;
+  display: flex;
+  background-color: #3F88C5;
+  color: #FFF;
   border: 0px;
   border-radius: 30px;
   padding: 10px 20px;
-  margin-right: 20px;
 }

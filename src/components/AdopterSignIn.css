@@ -1,0 +1,14 @@
+.signInText{
+  display: inline;
+  font-weight: normal;
+}
+
+.signInTextButton{
+  display: inline;
+  text-decoration: underline;
+}
+
+.signInBox{
+  text-align: center;
+  margin-top: 25px;
+}

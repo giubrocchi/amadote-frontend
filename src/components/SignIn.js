@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import AdoptionCenterSignUp from './AdoptionCenterSignUp';
-import './SignUp.css';
+import AdopterSignIn from './AdopterSignIn';
+import './SignIn.css';
 
-function SignUp() {
+function SignIn() {
   const [userType, setUserType] = useState('adopter');
   const [adopterCheck, setAdopterCheck] = useState(true);
   const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(false);
@@ -27,14 +27,16 @@ function SignUp() {
       </div>
       {(userType === 'adopter') &&
         <div>
-          Adotante
+          <AdopterSignIn />
         </div>
       }
       {(userType === 'adoptionCenter') &&
-        <AdoptionCenterSignUp />
+        <div>
+          Centro de adoção
+        </div>
       }
     </div>
   );
 }
 
-export default SignUp;
+export default SignIn;
