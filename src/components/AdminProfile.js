@@ -7,10 +7,11 @@ import './AdminProfile.css';
 
 export default function AdminProfile() {
   const [solicitations, setSolicitations] = useState([]);
+  const [change, setChange] = useState(true);
 
   useEffect(() => {
     getSolicitations();
-  },[solicitations]);
+  },[change]);
 
   async function getSolicitations(){
     const url = `${apiBaseUrl}/api/adoptionCenter/solicitations`;
@@ -28,15 +29,15 @@ export default function AdminProfile() {
   async function handleButtonAction(status, id){
     const url = `${apiBaseUrl}/api/adoptionCenter/status`;
     const response = await fetch(url, {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ status, id })
+      body: JSON.stringify({ status, id, admin: localStorage.getItem('loggedId') })
     });
-    
+
     if(response.status !== 200) toast.error('Erro ao realizar análise, tente novamente mais tarde.');
-    else await getSolicitations();
+    else setChange(!change);
   }
 
   return (

@@ -11,20 +11,25 @@ export default function Profile() {
       const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
       const adoptionCenterUrl = `${apiBaseUrl}/api/adoptionCenter/${id}`;
       const adopterResult = await fetch(adopterUrl);
-      const jsonAdopterResult = await adopterResult?.json() ?? {};
 
-      if(jsonAdopterResult.profile) setProfile(jsonAdopterResult.profile);
+      if(adopterResult.ok) {
+        const jsonAdopterResult = await adopterResult?.json() ?? {};
+
+        setProfile(jsonAdopterResult.profile);
+      }
 
       else{
         const adoptionCenterResult = await fetch(adoptionCenterUrl);
-        const jsonAdoptionCenterResult = await adoptionCenterResult?.json() ?? {};
+        if(adoptionCenterResult.ok){
+          const jsonAdoptionCenterResult = await adoptionCenterResult?.json() ?? {};
 
-        if(jsonAdoptionCenterResult.profile) setProfile(jsonAdoptionCenterResult.profile);
+          setProfile(jsonAdoptionCenterResult.profile);
+        }
       }
     }
 
     getUserProfile(localStorage.getItem('loggedId'));
-  });
+  }, []);
 
   return (
     <div>

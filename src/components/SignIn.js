@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AdopterSignIn from './AdopterSignIn';
+import AdoptionCenterSignIn from './AdoptionCenterSignIn';
 import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
@@ -38,7 +39,7 @@ function SignIn() {
       }
       {(userType === 'adoptionCenter') &&
         <div>
-          Centro de adoção
+          <AdoptionCenterSignIn />
         </div>
       }
     </div>
