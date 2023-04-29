@@ -1,3 +1,3 @@
-const apiBaseUrl = 'http://localhost:8080';
+const apiBaseUrl = 'https://amadote-api.azurewebsites.net';
 
 export { apiBaseUrl }
