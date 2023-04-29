@@ -85,6 +85,7 @@ function AdoptionCenterSignUp() {
     const zipCode = event.target.value;
 
     setZipCode(zipCodeMask(zipCode));
+    setInvalidZipCode(false);
 
     if(zipCode.length >= 8){
       const zipCodeInfo = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`, { mode: 'cors' });
@@ -123,6 +124,7 @@ function AdoptionCenterSignUp() {
 
     const noMaskTelephone = telephone.replace(/\D/g, '');
     const noMaskCnpj = CNPJ.replace(/\D/g, '');
+    const noMaskZipCode = zipCode.replace(/\D/g, '');
     let invalid = false;
 
     if(noMaskTelephone.length < 8) {
@@ -137,6 +139,11 @@ function AdoptionCenterSignUp() {
 
     if(noMaskCnpj.length < 14) {
       setInvalidCnpj(true);
+      invalid = true;
+    }
+
+    if(noMaskZipCode.length < 8) {
+      setInvalidZipCode(true);
       invalid = true;
     }
 
@@ -211,7 +218,7 @@ function AdoptionCenterSignUp() {
         <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
         <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
         <input type="text" className={`signUpInput invalid${invalidCnpj}`} required id='CNPJ' value={CNPJ} placeholder='CNPJ*' onChange={handleCNPJChange} />
-        <input type="text" className='signUpInput' required id='zipCode' value={zipCode} placeholder='CEP*' onChange={handleZipCodeChange} />
+        <input type="text" className={`signUpInput invalid${invalidZipCode}`} required id='zipCode' value={zipCode} placeholder='CEP*' onChange={handleZipCodeChange} />
         <input type="text" maxLength="250" className='signUpInput' required id='streetName' value={streetName} placeholder='Rua*' onChange={handleStreetNameChange} />
         <input type="text" maxLength="20" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
         <input type="text" maxLength="250" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
