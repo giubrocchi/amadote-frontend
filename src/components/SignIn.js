@@ -1,17 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AdopterSignIn from './AdopterSignIn';
+import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn() {
   const [userType, setUserType] = useState('adopter');
   const [adopterCheck, setAdopterCheck] = useState(true);
   const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(false);
+  const navigate = useNavigate();
 
   function handleRadioClick(user){
     setUserType(user);
     setAdoptionCenterCheck(!adoptionCenterCheck);
     setAdopterCheck(!adopterCheck);
   }
+
+  useEffect(() => {
+    if(localStorage.getItem('loggedId')) navigate('/perfil');
+  }, [navigate]);
 
   return (
     <div className='signUpBody'>

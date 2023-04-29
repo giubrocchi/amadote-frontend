@@ -23,11 +23,6 @@ function AdopterSignIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(localStorage.getItem('logged')){
-      showErrorAlert('Você já está logado!');
-      return;
-    }
-
     setLoading(true);
 
     const response = await fetch(`${apiBaseUrl}/api/adopter/login`, {
@@ -35,7 +30,7 @@ function AdopterSignIn() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
     });
-    const jsonResponse = await response.json();
+    const jsonResponse = await response.json() ?? {};
     
     setLoading(false);
 
@@ -50,7 +45,7 @@ function AdopterSignIn() {
     }
 
     if(jsonResponse.login){
-      localStorage.setItem('logged', { id: response.id, profile: response.profile });
+      localStorage.setItem('loggedId', jsonResponse.id);
       navigate('/');
       return;
     }

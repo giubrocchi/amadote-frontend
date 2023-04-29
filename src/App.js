@@ -6,6 +6,7 @@ import Header from './components/utils/Header';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import Home from './components/Home';
+import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: '/entrar',
     element: <><Header path='entrar'/><SignIn /></>
+  },
+  {
+    path: '/perfil',
+    element: <><Header path='entrar'/><Profile /></>
   },
 ]);
 
