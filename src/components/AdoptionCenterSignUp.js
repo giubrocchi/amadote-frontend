@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './AdoptionCenterSignUp.css';
 import toast, { Toaster } from 'react-hot-toast';
-import { apiBaseUrl } from '../links';
+import { apiBaseUrl } from './utils/links';
 import { ThreeDots } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 function AdoptionCenterSignUp() {
   const [registrationDocument, setPdfFile] = useState(null);
@@ -19,6 +20,11 @@ function AdoptionCenterSignUp() {
   const [state, setState] = useState('');
   const [district, setDistrict] = useState('');
   const [loading, setLoading] = useState(false);
+  const [invalidTelephone, setInvalidTelephone] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(false);
+  const [invalidCnpj, setInvalidCnpj] = useState(false);
+  const [invalidZipCode, setInvalidZipCode] = useState(false);
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     setPdfFile(event.target.files[0]);
@@ -29,20 +35,39 @@ function AdoptionCenterSignUp() {
   };
 
   const handleTelephoneChange = (event) => {
-    setTelephone(event.target.value);
+    setInvalidTelephone(false);
+    setTelephone(phoneMask(event.target.value));
   };
+
+  const phoneMask = (phone) => {
+    return phone.replace(/\D/g,'')
+      .replace(/(\d{2})(\d)/,"($1) $2")
+      .replace(/(\d)(\d{4})$/,"$1-$2");
+  }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
   
   const handlePasswordChange = (event) => {
+    setInvalidPassword(false);
     setPassword(event.target.value);
   };
   
   const handleCNPJChange = (event) => {
-    setCNPJ(event.target.value);
+    setInvalidCnpj(false);
+    setCNPJ(cnpjMask(event.target.value));
   };
+
+  const cnpjMask = (cnpj) => {
+    return cnpj
+      .replace(/\D+/g, '')
+      .replace(/(\d{2})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1/$2')
+      .replace(/(\d{4})(\d)/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1');
+  }
   
   const handleStreetNameChange = (event) => {
     setStreetName(event.target.value);
@@ -59,18 +84,27 @@ function AdoptionCenterSignUp() {
   const handleZipCodeChange = async (event) => {
     const zipCode = event.target.value;
 
-    setZipCode(zipCode);
+    setZipCode(zipCodeMask(zipCode));
 
-    const zipCodeInfo = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`, { mode: 'cors' });
-    const jsonZipCodeInfo = await zipCodeInfo.json();
+    if(zipCode.length >= 8){
+      const zipCodeInfo = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`, { mode: 'cors' });
 
-    if(zipCodeInfo.status === 200){
-      setStreetName(jsonZipCodeInfo.logradouro);
-      setDistrict(jsonZipCodeInfo.bairro);
-      setCity(jsonZipCodeInfo.localidade);
-      setState(jsonZipCodeInfo.uf);
+      if(zipCodeInfo.ok){
+        const jsonZipCodeInfo = await zipCodeInfo.json() ?? {};
+
+        setStreetName(jsonZipCodeInfo.logradouro);
+        setDistrict(jsonZipCodeInfo.bairro);
+        setCity(jsonZipCodeInfo.localidade);
+        setState(jsonZipCodeInfo.uf);
+      }
     }
   };
+
+  const zipCodeMask = (zipCode) => {
+    return zipCode.replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1');
+  }
   
   const handleCityChange = (event) => {
     setCity(event.target.value);
@@ -86,6 +120,27 @@ function AdoptionCenterSignUp() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const noMaskTelephone = telephone.replace(/\D/g, '');
+    const noMaskCnpj = CNPJ.replace(/\D/g, '');
+    let invalid = false;
+
+    if(noMaskTelephone.length < 8) {
+      setInvalidTelephone(true);
+      invalid = true;
+    }
+
+    if(!isValidPassword(password)) {
+      setInvalidPassword(true);
+      invalid = true;
+    }
+
+    if(noMaskCnpj.length < 14) {
+      setInvalidCnpj(true);
+      invalid = true;
+    }
+
+    if(invalid) return;
 
     const reader = new FileReader();
     reader.onloadend = async () => {
@@ -139,6 +194,12 @@ function AdoptionCenterSignUp() {
     reader.readAsDataURL(registrationDocument);
   };
 
+  function isValidPassword(password){
+    const validPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[a-zA-Z]).{8,}$/;
+
+    return validPasswordRegex.test(password);
+  }
+
   function showErrorAlert(message){
     toast.error(message);
   }
@@ -146,24 +207,36 @@ function AdoptionCenterSignUp() {
   return (
     <div>
       <form className='signUpForm' onSubmit={handleSubmit}>
-        <input type="text" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
-        <input type="text" className='signUpInput' required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
-        <input type="email" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
-        <input type="text" className='signUpInput' required id='CNPJ' value={CNPJ} placeholder='CNPJ*' onChange={handleCNPJChange} />
+        <input type="text" maxLength="250" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
+        <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
+        <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
+        <input type="text" className={`signUpInput invalid${invalidCnpj}`} required id='CNPJ' value={CNPJ} placeholder='CNPJ*' onChange={handleCNPJChange} />
         <input type="text" className='signUpInput' required id='zipCode' value={zipCode} placeholder='CEP*' onChange={handleZipCodeChange} />
-        <input type="text" className='signUpInput' required id='streetName' value={streetName} placeholder='Rua*' onChange={handleStreetNameChange} />
-        <input type="text" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
-        <input type="text" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
-        <input type="text" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
-        <input type="text" className='signUpInput' required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
-        <input type="text" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
-        <input type="password" className='signUpInput' required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
+        <input type="text" maxLength="250" className='signUpInput' required id='streetName' value={streetName} placeholder='Rua*' onChange={handleStreetNameChange} />
+        <input type="text" maxLength="20" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
+        <input type="text" maxLength="250" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
+        <input type="text" maxLength="250" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
+        <input type="text" maxLength="2" className='signUpInput' required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
+        <input type="text" maxLength="250" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
+        <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red'}}>
+          <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
+          <ul>
+            <li>Pelo menos uma letra;</li>
+            <li>Pelo menos um caracter especial;</li>
+            <li>Pelo menos uma letra maiúscula.</li>
+          </ul>
+        </div>
+        <input type="password" maxLength="250" className={`signUpInput invalid${invalidPassword}`} required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
         <input type="file" className='signUpFile' required accept=".pdf" onChange={handleFileChange} />
         <button type="submit" className='signUpButton'>
           {!loading && 'Solicitar cadastro'}
           {loading && <ThreeDots height='21' radius='9' color="#1C3144" ariaLabel="three-dots-loading"/>}
         </button>
       </form>
+      <div className='signInBox'>
+        <h3 className='signInText'>Já possui uma conta? </h3>
+        <h3 className='signInTextButton' onClick={() => navigate('/entrar', {state: {path: 'adoptionCenter'}})}>Entrar</h3>
+      </div>
       <Toaster/>
     </div>
   );

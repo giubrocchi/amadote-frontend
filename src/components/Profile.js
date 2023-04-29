@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from 'react';
-import { apiBaseUrl } from '../links';
-import './Profile.css';
+import { apiBaseUrl } from './utils/links';
 import AdminProfile from './AdminProfile';
 
 export default function Profile() {

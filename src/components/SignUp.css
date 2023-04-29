@@ -20,3 +20,7 @@
   flex-wrap: nowrap;
   align-items: center;
 }
+
+.invalidtrue{
+  border-color: #ff6464;
+}

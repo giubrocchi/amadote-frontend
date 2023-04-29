@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import AdoptionCenterSignUp from './AdoptionCenterSignUp';
-import { useNavigate } from 'react-router-dom';
+import AdopterSignUp from './AdopterSignUp';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './SignUp.css';
 
 function SignUp() {
-  const [userType, setUserType] = useState('adopter');
-  const [adopterCheck, setAdopterCheck] = useState(true);
-  const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(false);
+  const location = useLocation();
+  const path = location?.state?.path ?? 'adopter';
+  const [userType, setUserType] = useState(path);
+  const [adopterCheck, setAdopterCheck] = useState(path === 'adopter');
+  const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(path === 'adoptionCenter');
   const navigate = useNavigate();
 
   function handleRadioClick(user){
@@ -21,6 +24,7 @@ function SignUp() {
 
   return (
     <div className='signUpBody'>
+      <h1 style={{marginTop: '50px'}}>Cadastro</h1>
       <div className='signUpUser'>
         <div className='signUpSelect' onClick={() => handleRadioClick('adopter')}>
           <input type='radio' value='Adopter' name='useType' checked={adopterCheck} readOnly/>
@@ -32,9 +36,7 @@ function SignUp() {
         </div>
       </div>
       {(userType === 'adopter') &&
-        <div>
-          Adotante
-        </div>
+        <AdopterSignUp />
       }
       {(userType === 'adoptionCenter') &&
         <AdoptionCenterSignUp />

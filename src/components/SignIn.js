@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AdopterSignIn from './AdopterSignIn';
 import AdoptionCenterSignIn from './AdoptionCenterSignIn';
-import { useNavigate } from 'react-router-dom';
-import './SignIn.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function SignIn() {
-  const [userType, setUserType] = useState('adopter');
-  const [adopterCheck, setAdopterCheck] = useState(true);
-  const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(false);
+  const location = useLocation();
+  const path = location?.state?.path ?? 'adopter';
+  const [userType, setUserType] = useState(path);
+  const [adopterCheck, setAdopterCheck] = useState(path === 'adopter');
+  const [adoptionCenterCheck, setAdoptionCenterCheck] = useState(path === 'adoptionCenter');
   const navigate = useNavigate();
 
   function handleRadioClick(user){
@@ -22,6 +23,7 @@ function SignIn() {
 
   return (
     <div className='signUpBody'>
+      <h1 style={{marginTop: '50px'}}>Entrar</h1>
       <div className='signUpUser'>
         <div className='signUpSelect' onClick={() => handleRadioClick('adopter')}>
           <input type='radio' value='Adopter' name='useType' checked={adopterCheck} readOnly/>
