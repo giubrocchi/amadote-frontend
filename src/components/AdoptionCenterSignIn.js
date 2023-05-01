@@ -55,7 +55,7 @@ function AdoptionCenterSignIn() {
   }
 
   return (
-    <div>
+    <div className='formBody'>
       <form className='signUpForm' onSubmit={handleSubmit}>
         <p style={{visibility: alert ? 'visible' : 'hidden', color: 'red'}}>E-mail ou senha incorretos!</p>
         <input type="email" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />

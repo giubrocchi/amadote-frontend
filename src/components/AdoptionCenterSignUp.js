@@ -212,7 +212,7 @@ function AdoptionCenterSignUp() {
   }
 
   return (
-    <div>
+    <div className='formBody'>
       <form className='signUpForm' onSubmit={handleSubmit}>
         <input type="text" maxLength="250" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
         <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />

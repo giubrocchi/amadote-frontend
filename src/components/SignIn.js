@@ -35,14 +35,10 @@ function SignIn() {
         </div>
       </div>
       {(userType === 'adopter') &&
-        <div>
-          <AdopterSignIn />
-        </div>
+        <AdopterSignIn />
       }
       {(userType === 'adoptionCenter') &&
-        <div>
-          <AdoptionCenterSignIn />
-        </div>
+        <AdoptionCenterSignIn />
       }
     </div>
   );

@@ -93,7 +93,7 @@ function AdopterSignUp() {
   }
 
   return (
-    <div>
+    <div className='formBody'>
       {!signedUp &&
         <>
           <form className='signUpForm' onSubmit={handleSubmit}>

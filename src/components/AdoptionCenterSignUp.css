@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Inter:regular,bold');
 
+@media (max-width: 800px) {
+	.signUpForm{
+    width: 90%;
+  }
+}
+
+@media (min-width: 800px) {
+	.signUpForm{
+    width: 500px;
+  }
+}
+
+.formBody{
+  width: 100%;
+  text-align: -webkit-center;
+}
+
 .signUpForm{
   display: flex;
   flex-direction: column;
-  width: 500px;
 }
 
 .signUpInput{
