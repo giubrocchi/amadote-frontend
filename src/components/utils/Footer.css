@@ -3,7 +3,6 @@
 .footerBody{
   background-color: #3F88C5;
   display: flex;
-  flex-direction: row;
   font-family: Inter;
   margin-top: 50px;
   padding: 30px 30px;
@@ -19,4 +18,20 @@
 
 .footerHeader{
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+	.footerBody{
+    flex-direction: column;
+  }
+
+  .footerColumn{
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 800px) {
+	.footerBody{
+    flex-direction: row;
+  }
 }
