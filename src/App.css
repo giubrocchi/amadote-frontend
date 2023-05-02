@@ -2,5 +2,5 @@
 
 body{
   font-family: Inter;
-  overflow: scroll;
+  overflow-y: scroll;
 }
