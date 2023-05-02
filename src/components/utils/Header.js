@@ -47,49 +47,51 @@ export default function Header({path}) {
               </IconContext.Provider>
             </button>
           </div>
-          <div className='sidebar' style={{visibility: isSideBarOpen ? 'visible' : 'hidden'}}>
-            <div className='headerTopMobile'>
-              <h1 className='headerAmadote'>AmaDote</h1>
-              <button className='headerIcon' onClick={() => toggleModal()}>
-                <IconContext.Provider value={{color: "black", size:'28px'}}>
-                  <AiOutlineMenu />
-                </IconContext.Provider>
-              </button>
-            </div>
-            <div className='headerBottomMobile'>
-              <div>
-                <button className={'headerTabMobile'} onClick={() => handleButtonClick('')}>
-                  <h2 className='headerTabName'>Início</h2>
-                </button>
-                <button className={'headerTabMobile'} onClick={() => handleButtonClick('animais')}>
-                  <h2 className='headerTabName'>Animais disponíveis</h2>
-                </button>
-                <button className={'headerTabMobile'} onClick={() => handleButtonClick('postagens')}>
-                  <h2 className='headerTabName'>Postagens</h2>
-                </button>
-                <button className={'headerTabMobile'} onClick={() => handleButtonClick('faq')}>
-                  <h2 className='headerTabName'>Perguntas frequentes</h2>
-                </button>
-                <button className={'headerTabMobile'} onClick={() => handleButtonClick('institucional')}>
-                  <h2 className='headerTabName'>Institucional</h2>
+          <div className='modalOverlay' style={{visibility: isSideBarOpen ? 'visible' : 'hidden'}} onClick={() => toggleModal()}>
+            <div className='sidebar' onClick={e => e.stopPropagation()}>
+              <div className='headerTopMobile'>
+                <h1 className='headerAmadoteMobile'>AmaDote</h1>
+                <button className='headerIcon' onClick={() => toggleModal()}>
+                  <IconContext.Provider value={{color: "black", size:'28px'}}>
+                    <AiOutlineMenu />
+                  </IconContext.Provider>
                 </button>
               </div>
-              <div className='iconTabMobile'>
-                <button className='headerIconMobile' onClick={() => handleButtonClick('favoritos')}>
-                  <IconContext.Provider value={{color: "black", size:'28px'}}>
-                    <AiOutlineHeart />
-                  </IconContext.Provider>
-                </button>
-                <button className='headerIconMobile' onClick={() => handleButtonClick('mensagens')}>
-                  <IconContext.Provider value={{color: "black", size:'28px'}}>
-                    <AiOutlineMail />
-                  </IconContext.Provider>
-                </button>
-                <button className='headerIconMobile' onClick={() => handleButtonClick('entrar')}>
-                  <IconContext.Provider value={{color: "black", size:'28px'}}>
-                    <AiOutlineUser />
-                  </IconContext.Provider>
-                </button>
+              <div className='headerBottomMobile'>
+                <div>
+                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('')}>
+                    <h2 className='headerTabName'>Início</h2>
+                  </button>
+                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('animais')}>
+                    <h2 className='headerTabName'>Animais disponíveis</h2>
+                  </button>
+                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('postagens')}>
+                    <h2 className='headerTabName'>Postagens</h2>
+                  </button>
+                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('faq')}>
+                    <h2 className='headerTabName'>Perguntas frequentes</h2>
+                  </button>
+                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('institucional')}>
+                    <h2 className='headerTabName'>Institucional</h2>
+                  </button>
+                </div>
+                <div className='iconTabMobile'>
+                  <button className='headerIconMobile' onClick={() => handleButtonClick('favoritos')}>
+                    <IconContext.Provider value={{color: "black", size:'28px'}}>
+                      <AiOutlineHeart />
+                    </IconContext.Provider>
+                  </button>
+                  <button className='headerIconMobile' onClick={() => handleButtonClick('mensagens')}>
+                    <IconContext.Provider value={{color: "black", size:'28px'}}>
+                      <AiOutlineMail />
+                    </IconContext.Provider>
+                  </button>
+                  <button className='headerIconMobile' onClick={() => handleButtonClick('entrar')}>
+                    <IconContext.Provider value={{color: "black", size:'28px'}}>
+                      <AiOutlineUser />
+                    </IconContext.Provider>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

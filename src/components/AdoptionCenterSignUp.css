@@ -4,11 +4,17 @@
 	.signUpForm{
     width: 90%;
   }
+  .signUpFile{
+    font-size: 14px;
+  }
 }
 
 @media (min-width: 800px) {
 	.signUpForm{
     width: 500px;
+  }
+  .signUpFile{
+    font-size: 18px;
   }
 }
 
@@ -33,7 +39,6 @@
 
 .signUpFile{
   font-family: Inter;
-  font-size: 18px;
 }
 
 ::-webkit-file-upload-button{
