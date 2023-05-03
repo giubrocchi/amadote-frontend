@@ -63,3 +63,8 @@
   border-radius: 30px;
   padding: 10px 20px;
 }
+
+.signUpInputLabel{
+  text-align: left;
+  margin-top: 0;
+}
