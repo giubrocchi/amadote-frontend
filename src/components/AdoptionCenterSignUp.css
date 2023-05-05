@@ -31,10 +31,13 @@
 .signUpInput{
   font-family: Inter;
   font-size: 18px;
+  color: #1C3144;
   border-radius: 10px;
-  border-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #3F88C5;
+  outline: none;
   padding: 6px 10px;
   margin-bottom: 20px;
+  background-color: rgba(63, 137, 197, 0.25);
 }
 
 .signUpFile{

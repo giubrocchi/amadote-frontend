@@ -119,18 +119,18 @@ export default function Header({path}) {
               <h2 className='headerTabName'>Institucional</h2>
             </button>
             <div className='headerTab iconTab'>
-              <button className='headerIcon' onClick={() => handleButtonClick('favoritos')}>
-                <IconContext.Provider value={{color: "white", size:'28px'}}>
+              <button className={'headerIcon ' + (path === 'favoritos')} onClick={() => handleButtonClick('favoritos')}>
+                <IconContext.Provider value={{color: path === 'favoritos' ? '#F9A03F' : "white", size:'28px'}}>
                   <AiOutlineHeart />
                 </IconContext.Provider>
               </button>
-              <button className='headerIcon' onClick={() => handleButtonClick('mensagens')}>
-                <IconContext.Provider value={{color: "white", size:'28px'}}>
+              <button className={'headerIcon ' + (path === 'mensagens')} onClick={() => handleButtonClick('mensagens')}>
+                <IconContext.Provider value={{color: path === 'mensagens' ? '#F9A03F' : "white", size:'28px'}}>
                   <AiOutlineMail />
                 </IconContext.Provider>
               </button>
-              <button className='headerIcon' onClick={() => handleButtonClick('entrar')}>
-                <IconContext.Provider value={{color: "white", size:'28px'}}>
+              <button className={'headerIcon ' + (path === 'entrar')} onClick={() => handleButtonClick('entrar')}>
+                <IconContext.Provider value={{color: path === 'entrar' ? '#F9A03F' : "white", size:'28px'}}>
                   <AiOutlineUser />
                 </IconContext.Provider>
               </button>

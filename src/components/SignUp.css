@@ -40,3 +40,10 @@
 .invalidtrue{
   border-color: #ff6464;
 }
+
+.signUpTitle{
+  display: flex;
+  flex-direction: row;
+  color: #1C3144;
+  align-items: center;
+}

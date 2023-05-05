@@ -9,6 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  margin-bottom: 50px;
 }
 
 .headerAmadote{
@@ -42,11 +43,11 @@
 }
 
 .true{
-  background-color: #fff;
-  border-top: 1px #1C3144 solid;
-  border-left: 1px #1C3144 solid;
-  border-right: 1px #1C3144 solid;
-  border-bottom: 1px rgba(0,0,0,0) solid;
+  background-color: #fff !important;
+  border-top: 1px #1C3144 solid !important;
+  border-left: 1px #1C3144 solid !important;
+  border-right: 1px #1C3144 solid !important;
+  border-bottom: 1px rgba(0,0,0,0) solid !important;
 }
 
 .false{
