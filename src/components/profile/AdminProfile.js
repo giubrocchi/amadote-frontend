@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import { apiBaseUrl } from './utils/links';
+import { apiBaseUrl } from '../utils/links';
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-tabs/style/react-tabs.css';
 import './AdminProfile.css';

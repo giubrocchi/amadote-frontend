@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import './AdopterSignIn.css';
 import toast, { Toaster } from 'react-hot-toast';
-import { apiBaseUrl } from './utils/links';
+import { apiBaseUrl } from '../utils/links';
 import { useNavigate } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 
-function AdopterSignIn() {
+function AdoptionCenterSignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alert, setAlert] = useState(false);
@@ -25,7 +24,7 @@ function AdopterSignIn() {
 
     setLoading(true);
 
-    const response = await fetch(`${apiBaseUrl}/api/adopter/login`, {
+    const response = await fetch(`${apiBaseUrl}/api/adoptionCenter/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password }),
@@ -68,11 +67,11 @@ function AdopterSignIn() {
       </form>
       <div className='signInBox'>
         <h3 className='signInText'>Ainda não tem uma conta? </h3>
-        <h3 className='signInTextButton' onClick={() => navigate('/cadastrar', {state: {path: 'adopter'}})}>Cadastrar</h3>
+        <h3 className='signInTextButton' onClick={() => navigate('/cadastrar', {state: {path: 'adoptionCenter'}})}>Cadastrar</h3>
       </div>
       <Toaster/>
     </div>
   );
 }
 
-export default AdopterSignIn;
+export default AdoptionCenterSignIn;

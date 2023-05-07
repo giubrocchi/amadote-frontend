@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
-import { apiBaseUrl } from './utils/links';
+import { apiBaseUrl } from '../utils/links';
 import AdminProfile from './AdminProfile';
+import AdoptionCenterProfile from './AdoptionCenterProfile';
 import { ColorRing } from 'react-loader-spinner';
 
 export default function Profile() {
@@ -45,7 +46,7 @@ export default function Profile() {
         <AdminProfile />
       }
       {profile === 'adoptionCenter' &&
-        <div>adoptionCenter</div>
+        <AdoptionCenterProfile />
       }
       {loading &&
         <ColorRing

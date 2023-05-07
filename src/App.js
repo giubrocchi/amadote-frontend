@@ -4,10 +4,10 @@ import './App.css';
 
 import Header from './components/utils/Header';
 import Footer from './components/utils/Footer';
-import SignUp from './components/SignUp';
-import SignIn from './components/SignIn';
+import SignUp from './components/signUp/SignUp';
+import SignIn from './components/signIn/SignIn';
 import Home from './components/Home';
-import Profile from './components/Profile';
+import Profile from './components/profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +31,6 @@ const router = createBrowserRouter([
 export default function App() {
   return (
     <>
-      
       <RouterProvider router={router} className='router'/>
     </>
   )

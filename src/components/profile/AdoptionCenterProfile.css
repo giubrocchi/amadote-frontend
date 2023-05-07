@@ -1,0 +1,106 @@
+.ACProfileBody{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ACProfileTitleBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ACProfileTitle{
+  margin: 0px 20px 0px 0px;
+}
+
+.ACProfileAddButton{
+  border: 1px solid #1C3144;
+  border-radius: 10px;
+  background-color: #3F88C5;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.ACProfileAnimalsList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.ACProfileAnimalBox{
+  background-color: #FFFFFF;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ACProfileAnimalImage{
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.ACProfileAnimalName{
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalLabel{
+  display: flex;
+}
+
+.ACProfileAnimalKey{
+  font-weight: 600;
+  font-size: 16px;
+  margin: 5px 5px 5px 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalValue{
+  font-size: 16px;
+  margin: 5px 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalPersonalities{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 200px;
+  flex-wrap: wrap;
+  margin: 10px 0px;
+  height: 52px;
+  overflow: hidden;
+}
+
+.ACProfileAnimalPersonality{
+  background: #1C3144;
+  border-radius: 10px;
+  padding: 2px 8px;
+  height: fit-content;
+}
+
+.ACProfileAnimalPersonality p{
+  color: #FFFFFF;
+  margin: 0px;
+  font-size: 14px;
+}
+
+.ACProfileAnimalButton{
+  color: #FFFFFF;
+  background-color: #3F88C5;
+  border-radius: 16px;
+  padding: 8px 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}

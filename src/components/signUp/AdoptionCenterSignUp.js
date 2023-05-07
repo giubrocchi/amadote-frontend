@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AdoptionCenterSignUp.css';
 import toast, { Toaster } from 'react-hot-toast';
-import { apiBaseUrl } from './utils/links';
+import { apiBaseUrl } from '../utils/links';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ function AdoptionCenterSignUp() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [district, setDistrict] = useState('');
+  
   const [loading, setLoading] = useState(false);
   const [invalidTelephone, setInvalidTelephone] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
