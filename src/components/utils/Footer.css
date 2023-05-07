@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Inter:regular,bold');
 
+
 .footerBody{
   background-color: #3F88C5;
   display: flex;
@@ -10,11 +11,13 @@
   box-sizing: border-box;
 }
 
+
 .footerCategory{
   color: #FFF;
   font-size: 20px;
   margin-top: 0px;
 }
+
 
 .footerHeader{
   font-weight: bold;

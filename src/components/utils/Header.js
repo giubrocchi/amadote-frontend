@@ -100,8 +100,10 @@ export default function Header({path}) {
       {windowSize.innerWidth >= 800 &&
         <div className='headerBody'>
           <div className='headerTop'>
-            <h1 className='headerAmadote'>AmaDote</h1>
-          </div>
+            <h1 className='headerAmadote'>
+                <a href='/'style={{textDecoration: 'none', color: 'inherit'}}>AmaDote</a>
+            </h1>
+        </div>
           <div className='headerBottom'>
             <button className={'headerTab ' + (path === 'inicio')} onClick={() => handleButtonClick('')}>
               <h2 className='headerTabName'>Início</h2>
