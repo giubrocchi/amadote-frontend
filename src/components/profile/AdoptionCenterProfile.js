@@ -1,16 +1,18 @@
 import { React, useState, useEffect } from 'react';
-import { BiPlus } from 'react-icons/bi';
+import { BiPlus, BiLogOut } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
 import CreateAnimalModal from './CreateAnimalModal';
 import EditAnimalModal from './EditAnimalModal';
 import './AdoptionCenterProfile.css';
 import { apiBaseUrl } from '../utils/links';
+import { useNavigate } from 'react-router-dom';
 
-export default function AdoptionCenterProfile() {
+export default function AdoptionCenterProfile({corporateName}) {
   const [isAnimalModalOpen, setAnimalModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [animals, setAnimals] = useState([]);
   const [editId, setEditId] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getAnimals(id){
@@ -38,6 +40,11 @@ export default function AdoptionCenterProfile() {
     setEditModalOpen(value);
   }
 
+  function logout(){
+    localStorage.removeItem('loggedId');
+    navigate('/entrar');
+  }
+
   return (
     <div className='ACProfileBody'>
       {isAnimalModalOpen &&
@@ -46,6 +53,17 @@ export default function AdoptionCenterProfile() {
       {isEditModalOpen &&
         <EditAnimalModal editAnimal={editAnimal} id={editId}/>
       }
+      <div className='ACProfileHeader'>
+        <div className='ACProfileNameBox'>
+          <h1 className='ACProfileName'>Olá, {corporateName}!</h1>
+          <div title="Sair" onClick={() => logout()}>
+            <IconContext.Provider value={{color: "#1C3144", size:'30px', cursor: 'poniter'}}>
+              <BiLogOut />
+            </IconContext.Provider>
+          </div>
+        </div>
+        <button className='ACProfileEditButton' onClick={() => navigate('/perfil/editar')}>Editar perfil</button>
+      </div>
       <div className='ACProfileAnimals'>
         <div className='ACProfileTitleBox'>
           <h1 className='ACProfileTitle'>Pets publicados</h1>

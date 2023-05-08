@@ -235,7 +235,7 @@ function AdoptionCenterSignUp() {
           </ul>
         </div>
         <input type="password" maxLength="250" className={`signUpInput invalid${invalidPassword}`} required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
-        <p className='signUpInputLabel'>Documento de registro (PDF)</p>
+        <p className='signUpInputLabel'>Documento de registro (PDF)*</p>
         <input type="file" className='signUpFile' required accept=".pdf" onChange={handleFileChange} />
         <button type="submit" className='signUpButton'>
           {!loading && 'Solicitar cadastro'}

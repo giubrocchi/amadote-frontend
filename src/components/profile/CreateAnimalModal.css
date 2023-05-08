@@ -35,6 +35,19 @@
   border-radius: 20px;
 }
 
+.editImagesBox::-webkit-scrollbar {
+  width: 4px;
+}
+
+.editImagesBox::-webkit-scrollbar-track {
+  background: none;
+}
+
+.editImagesBox::-webkit-scrollbar-thumb {
+  background-color: #b4b4b4;
+  border-radius: 20px;
+}
+
 textarea {
   resize: none;
   height: 100px;
@@ -55,6 +68,7 @@ textarea {
   overflow-x: scroll;
   display: flex;
   gap: 20px;
+  padding-bottom: 10px;
 }
 
 .editImage{
@@ -136,4 +150,12 @@ textarea {
   .animalModalLabel{
     font-size: 18px;
   } 
+}
+
+.deleteAccountModalBody{
+  display: flex;
+  background-color: #FFFFFF;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 35px;
 }

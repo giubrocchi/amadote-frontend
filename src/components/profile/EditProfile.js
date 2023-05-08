@@ -1,13 +1,16 @@
 import { React, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../utils/links';
-import AdminProfile from './AdminProfile';
-import AdoptionCenterProfile from './AdoptionCenterProfile';
 import { ColorRing } from 'react-loader-spinner';
+import EditProfileAdoptionCenter from './EditProfileAdoptionCenter';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
   const [profile, setProfile] = useState();
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState('');
+  const [profileInfos, setProfileInfos] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserProfile(id){
@@ -21,7 +24,7 @@ export default function Profile() {
         const jsonAdopterResult = await adopterResult?.json() ?? {};
 
         setProfile(jsonAdopterResult.profile);
-        setName(jsonAdopterResult.fullName);
+        setProfileInfos(jsonAdopterResult);
       }
 
       else{
@@ -30,7 +33,7 @@ export default function Profile() {
           const jsonAdoptionCenterResult = await adoptionCenterResult?.json() ?? {};
 
           setProfile(jsonAdoptionCenterResult.profile);
-          setName(jsonAdoptionCenterResult.corporateName);
+          setProfileInfos(jsonAdoptionCenterResult);
         }
       }
       
@@ -41,15 +44,19 @@ export default function Profile() {
   }, []);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+    <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+      <div onClick={() => navigate('/perfil')} style={{alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer'}}>
+        <IconContext.Provider value={{color: "#1C3144", size:'40px', }}>
+          <AiOutlineArrowLeft />
+        </IconContext.Provider>
+      </div>
+      
+      <h1 style={{marginBottom: '50px'}}>Editar perfil</h1>
       {profile === 'adopter' &&
         <div>Adopter</div>
       }
-      {profile === 'admin' &&
-        <AdminProfile adopterName={name}/>
-      }
       {profile === 'adoptionCenter' &&
-        <AdoptionCenterProfile corporateName={name}/>
+        <EditProfileAdoptionCenter profileInfos={profileInfos}/>
       }
       {loading &&
         <ColorRing

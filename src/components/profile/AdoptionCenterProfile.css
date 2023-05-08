@@ -104,3 +104,23 @@
   font-size: 16px;
   font-weight: bold;
 }
+
+.ACProfileHeader{
+  margin: 10px 0px;
+}
+
+.ACProfileEditButton{
+  color: #FFFFFF;
+  background-color: #3F88C5;
+  border-radius: 10px;
+  padding: 8px 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ACProfileNameBox{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
