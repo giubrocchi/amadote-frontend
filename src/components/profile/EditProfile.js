@@ -44,7 +44,7 @@ export default function Profile() {
     }
 
     getUserProfile(localStorage.getItem('loggedId'));
-  }, []);
+  }, [navigate]);
 
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
