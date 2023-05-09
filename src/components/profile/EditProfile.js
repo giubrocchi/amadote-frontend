@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../utils/links';
 import { ColorRing } from 'react-loader-spinner';
 import EditProfileAdoptionCenter from './EditProfileAdoptionCenter';
+import EditProfileAdopter from './EditProfileAdopter';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +15,8 @@ export default function Profile() {
 
   useEffect(() => {
     async function getUserProfile(id){
+      if(!id) navigate('/entrar');
+
       setLoading(true);
 
       const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
@@ -53,7 +56,7 @@ export default function Profile() {
       
       <h1 style={{marginBottom: '50px'}}>Editar perfil</h1>
       {profile === 'adopter' &&
-        <div>Adopter</div>
+        <EditProfileAdopter profileInfos={profileInfos}/>
       }
       {profile === 'adoptionCenter' &&
         <EditProfileAdoptionCenter profileInfos={profileInfos}/>
@@ -65,9 +68,6 @@ export default function Profile() {
           width="200"
           colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
         />
-      }
-      {!profile && !loading &&
-        <div>Not logged in</div>
       }
     </div>
   )

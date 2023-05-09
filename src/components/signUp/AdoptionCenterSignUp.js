@@ -162,15 +162,15 @@ function AdoptionCenterSignUp() {
         },
         body: JSON.stringify({
           corporateName,
-          telephone,
+          telephone: noMaskTelephone,
           email,
           password,
-          CNPJ,
+          CNPJ: noMaskCnpj,
           registrationDocument: pdfBase64,
           streetName,
           number,
           complement,
-          zipCode,
+          zipCode: noMaskZipCode,
           city,
           state,
           district

@@ -57,7 +57,7 @@ export default function AdoptionCenterProfile({corporateName}) {
         <div className='ACProfileNameBox'>
           <h1 className='ACProfileName'>Olá, {corporateName}!</h1>
           <div title="Sair" onClick={() => logout()}>
-            <IconContext.Provider value={{color: "#1C3144", size:'30px', cursor: 'poniter'}}>
+            <IconContext.Provider value={{color: "#1C3144", size:'30px', cursor: 'pointer'}}>
               <BiLogOut />
             </IconContext.Provider>
           </div>

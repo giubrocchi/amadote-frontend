@@ -5,11 +5,12 @@ import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
 
 function EditProfileAdoptionCenter({profileInfos = {}}) {
-  const [corporateName, setCorporateName] = useState(profileInfos.corporateName);
+  const [fullName, setFullName] = useState(profileInfos.fullName);
   const [telephone, setTelephone] = useState(phoneMask(profileInfos.telephone));
   const [email, setEmail] = useState(profileInfos.email);
   const [password, setPassword] = useState('************');
-  const CNPJ = cnpjMask(profileInfos.CNPJ);
+  const [cpf, setCpf] = useState(cpfMask(profileInfos.CPF));
+  const [birthDate, setBirthDate] = useState(profileInfos.birthDate);
   const [streetName, setStreetName] = useState(profileInfos.address?.streetName);
   const [number, setNumber] = useState(profileInfos.address?.number);
   const [complement, setComplement] = useState(profileInfos.address?.complement);
@@ -26,12 +27,16 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   const [invalidTelephone, setInvalidTelephone] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidZipCode, setInvalidZipCode] = useState(false);
+  const [invalidCpf, setInvalidCpf] = useState(false);
+  const hasCpf = profileInfos.CPF ? true : false;
+  const hasBirthDate = profileInfos.birthDate ? true : false;
+  const hasAddress = profileInfos.address?.zipCode ? true : false;
   const [isChangingPassword, setChangingPassword] = useState(false);
   const [isDeleteAccountModalOpen, setDeleteAccountModalOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleCorporateNameChange = (event) => {
-    setCorporateName(event.target.value);
+  const handleFullNameChange = (event) => {
+    setFullName(event.target.value);
   };
 
   const handleTelephoneChange = (event) => {
@@ -40,7 +45,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
 
   function phoneMask(phone){
-    return phone.replace(/\D/g,'')
+    return phone?.replace(/\D/g,'')
       .replace(/(\d{2})(\d)/,"($1) $2")
       .replace(/(\d)(\d{4})$/,"$1-$2");
   }
@@ -63,15 +68,21 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     setDeletePassword(event.target.value);
   };
 
-  function cnpjMask(cnpj){
-    return cnpj
-      .replace(/\D+/g, '')
-      .replace(/(\d{2})(\d)/, '$1.$2')
+  function cpfMask(cpf){
+    return cpf?.replace(/\D/g, '')
       .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1/$2')
-      .replace(/(\d{4})(\d)/, '$1-$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})/, '$1-$2')
       .replace(/(-\d{2})\d+?$/, '$1');
   }
+
+  const handleCpfChange = (event) => {
+    setCpf(cpfMask(event.target.value));
+  };
+
+  const handleBirthDateChange = (event) => {
+    setBirthDate(event.target.value);
+  };
   
   const handleStreetNameChange = (event) => {
     setStreetName(event.target.value);
@@ -106,7 +117,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
 
   function zipCodeMask(zipCode){
-    return zipCode.replace(/\D/g, '')
+    return zipCode?.replace(/\D/g, '')
       .replace(/(\d{5})(\d)/, '$1-$2')
       .replace(/(-\d{3})\d+?$/, '$1');
   }
@@ -128,15 +139,21 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     const noMaskTelephone = telephone?.replace(/\D/g, '');
     const noMaskZipCode = zipCode?.replace(/\D/g, '');
+    const noMaskCpf = cpf?.replace(/\D/g, '');
     let invalid = false;
 
-    if(noMaskTelephone?.length < 8) {
+    if(noMaskTelephone?.length < 8 && noMaskTelephone?.length > 0) {
       setInvalidTelephone(true);
       invalid = true;
     }
 
-    if(noMaskZipCode?.length < 8) {
+    if(noMaskZipCode?.length < 8 && noMaskZipCode?.length > 0) {
       setInvalidZipCode(true);
+      invalid = true;
+    }
+
+    if(noMaskCpf?.length < 11 && noMaskCpf?.length > 0) {
+      setInvalidCpf(true);
       invalid = true;
     }
 
@@ -144,24 +161,26 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     setLoading(true);
 
-    const response = await fetch(`${apiBaseUrl}/api/adoptionCenter/${profileInfos._id}`, {
+    const response = await fetch(`${apiBaseUrl}/api/adopter/${profileInfos._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        corporateName,
+        fullName,
         telephone: noMaskTelephone,
         email,
         address:{
           streetName,
           number,
           complement,
-          zipCode: noMaskTelephone,
+          zipCode: noMaskZipCode,
           city,
           state,
           district
-        }
+        },
+        CPF: noMaskCpf,
+        birthDate
       }),
     });
 
@@ -181,7 +200,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     setLoadingChangePw(true);
 
-    const response = await fetch(`${apiBaseUrl}/api/adoptionCenter/login`, {
+    const response = await fetch(`${apiBaseUrl}/api/adopter/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: profileInfos?.email, password }),
@@ -201,7 +220,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     }
 
     if(jsonResponse.login){
-      const response = await fetch(`${apiBaseUrl}/api/adoptionCenter/${profileInfos._id}`, {
+      const response = await fetch(`${apiBaseUrl}/api/adopter/${profileInfos._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -223,7 +242,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     setLoadingDelete(true);
 
-    const response = await fetch(`${apiBaseUrl}/api/adoptionCenter/${profileInfos._id}`, {
+    const response = await fetch(`${apiBaseUrl}/api/adopter/${profileInfos._id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -287,28 +306,30 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       }
       { !isChangingPassword &&
         <form className='signUpForm' onSubmit={handleSubmit}>
-          <label className='inputLabel'>Razão social</label>
-          <input type="text" maxLength="250" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
+          <label className='inputLabel'>Nome completo</label>
+          <input type="text" maxLength="250" className='signUpInput' required id='fullName' value={fullName} placeholder='Nome completo*' onChange={handleFullNameChange} />
           <label className='inputLabel'>Telefone</label>
           <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
           <label className='inputLabel'>E-mail</label>
           <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
-          <label className='inputLabel'>CNPJ</label>
-          <input type="text" className={`signUpInput disabledInput`} disabled id='CNPJ' value={CNPJ} placeholder='CNPJ*' />
+          <label className='inputLabel'>CPF</label>
+          <input type="text" className={`signUpInput invalid${invalidCpf}`} required={hasCpf} id='CPF' value={cpf} placeholder='CPF' onChange={handleCpfChange}/>
+          <label className='inputLabel'>Data de nascimento</label>
+          <input type="date" className='signUpInput' required={hasBirthDate} id='birthDate' value={birthDate} placeholder='Data de nascimento' onChange={handleBirthDateChange}/>
           <label className='inputLabel'>CEP</label>
-          <input type="text" className={`signUpInput invalid${invalidZipCode}`} required id='zipCode' value={zipCode} placeholder='CEP*' onChange={handleZipCodeChange} />
+          <input type="text" className={`signUpInput invalid${invalidZipCode}`} required={hasAddress} id='zipCode' value={zipCode} placeholder='CEP' onChange={handleZipCodeChange} />
           <label className='inputLabel'>Rua</label>
-          <input type="text" maxLength="250" className='signUpInput' required id='streetName' value={streetName} placeholder='Rua*' onChange={handleStreetNameChange} />
+          <input type="text" maxLength="250" className='signUpInput' required={hasAddress} id='streetName' value={streetName} placeholder='Rua' onChange={handleStreetNameChange} />
           <label className='inputLabel'>Número</label>
-          <input type="text" maxLength="20" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
+          <input type="text" maxLength="20" className='signUpInput' required={hasAddress} id='number' value={number} placeholder='Número' onChange={handleNumberChange} />
           <label className='inputLabel'>Complemento</label>
           <input type="text" maxLength="250" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
           <label className='inputLabel'>Cidade</label>
-          <input type="text" maxLength="250" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
+          <input type="text" maxLength="250" className='signUpInput' required={hasAddress} id='city' value={city} placeholder='Cidade' onChange={handleCityChange} />
           <label className='inputLabel'>UF</label>
-          <input type="text" maxLength="2" className='signUpInput' required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
+          <input type="text" maxLength="2" className='signUpInput' required={hasAddress} id='state' value={state} placeholder='UF' onChange={handleStateChange} />
           <label className='inputLabel'>Bairro</label>
-          <input type="text" maxLength="250" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
+          <input type="text" maxLength="250" className='signUpInput' required={hasAddress} id='district' value={district} placeholder='Bairro' onChange={handleDistrictChange} />
           <label className='inputLabel'>Senha</label>
           <input type="password" maxLength="250" className={`signUpInput disabledInput`} disabled id='password' value={password} placeholder='Senha*' />
           <p style={{textAlign: 'left', textDecoration: 'underline', marginTop: '-10px', cursor: 'pointer'}} onClick={() => showChangePassword(true)}>Alterar senha</p>

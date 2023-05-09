@@ -2,15 +2,20 @@ import { React, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../utils/links';
 import AdminProfile from './AdminProfile';
 import AdoptionCenterProfile from './AdoptionCenterProfile';
+import AdopterProfile from './AdopterProfile';
 import { ColorRing } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
   const [profile, setProfile] = useState();
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserProfile(id){
+      if(!id) navigate('/entrar');
+
       setLoading(true);
 
       const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
@@ -43,10 +48,10 @@ export default function Profile() {
   return (
     <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
       {profile === 'adopter' &&
-        <div>Adopter</div>
+        <AdopterProfile adopterName={name}/>
       }
       {profile === 'admin' &&
-        <AdminProfile adopterName={name}/>
+        <AdminProfile/>
       }
       {profile === 'adoptionCenter' &&
         <AdoptionCenterProfile corporateName={name}/>
@@ -58,9 +63,6 @@ export default function Profile() {
           width="200"
           colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
         />
-      }
-      {!profile && !loading &&
-        <div>Not logged in</div>
       }
     </div>
   )
