@@ -51,7 +51,7 @@ export default function Profile() {
         <AdopterProfile adopterName={name}/>
       }
       {profile === 'admin' &&
-        <AdminProfile/>
+        <AdminProfile adminName={name}/>
       }
       {profile === 'adoptionCenter' &&
         <AdoptionCenterProfile corporateName={name}/>

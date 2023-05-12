@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import './CreateAnimalModal.css';
 import Select from 'react-select';
 import { species, sizes, sex, personalities } from '../utils/constants';
 import { ThreeDots } from 'react-loader-spinner';

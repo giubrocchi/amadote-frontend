@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './AdoptionCenterSignUp.css';
 import toast, { Toaster } from 'react-hot-toast';
 import { apiBaseUrl } from '../utils/links';
 import { ThreeDots } from 'react-loader-spinner';

@@ -4,7 +4,6 @@ import AdopterSignUp from './AdopterSignUp';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FaPaw } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import './SignUp.css';
 
 function SignUp() {
   const location = useLocation();

@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.css';
 import { AiOutlineUser, AiOutlineHeart, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 

@@ -1,7 +1,6 @@
 import { React } from 'react';
 import { BiLogOut } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
-import './AdoptionCenterProfile.css';
 import { useNavigate } from 'react-router-dom';
 
 export default function AdoptionCenterProfile({adopterName}) {

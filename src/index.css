@@ -7,9 +7,682 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: scroll;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+h1{
+  color:#1C3144;
+}
+
+.headerBody{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #3F88C5;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: 50px;
+}
+
+.headerAmadote{
+  font-weight: normal;
+  font-size: 28px;
+  margin: 10px 2%;
+  text-decoration: 'none';
+}
+
+.headerAmadoteMobile{
+  font-weight: normal;
+  font-size: 28px;
+  margin: 10px 20px;
+}
+
+.headerBottom{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.headerTab{
+  width: 100%;
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+}
+
+.headerTabName{
+  margin: 8px 0px;
+  font-weight: normal;
+  font-size: 18px;
+}
+
+.true{
+  background-color: #fff !important;
+  border-top: 1px #1C3144 solid !important;
+  border-left: 1px #1C3144 solid !important;
+  border-right: 1px #1C3144 solid !important;
+  border-bottom: 1px rgba(0,0,0,0) solid !important;
+}
+
+.false{
+  border-top: 1px rgba(0,0,0,0) solid;
+  border-left: 1px rgba(0,0,0,0) solid;
+  border-right: 1px rgba(0,0,0,0) solid;
+  border-bottom: 1px #1C3144 solid;
+  color: #fff;
+}
+
+.headerIcon{
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  margin-right: 20px;
+  align-self: center;
+}
+
+.headerIconMobile{
+  height: 100%;
+  background-color: rgba(0,0,0,0);
+  border: 0px;
+  align-self: center;
+  padding: 10px 20px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+.iconTab{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.iconTabMobile{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: -webkit-fill-available;
+  border-top: 1px #8d8d8d solid;
+}
+
+.headerTopMobile{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.modalOverlay{
+  background-color: rgba(83, 83, 83, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.sidebar{
+  position: fixed;
+  right: 0;
+  background-color: #FFF;
+  width: 80%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+
+.headerBottomMobile{
+  display: flex;
+  flex-direction: column;
+  border-top: 1px #8d8d8d solid;
+  height: 100%;
+}
+
+.headerTabMobile{
+  width: 100%;
+  background-color: rgba(0,0,0,0);
+  border-bottom: 1px #8d8d8d solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: start;
+  font-family: Inter;
+  padding: 10px 20px;
+}
+
+.footerBody{
+  background-color: #3F88C5;
+  display: flex;
+  margin-top: 50px;
+  padding: 30px 30px;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+.footerCategory{
+  color: #FFF;
+  font-size: 18px;
+  margin-top: 0px;
+}
+
+.footerHeader{
+  font-weight: bold;
+}
+
+.animalModal{
+  background-color: rgba(112, 112, 112, 0.5);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animalModalBody{
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 35px;
+  height: 85%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.animalModalBody::-webkit-scrollbar {
+  width: 8px;
+}
+
+.animalModalBody::-webkit-scrollbar-track {
+  background: none;
+}
+
+.animalModalBody::-webkit-scrollbar-thumb {
+  background-color: #b4b4b4;
+  border-radius: 20px;
+}
+
+.editImagesBox::-webkit-scrollbar {
+  width: 4px;
+}
+
+.editImagesBox::-webkit-scrollbar-track {
+  background: none;
+}
+
+.editImagesBox::-webkit-scrollbar-thumb {
+  background-color: #b4b4b4;
+  border-radius: 20px;
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+.animalModalClose{
+  align-self: flex-end;
+  border: 1px solid #c5741d;
+  border-radius: 10px;
+  background-color: #F9A03F;
+  color: #FFFFFF;
+  font-size: 20px;
+  margin-top: -20px;
+  margin-right: -20px;
+}
+
+.editImagesBox{
+  overflow-x: scroll;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 10px;
+}
+
+.editImage{
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.editImageExclude{
+  background-color: rgba(186, 0, 0, 0.66);
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.editImageContainer{
+  display: flex;
+  flex-direction: column;
+}
+
+.deleteButtonsBox{
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.deleteButton{
+  background-color: rgba(186, 0, 0, 0.8) !important;
+  align-self: center;
+}
+
+.animalModalLabel{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.animalModalLabelTitle{
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10px 0px 0px;
+}
+
+.animalModalLabel label{
+  margin-right: 20px;
+}
+
+.animalButton{
+  margin: 20px 0px;
+}
+
+.animalModalTitle{
+  text-align: center;
+}
+
+.deleteAccountModalBody{
+  display: flex;
+  background-color: #FFFFFF;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 35px;
+}
+
+.ACProfileBody{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ACProfileTitleBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.ACProfileTitle{
+  margin: 0px 20px 0px 0px;
+}
+
+.ACProfileAddButton{
+  border: 1px solid #1C3144;
+  border-radius: 10px;
+  background-color: #3F88C5;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.ACProfileAnimalsList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.ACProfileAnimalBox{
+  background-color: #FFFFFF;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ACProfileAnimalImage{
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.ACProfileAnimalName{
+  font-weight: 600;
+  font-size: 22px;
+  margin: 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalLabel{
+  display: flex;
+}
+
+.ACProfileAnimalKey{
+  font-weight: 600;
+  font-size: 16px;
+  margin: 5px 5px 5px 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalValue{
+  font-size: 16px;
+  margin: 5px 0px;
+  color: #1C3144;
+}
+
+.ACProfileAnimalPersonalities{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 200px;
+  flex-wrap: wrap;
+  margin: 10px 0px;
+  height: 52px;
+  overflow: hidden;
+}
+
+.ACProfileAnimalPersonality{
+  background: #1C3144;
+  border-radius: 10px;
+  padding: 2px 8px;
+  height: fit-content;
+}
+
+.ACProfileAnimalPersonality p{
+  color: #FFFFFF;
+  margin: 0px;
+  font-size: 14px;
+}
+
+.ACProfileAnimalButton{
+  color: #FFFFFF;
+  background-color: #3F88C5;
+  border-radius: 16px;
+  padding: 8px 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ACProfileHeader{
+  margin: 10px 0px;
+}
+
+.ACProfileEditButton{
+  color: #FFFFFF;
+  background-color: #3F88C5;
+  border-radius: 10px;
+  padding: 8px 25px;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.ACProfileNameBox{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.adminProfileBody{
+  padding: 0px 10%;
+  align-items: center;
+  width: 100%;
+}
+
+.solicitationBox{
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 40px;
+  margin-bottom: 40px;
+}
+
+.solicitationTextLabel, .solicitationTextData{
+  display: inline;
+}
+
+.solicitationTextLabel{
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.solicitationTextLine{
+  margin-bottom: 15px;
+}
+
+.solicitationButtonBox{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.solicitationButton{
+  outline: none;
+  border: none;
+  font-size: 20px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+#accept{
+  background-color: #F9A03F;
+}
+
+#reject{
+  background-color: #1C3144;
+  color: #FFF;
+}
+
+.adminProfileBox{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signInText{
+  display: inline;
+  font-weight: normal;
+}
+
+.signInTextButton{
+  display: inline;
+  text-decoration: underline;
+  color: #1C3144;
+}
+
+.signInBox{
+  text-align: center;
+  margin-top: 25px;
+}
+
+.formBody{
+  width: 100%;
+  text-align: -webkit-center;
+}
+
+.signUpForm{
+  display: flex;
+  flex-direction: column;
+}
+
+.signUpInput{
+  font-family: Inter;
+  font-size: 18px;
+  color: #1C3144;
+  border-radius: 10px;
+  border: 1px solid #3F88C5;
+  outline: none;
+  padding: 6px 10px;
+  margin-bottom: 20px;
+  background-color: rgba(63, 137, 197, 0.25);
+}
+
+.signUpFile{
+  font-family: Inter;
+}
+
+.disabledInput{
+  color: #757575;
+}
+
+.inputLabel{
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+
+::-webkit-file-upload-button{
+  font-family: Inter;
+  background-color: #D2D2D2;
+  border: 0px;
+  border-radius: 30px;
+  padding: 5px 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.signUpButton{
+  font-size: 18px;
+  font-family: Inter;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  background-color: #3F88C5;
+  color: #FFF;
+  border: 0px;
+  border-radius: 30px;
+  padding: 10px 20px;
+}
+
+.signUpInputLabel{
+  text-align: left;
+  margin-top: 0;
+}
+
+.signUpSelect{
+  display: flex;
+  flex-direction: row;
+  box-shadow: 5px 5px 10px #919191;
+  margin: 0px 30px;
+  border-radius: 15px;
+  padding: 5px 30px;
+}
+
+.signUpUser{
+  display: flex;
+  flex-direction: row;
+}
+
+.signUpBody{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.invalidtrue{
+  border-color: #ff6464;
+}
+
+.signUpTitle{
+  display: flex;
+  flex-direction: row;
+  color: #1C3144;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 800px) {
+	.signUpSelect{
+    padding: 5px 5px;
+    margin: 0px 10px;
+  }
+
+  .signUpUser{
+    margin: 30px 0px;
+  }
+
+  .signUpForm{
+    width: 90%;
+  }
+
+  .signUpFile{
+    font-size: 14px;
+  }
+  
+  .signInBox{
+    font-size: 14px;
+  }
+  
+  .animalModalTitle{
+    font-size: 22px;
+  }
+
+  .animalModalLabelTitle{
+    font-size: 18px;
+  }
+
+  .animalModalBody{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .animalModalClose{
+    margin-top: -10px;
+    margin-right: -10px;
+  }
+
+  .animalModalLabel{
+    font-size: 18px;
+  }
+  
+  .footerBody{
+    flex-direction: column;
+  }
+
+  .footerColumn{
+    margin-bottom: 20px;
+  }
+}
+
+@media (min-width: 800px) {
+	.signUpUser{
+    margin: 50px 0px;
+  }
+  
+  .signUpForm{
+    width: 500px;
+  }
+
+  .signUpFile{
+    font-size: 18px;
+  }
+  
+  .signInBox{
+    font-size: 16px;
+  }
+  
+  .footerBody{
+    flex-direction: row;
+  }
 }

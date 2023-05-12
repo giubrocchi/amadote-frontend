@@ -3,7 +3,6 @@ import { BiPlus, BiLogOut } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
 import CreateAnimalModal from './CreateAnimalModal';
 import EditAnimalModal from './EditAnimalModal';
-import './AdoptionCenterProfile.css';
 import { apiBaseUrl } from '../utils/links';
 import { useNavigate } from 'react-router-dom';
 

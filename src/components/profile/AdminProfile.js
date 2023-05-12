@@ -3,11 +3,19 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { apiBaseUrl } from '../utils/links';
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-tabs/style/react-tabs.css';
-import './AdminProfile.css';
+import { useNavigate } from 'react-router-dom';
+import { BiLogOut } from 'react-icons/bi';
+import { IconContext } from 'react-icons';
 
-export default function AdminProfile() {
+export default function AdminProfile({ adminName }) {
   const [solicitations, setSolicitations] = useState([]);
   const [change, setChange] = useState(true);
+  const navigate = useNavigate();
+
+  function logout(){
+    localStorage.removeItem('loggedId');
+    navigate('/entrar');
+  }
 
   useEffect(() => {
     getSolicitations();
@@ -42,6 +50,16 @@ export default function AdminProfile() {
 
   return (
     <div className='adminProfileBody'>
+      <div className='ACProfileHeader'>
+        <div className='ACProfileNameBox'>
+          <h1 className='ACProfileName'>Olá, {adminName}!</h1>
+          <div title="Sair" onClick={() => logout()}>
+            <IconContext.Provider value={{color: "#1C3144", size:'30px', cursor: 'pointer'}}>
+              <BiLogOut />
+            </IconContext.Provider>
+          </div>
+        </div>
+      </div>
       <Tabs>
         <TabList>
           <Tab>Solicitações de cadastro</Tab>
