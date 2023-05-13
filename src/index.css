@@ -524,6 +524,7 @@ textarea {
   color: #1C3144;
 }
 
+
 .signInBox{
   text-align: center;
   margin-top: 25px;
@@ -615,6 +616,34 @@ textarea {
   flex-wrap: nowrap;
   align-items: center;
 }
+
+.personType {
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.subTitle {
+  font-size: 14px;
+}
+
+.spacer {
+  margin-top: 2em;
+}
+
+
+.subTitle {
+  font-size: 14px;
+}
+
+
+.checkbox:hover {
+  cursor: pointer;
+}
+
 
 .invalidtrue{
   border-color: #ff6464;
