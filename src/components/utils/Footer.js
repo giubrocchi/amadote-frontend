@@ -5,8 +5,8 @@ export default function Footer() {
     <div className='footerBody'>
       <div className='footerColumn'>
         <p className='footerCategory footerHeader'>Inicio</p> 
-        <p className='footerCategory'>Animais disponiveis</p>
-        <p className='footerCategory'>Postagens</p>
+        <p className='footerCategory'><a href='/animais' style={{textDecoration: 'none', color: 'inherit'}}>Animais disponiveis</a></p>
+        <p className='footerCategory'><a href='/postagens' style={{textDecoration: 'none', color: 'inherit'}}>Postagens</a></p>
       </div>
       <div className='footerColumn'>
         <p className='footerCategory footerHeader'>Sobre nós</p>
