@@ -1,8 +1,10 @@
 import { React } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import { IconContext } from 'react-icons';
 
 export default function AnimalCard({ animalInfo, buttonOptions }) {
-  const { birthDate, _id, photos, name, species, personality } = animalInfo ?? {};
+  const { birthDate, _id, photos, name, species, personality, sex } = animalInfo ?? {};
   const { buttonText, buttonFunction } = buttonOptions ?? {};
   const now = new Date();
   const birth = new Date(birthDate);
@@ -20,7 +22,19 @@ export default function AnimalCard({ animalInfo, buttonOptions }) {
   return (
     <div className='ACProfileAnimalBox' key={_id} onClick={() => navigate(`/animais/${_id}`)}>
       <img src={photos[0]} alt='Animal' className='ACProfileAnimalImage'/>
-      <h2 className='ACProfileAnimalName'>{name}</h2>
+      <div style={{display: 'flex', flexDirection: 'row', gap: '8px', marginTop: '5px'}}>
+        <h2 className='ACProfileAnimalName'>{name}</h2>
+        { sex === 'F' &&
+          <IconContext.Provider value={{color: "#F9A03F", size:'25px'}}>
+            <BsGenderFemale />
+          </IconContext.Provider>
+        }
+        { sex === 'M' &&
+          <IconContext.Provider value={{color: "#3F88C5", size:'25px'}}>
+            <BsGenderMale />
+          </IconContext.Provider>
+        }
+      </div>
       <div className='ACProfileAnimalLabel'>
         <p className='ACProfileAnimalKey'>Espécie:</p>
         <p className='ACProfileAnimalValue'>{species}</p>
