@@ -3,7 +3,7 @@ import { apiBaseUrl } from './utils/links';
 import { useNavigate } from 'react-router-dom';
 import AnimalCard from './utils/AnimalCard';
 
-export default function Home() {
+export default function AnimalsPage() {
   const [animals, setAnimals] = useState([]);
   const navigate = useNavigate();
 
@@ -19,12 +19,19 @@ export default function Home() {
   }, []);
 
   return (
-    <div className='homeBody'>
-      <div className='homeAnimalsSection'>
-        <h2 className='homeSubtitle'>Pets em destaque</h2>
-        <p className='homeDescription'>Encontre o seu pet e faça a diferença na vida de um animal em busca de um lar!</p>
-        <div className='homeAnimals'>
-          <div className='homeScroll'>
+    <div className='animalsBody'>
+      <div className='animalsHeader'>
+        <h1 className='animalsTitle'>Animais disponiveis para a adoção</h1>
+        <p className='animalsDescription'>Encontre aqui o seu pet ideal para você enche-lo de amor e carinho.
+        Não encontrou o seu pet aqui ainda? Complete o seu&nbsp;
+        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}}>cadastro</p>
+        &nbsp;e/ou faça o&nbsp;
+        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}}>teste de match</p>
+        &nbsp;para te avisarmos quando tivermos mais animais disponiveis pertinho de você!</p>
+      </div>
+      <div className='animalsSection'>
+        <div className='animalsFilter'></div>
+        <div className='animalsList'>
           {
             animals?.slice(0, 20).map(animal => {
               return <AnimalCard 
@@ -34,7 +41,6 @@ export default function Home() {
               />
             })
           }
-          </div>
         </div>
       </div>
     </div>

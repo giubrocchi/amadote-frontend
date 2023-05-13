@@ -5,6 +5,7 @@ import CreateAnimalModal from './CreateAnimalModal';
 import EditAnimalModal from './EditAnimalModal';
 import { apiBaseUrl } from '../utils/links';
 import { useNavigate } from 'react-router-dom';
+import AnimalCard from '../utils/AnimalCard';
 
 export default function AdoptionCenterProfile({corporateName}) {
   const [isAnimalModalOpen, setAnimalModalOpen] = useState(false);
@@ -75,37 +76,11 @@ export default function AdoptionCenterProfile({corporateName}) {
         <div className='ACProfileAnimalsList'>
           {
             animals.map(animal => {
-              const now = new Date();
-              const birthDate = new Date(animal.birthDate);
-              const age = Math.round((now.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24 * 365));
-              const agePlural = age === 1 ? '' : 's';
-              const months = Math.abs(now.getMonth() - birthDate.getMonth());
-              const monthPlural = months === 1 ? 'mês' : 'meses';
-
-              return <div className='ACProfileAnimalBox' key={animal._id}>
-                <img src={animal.photos[0]} alt='Animal' className='ACProfileAnimalImage'/>
-                <h2 className='ACProfileAnimalName'>{animal.name}</h2>
-                <div className='ACProfileAnimalLabel'>
-                  <p className='ACProfileAnimalKey'>Espécie:</p>
-                  <p className='ACProfileAnimalValue'>{animal.species}</p>
-                </div>
-                <div className='ACProfileAnimalLabel'>
-                  <p className='ACProfileAnimalKey'>Idade:</p>
-                  <p className='ACProfileAnimalValue'>
-                    {age > 0 ? `${age} ano${agePlural}` : `${months} ${monthPlural}`}
-                  </p>
-                </div>
-                <div className='ACProfileAnimalPersonalities'>
-                  {
-                    animal.personality?.map(personality => {
-                      return <div key={personality} className='ACProfileAnimalPersonality'>
-                        <p>{personality}</p>
-                      </div>
-                    })
-                  }
-                </div>
-                <button className='ACProfileAnimalButton' onClick={() => editAnimal(animal._id, true)}>Editar</button>
-              </div>
+              return <AnimalCard 
+                animalInfo={animal}
+                key={animal._id}
+                buttonOptions={{ buttonText: 'Editar', buttonFunction: () => editAnimal(animal._id, true) }}
+              />
             })
           }
         </div>

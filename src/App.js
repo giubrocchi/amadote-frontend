@@ -8,6 +8,7 @@ import SignIn from './components/signIn/SignIn';
 import Home from './components/Home';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
+import AnimalsPage from './components/AnimalsPage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/perfil/editar',
     element: <><Header path='entrar'/><EditProfile /><Footer /></>
+  },
+  {
+    path: '/animais',
+    element: <><Header path='animais'/><AnimalsPage /><Footer /></>
   },
 ]);
 

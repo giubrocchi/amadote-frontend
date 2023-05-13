@@ -39,7 +39,10 @@ export default function Header({path}) {
       {windowSize.innerWidth < 800 &&
         <div className='headerBody'>
           <div className='headerTopMobile'>
-            <h1 className='headerAmadote'>AmaDote</h1>
+            <div className='headerLogoBox' onClick={() => navigate('/')}>
+              <img src='https://amadote.blob.core.windows.net/amadote/logo_amadote_laranja.png' className='headerLogo' alt='Logo Amadote'/>
+              <h1 className='headerAmadote'>Amadote</h1>
+            </div>
             <button className='headerIcon' onClick={() => toggleModal()}>
               <IconContext.Provider value={{color: "white", size:'28px'}}>
                 <AiOutlineMenu />
@@ -99,10 +102,11 @@ export default function Header({path}) {
       {windowSize.innerWidth >= 800 &&
         <div className='headerBody'>
           <div className='headerTop'>
-            <h1 className='headerAmadote'>
-                <a href='/'style={{textDecoration: 'none', color: 'inherit'}}>AmaDote</a>
-            </h1>
-        </div>
+            <div className='headerLogoBox' onClick={() => navigate('/')}>
+              <img src='https://amadote.blob.core.windows.net/amadote/logo_amadote_laranja.png' className='headerLogo' alt='Logo Amadote'/>
+              <h1 className='headerAmadote'>Amadote</h1>
+            </div>
+          </div>
           <div className='headerBottom'>
             <button className={'headerTab ' + (path === 'inicio')} onClick={() => handleButtonClick('')}>
               <h2 className='headerTabName'>Início</h2>
