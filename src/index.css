@@ -119,10 +119,9 @@ button:hover{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  position: fixed;
-  bottom: 0;
   width: -webkit-fill-available;
-  border-top: 1px #8d8d8d solid;
+  background-color: #FFFFFF;
+  border-bottom-left-radius: 20px;
 }
 
 .headerTopMobile{
@@ -146,6 +145,8 @@ button:hover{
   height: 100%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .headerLogoBox{
@@ -164,6 +165,7 @@ button:hover{
   flex-direction: column;
   border-top: 1px #8d8d8d solid;
   height: 100%;
+  overflow-y: auto;
 }
 
 .headerTabMobile{
@@ -606,11 +608,20 @@ textarea {
 
 .signUpSelect{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   box-shadow: 5px 5px 10px #919191;
-  margin: 0px 30px;
+  margin: 0px 15px;
   border-radius: 15px;
-  padding: 5px 30px;
+  padding: 15px 15px;
+  width: 170px;
+}
+
+.signUpContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .signUpUser{
@@ -626,8 +637,9 @@ textarea {
   align-items: center;
 }
 
-.personType {
+.signUpPersonType {
   font-weight: bold;
+  margin: 0px;
 }
 
 .container {
@@ -635,24 +647,18 @@ textarea {
   flex-direction: column;
 }
 
-.subTitle {
+.signUpSubTitle {
   font-size: 14px;
+  text-align: center;
 }
 
 .spacer {
   margin-top: 2em;
 }
 
-
-.subTitle {
-  font-size: 14px;
-}
-
-
 .checkbox:hover {
   cursor: pointer;
 }
-
 
 .invalidtrue{
   border-color: #ff6464;
@@ -743,8 +749,8 @@ textarea {
 
 @media (max-width: 800px) {
 	.signUpSelect{
-    padding: 5px 5px;
     margin: 0px 10px;
+    width: 45%;
   }
 
   .signUpUser{

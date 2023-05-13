@@ -60,23 +60,21 @@ export default function Header({path}) {
                 </button>
               </div>
               <div className='headerBottomMobile'>
-                <div>
-                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('')}>
-                    <h2 className='headerTabName'>Início</h2>
-                  </button>
-                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('animais')}>
-                    <h2 className='headerTabName'>Animais disponíveis</h2>
-                  </button>
-                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('postagens')}>
-                    <h2 className='headerTabName'>Postagens</h2>
-                  </button>
-                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('faq')}>
-                    <h2 className='headerTabName'>Perguntas frequentes</h2>
-                  </button>
-                  <button className={'headerTabMobile'} onClick={() => handleButtonClick('institucional')}>
-                    <h2 className='headerTabName'>Institucional</h2>
-                  </button>
-                </div>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('')}>
+                  <h2 className='headerTabName'>Início</h2>
+                </button>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('animais')}>
+                  <h2 className='headerTabName'>Animais disponíveis</h2>
+                </button>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('postagens')}>
+                  <h2 className='headerTabName'>Postagens</h2>
+                </button>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('faq')}>
+                  <h2 className='headerTabName'>Perguntas frequentes</h2>
+                </button>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('institucional')}>
+                  <h2 className='headerTabName'>Institucional</h2>
+                </button>
                 <div className='iconTabMobile'>
                   <button className='headerIconMobile' onClick={() => handleButtonClick('favoritos')}>
                     <IconContext.Provider value={{color: "black", size:'28px'}}>
