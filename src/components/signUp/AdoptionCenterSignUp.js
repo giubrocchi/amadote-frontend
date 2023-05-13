@@ -225,7 +225,7 @@ function AdoptionCenterSignUp() {
         <input type="text" maxLength="250" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
         <input type="text" maxLength="2" className='signUpInput' required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
         <input type="text" maxLength="250" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
-        <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red'}}>
+        <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
           <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
           <ul>
             <li>Pelo menos uma letra;</li>

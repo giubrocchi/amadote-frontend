@@ -100,7 +100,7 @@ function AdopterSignUp() {
             <input type="text" maxLength="250" className='signUpInput' required id='fullName' value={fullName} placeholder='Nome completo*' onChange={handleFullNameChange} />
             <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
             <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
-            <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red'}}>
+            <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
               <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
               <ul>
                 <li>Pelo menos uma letra;</li>
