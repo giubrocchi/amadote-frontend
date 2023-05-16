@@ -21,13 +21,12 @@ export default function AnimalsPage() {
   return (
     <div className='animalsBody'>
       <div className='animalsHeader'>
-        <h1 className='animalsTitle'>Animais disponiveis para a adoção</h1>
-        <p className='animalsDescription'>Encontre aqui o seu pet ideal para você enche-lo de amor e carinho.
-        Não encontrou o seu pet aqui ainda? Complete o seu&nbsp;
-        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}} onClick={() => navigate('/cadastrar')}>cadastro</p>
-        &nbsp;e/ou faça o&nbsp;
-        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}}>teste de match</p>
-        &nbsp;para te avisarmos quando tivermos mais animais disponiveis pertinho de você!</p>
+        <h1 className='animalsTitle'>Sobre o Amadote</h1>
+        <p className='animalsDescription'>o Amadote é uma plataforma de adoção responsável de animais que conecta ONGs de proteção animal e adotantes em potencial.</p>
+      </div>
+      <div className='animalsHeader'>
+        <h1 className='animalsTitle'>Sobre nós</h1>
+        <p className='animalsDescription'>Nós somos um grupo de estudantes apaixonados por animais e estamos comprometidos em ajudar ONGs e adotantes a encontrarem a melhor combinação para a adoção responsável de animais de estimação. Criamos esta plataforma para facilitar e tornar mais eficiente o processo de adoção, visando garantir o bem-estar dos animais e a satisfação dos adotantes.</p>
       </div>
       <div className='animalsSection'>
         <div className='animalsFilter'></div>

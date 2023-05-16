@@ -9,6 +9,7 @@ import Home from './components/Home';
 import Profile from './components/profile/Profile';
 import EditProfile from './components/profile/EditProfile';
 import AnimalsPage from './components/AnimalsPage';
+import AboutUs from './components/AboutUs';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
   {
     path: '/animais',
     element: <><Header path='animais'/><AnimalsPage /><Footer /></>
+  },
+  {
+    path: '/institucional',
+    element: <><Header path='institucional'/><AboutUs /><Footer /></>
   },
 ]);
 
