@@ -346,13 +346,14 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
           <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
             <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
             <ul>
-              <li>Pelo menos uma letra;</li>
+              <li>Pelo menos uma letra minúscula;</li>
               <li>Pelo menos um caracter especial;</li>
               <li>Pelo menos uma letra maiúscula.</li>
             </ul>
           </div>
           <label className='inputLabel'>Nova senha</label>
-          <input type="password" maxLength="250" className={`signUpInput`} id='newPassword' value={newPassword} required placeholder='Nova senha*' onChange={handleNewPasswordChange} />
+          <input type="password" maxLength="250" className={`signUpInput inputWithTip`} id='newPassword' value={newPassword} required placeholder='Nova senha*' onChange={handleNewPasswordChange} />
+          <p className='passwordTip'>Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo menos uma letra maiúscula e uma minúscula.</p>
           <div className='deleteButtonsBox'>
             <button type='cancel' className='signUpButton deleteButton' style={{marginTop: '40px'}} onClick={() => showChangePassword(false)}>
               Cancelar

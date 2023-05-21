@@ -9,7 +9,6 @@ export default function AboutUs() {
 
   return (
     <div className='aboutBody'>
-      
       <div className='aboutHeader'>
         <h1 className='aboutHeaderTitle'>Sobre o Amadote</h1>
         <img src='https://amadote.blob.core.windows.net/amadote/logo_amadote_laranja.png' className='aboutLogo' alt='Logo Amadote'/>
@@ -70,10 +69,13 @@ export default function AboutUs() {
         <p>Para conseguirmos deixar o site no ar contamos com o apoio de nossa comunidade!<br/>
         Qualquer valor é bem-vindo e será utilizado para melhorar a plataforma e ajudar ainda mais os animais a encontrarem um lar.</p>
         <div className='helpCard'>
-          <p>Nossa chave PIX é o nosso E-mail:<br/>
+          <p>Nossa chave PIX é o nosso E-mail:</p>
+          <div className='helpPix'>
             <IconContext.Provider value={{color: "#F9A03F", size:'25px'}}>
               <IoIosMail />
-            </IconContext.Provider>amadote@gmail.com</p>
+            </IconContext.Provider>
+            <p>amadote@gmail.com</p>
+          </div>
         </div>
       </div>
     </div>

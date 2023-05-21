@@ -103,12 +103,13 @@ function AdopterSignUp() {
             <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
               <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
               <ul>
-                <li>Pelo menos uma letra;</li>
-                <li>Pelo menos um caracter especial;</li>
+                <li>Pelo menos uma letra minúscula;</li>
+                <li>Pelo menos um caractere especial;</li>
                 <li>Pelo menos uma letra maiúscula.</li>
               </ul>
             </div>
-            <input type="password" maxLength="250" className={`signUpInput invalid${invalidPassword}`} required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
+            <input type="password" maxLength="250" className={`signUpInput invalid${invalidPassword} inputWithTip`} required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
+            <p className='passwordTip'>Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo menos uma letra maiúscula e uma minúscula.</p>
             <button type="submit" className='signUpButton'>
               {!loading && 'Cadastrar'}
               {loading && <ThreeDots height='21' radius='9' color="#1C3144" ariaLabel="three-dots-loading"/>}
