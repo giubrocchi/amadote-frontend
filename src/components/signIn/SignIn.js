@@ -38,18 +38,18 @@ function SignIn() {
       </div>
       <div className='signUpUser'>
         <div className='signUpSelect' onClick={() => handleRadioClick('adopter')}>
-          <div className="signUpContainer">
+          <div className='signUpContainer'>
             <input type='checkbox' className='checkbox' value='Adopter' name='useType' checked={adopterCheck} readOnly/>
-            <p class="signUpPersonType">Sou pessoa física</p>
+            <p className='signUpPersonType'>Sou pessoa física</p>
           </div>
-          <label className="signUpSubTitle">Quero adotar um animal</label>
+          <label className='signUpSubTitle'>Quero adotar um animal</label>
         </div>
         <div className='signUpSelect' onClick={() => handleRadioClick('adoptionCenter')}>
-          <div className="signUpContainer">
+          <div className='signUpContainer'>
             <input type='checkbox' className='checkbox' value='AdoptionCenter' name='useType' checked={adoptionCenterCheck} readOnly/>
-            <p class="signUpPersonType">Sou ONG</p>
+            <p className='signUpPersonType'>Sou ONG</p>
           </div>
-          <label className="signUpSubTitle">Quero divulgar um animal e ter controle das adoções</label>
+          <label className='signUpSubTitle'>Quero divulgar um animal e ter controle das adoções</label>
         </div>
       </div>
       {(userType === 'adopter') &&

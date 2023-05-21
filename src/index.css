@@ -537,6 +537,7 @@ textarea {
   display: inline;
   text-decoration: underline;
   color: #1C3144;
+  cursor: pointer;
 }
 
 
@@ -882,6 +883,10 @@ textarea {
   /*border*/
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
+}
+
+.animalsDescription{
+  display: inline;
 }
 
 @media (max-width: 800px) {

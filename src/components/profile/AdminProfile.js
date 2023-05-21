@@ -53,8 +53,8 @@ export default function AdminProfile({ adminName }) {
       <div className='ACProfileHeader'>
         <div className='ACProfileNameBox'>
           <h1 className='ACProfileName'>Olá, {adminName}!</h1>
-          <div title="Sair" onClick={() => logout()}>
-            <IconContext.Provider value={{color: "#1C3144", size:'30px', cursor: 'pointer'}}>
+          <div title="Sair" onClick={() => logout()} style={{cursor: 'pointer'}}>
+            <IconContext.Provider value={{color: "#1C3144", size:'30px'}}>
               <BiLogOut />
             </IconContext.Provider>
           </div>
@@ -65,7 +65,6 @@ export default function AdminProfile({ adminName }) {
           <Tab>Solicitações de cadastro</Tab>
           <Tab>Publicar</Tab>
         </TabList>
-
         <TabPanel>
           <div className='adminProfileBox'>
             {

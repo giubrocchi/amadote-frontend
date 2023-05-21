@@ -24,6 +24,7 @@ function AdoptionCenterSignUp() {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidCnpj, setInvalidCnpj] = useState(false);
   const [invalidZipCode, setInvalidZipCode] = useState(false);
+  const [invalidState, setInvalidState] = useState(false);
   const navigate = useNavigate();
 
   const handleFileChange = (event) => {
@@ -67,6 +68,45 @@ function AdoptionCenterSignUp() {
       .replace(/(\d{3})(\d)/, '$1/$2')
       .replace(/(\d{4})(\d)/, '$1-$2')
       .replace(/(-\d{2})\d+?$/, '$1');
+  }
+
+  function isValidCnpj(value) {
+    if (!value) return false;
+  
+    if (value.length !== 14) return false;
+  
+    const match = value.match(/\d/g);
+    const numbers = Array.isArray(match) ? match.map(Number) : [];
+
+    if (numbers.length !== 14) return false
+    
+    const items = [...new Set(numbers)];
+
+    if (items.length === 1) return false;
+  
+    const calc = (x) => {
+      const slice = numbers.slice(0, x)
+      let factor = x - 7
+      let sum = 0
+  
+      for (let i = x; i >= 1; i--) {
+        const n = slice[x - i]
+        sum += n * factor--
+        if (factor < 2) factor = 9
+      }
+  
+      const result = 11 - (sum % 11)
+  
+      return result > 9 ? 0 : result
+    }
+  
+    const digits = numbers.slice(12)
+    
+    const digit0 = calc(12)
+    if (digit0 !== digits[0]) return false
+  
+    const digit1 = calc(13)
+    return digit1 === digits[1]
   }
   
   const handleStreetNameChange = (event) => {
@@ -112,14 +152,25 @@ function AdoptionCenterSignUp() {
   };
   
   const handleStateChange = (event) => {
-    setState(event.target.value);
+    setInvalidState(false);
+    setState(event.target.value?.toUpperCase());
   };
+
+  async function isValidState(uf) {
+    const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`
+    const state = await fetch(apiUrl, { mode: 'cors' });
+    const jsonResponse = await state?.json() ?? {};
+
+    if(jsonResponse?.sigla) return true;
+
+    return false;
+  }
   
   const handleDistrictChange = (event) => {
     setDistrict(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     const noMaskTelephone = telephone.replace(/\D/g, '');
@@ -137,13 +188,19 @@ function AdoptionCenterSignUp() {
       invalid = true;
     }
 
-    if(noMaskCnpj.length < 14) {
+    if(noMaskCnpj.length < 14 || !isValidCnpj(noMaskCnpj)) {
       setInvalidCnpj(true);
       invalid = true;
     }
 
     if(noMaskZipCode.length < 8) {
       setInvalidZipCode(true);
+      invalid = true;
+    }
+
+    const validState = await isValidState(state);
+    if(!validState) {
+      setInvalidState(true);
       invalid = true;
     }
 
@@ -223,7 +280,7 @@ function AdoptionCenterSignUp() {
         <input type="text" maxLength="20" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
         <input type="text" maxLength="250" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
         <input type="text" maxLength="250" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
-        <input type="text" maxLength="2" className='signUpInput' required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
+        <input type="text" maxLength="2" className={`signUpInput invalid${invalidState}`} required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
         <input type="text" maxLength="250" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
         <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
           <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
