@@ -37,7 +37,7 @@ export default function AboutUs() {
           <p>Analista de Negócio</p>
           </div>
         </div>
-        <p className='aboutUsDescription'>Nós somos um grupo de estudantes apaixonados por animais e estamos comprometidos em ajudar ONGs e adotantes a encontrarem a melhor combinação para a adoção responsável de animais de estimação. Criamos esta plataforma para facilitar e tornar mais eficiente o processo de adoção, visando garantir o bem-estar dos animais e a satisfação dos adotantes.</p>
+        <p className='aboutUsDescription'>Nós somos um grupo de estudantes apaixonados por animais e estamos comprometidos em ajudar ONGs e adotantes a encontrarem a melhor combinação para a adoção responsável de animais de estimação.<br/>Criamos esta plataforma para facilitar e tornar mais eficiente o processo de adoção, visando garantir o bem-estar dos animais e a satisfação dos adotantes.</p>
       </div>
       
       <div className='aboutSection'>
