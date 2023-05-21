@@ -533,6 +533,7 @@ textarea {
   display: inline;
   text-decoration: underline;
   color: #1C3144;
+  cursor: pointer;
 }
 
 
@@ -745,6 +746,10 @@ textarea {
   flex-direction: row;
   width: 80%;
   align-self: center;
+}
+
+.animalsDescription{
+  display: inline;
 }
 
 @media (max-width: 800px) {

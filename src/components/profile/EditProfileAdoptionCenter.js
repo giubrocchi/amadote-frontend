@@ -116,7 +116,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
   
   const handleStateChange = (event) => {
-    setState(event.target.value);
+    setState(event.target.value?.toUpperCase());
   };
   
   const handleDistrictChange = (event) => {
