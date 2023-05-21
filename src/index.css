@@ -18,6 +18,10 @@ h1{
   color:#1C3144;
 }
 
+p{
+  font-size: 18px;
+}
+
 .headerBody{
   width: 100%;
   display: flex;
@@ -747,6 +751,139 @@ textarea {
   align-self: center;
 }
 
+.aboutBody{
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutHeader{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.aboutSection{
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  align-self: center;
+}
+
+.aboutList{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  justify-content: center;
+  grid-gap: 70px;
+  inline-size: -webkit-fill-available;
+  margin: 20px;
+}
+
+.aboutList h2{
+  font-size: 30px;
+  padding-bottom: 2px;
+}
+
+.aboutCard{
+  background-color: #3F88C5;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  padding: 25px;
+
+  /*text*/
+  color: #FFFFFF;
+  text-align: justify;
+}
+
+.aboutCard2{
+  background-color: #F9A03F;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+
+  /*text*/
+  color: #1C3144;
+  text-align: justify;
+}
+
+.aboutLogo{
+  height: 200px;
+  padding: 30px;
+}
+
+.aboutUs{
+  height: 180px;
+  padding: 20px;
+}
+
+.aboutUsHeader{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  justify-content: center;
+  grid-gap: 20px;
+  inline-size: -webkit-fill-available;
+  width: 75%;
+  margin: 20px;
+  
+  /*border*/
+  border-color: #1C3144;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  
+}
+
+.aboutUsCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+
+  /*text*/
+  color: #1C3144;
+}
+.aboutUsCard h3{
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.help{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  align-items: center;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.helpCard{
+  background-color: #1C3144;
+  display: flex;
+  margin: 20px;
+  align-items: center;
+  inline-size: auto;
+  padding: 15px;
+  line-height: 15px;
+
+  /*text*/
+  color: #F9A03F;
+
+  /*border*/
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+}
+
 @media (max-width: 800px) {
 	.signUpSelect{
     margin: 0px 10px;
@@ -817,6 +954,16 @@ textarea {
   .ACProfileBody h1{
     font-size: 26px;
     margin-top: 0px;
+  }
+
+  .aboutCardTitle{
+    font-size: 24px;
+    margin-top: 5px;
+  }
+  
+  .aboutCardDescription{
+    font-size: 16px;
+    margin-top: 5px;
   }
 }
 

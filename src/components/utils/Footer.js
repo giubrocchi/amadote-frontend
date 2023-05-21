@@ -10,7 +10,7 @@ export default function Footer() {
       </div>
       <div className='footerColumn'>
         <p className='footerCategory footerHeader'>Sobre nós</p>
-        <p className='footerCategory'>Apoie-nos</p>
+        <p className='footerCategory'><a href='/institucional' style={{textDecoration: 'none', color: 'inherit'}}>Institucional</a></p>
         <p className='footerCategory'>FAQ</p>
       </div>
       <div className='footerColumn'>

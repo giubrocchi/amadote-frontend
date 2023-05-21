@@ -23,10 +23,10 @@ export default function AnimalsPage() {
       <div className='animalsHeader'>
         <h1 className='animalsTitle'>Animais disponiveis para a adoção</h1>
         <p className='animalsDescription'>Encontre aqui o seu pet ideal para você enche-lo de amor e carinho.
-        Não encontrou o seu pet aqui ainda? Complete o seu&nbsp;
-        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}} onClick={() => navigate('/cadastrar')}>cadastro</p>
+        Não encontrou o seu pet aqui ainda?<br/>Complete o seu&nbsp;
+        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline', cursor: 'pointer'}} onClick={() => navigate('/cadastrar')}>cadastro</p>
         &nbsp;e/ou faça o&nbsp;
-        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline'}}>teste de match</p>
+        <p className='animalsDescription' style={{textDecoration: 'underline', display: 'inline', cursor: 'pointer'}}>teste de match</p>
         &nbsp;para te avisarmos quando tivermos mais animais disponiveis pertinho de você!</p>
       </div>
       <div className='animalsSection'>
