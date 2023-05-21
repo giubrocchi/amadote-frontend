@@ -28,6 +28,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidZipCode, setInvalidZipCode] = useState(false);
   const [invalidCpf, setInvalidCpf] = useState(false);
+  const [invalidState, setInvalidState] = useState(false);
   const hasCpf = profileInfos.CPF ? true : false;
   const hasBirthDate = profileInfos.birthDate ? true : false;
   const hasAddress = profileInfos.address?.zipCode ? true : false;
@@ -127,8 +128,19 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
   
   const handleStateChange = (event) => {
+    setInvalidState(false);
     setState(event.target.value?.toUpperCase());
   };
+
+  async function isValidState(uf) {
+    const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`
+    const state = await fetch(apiUrl, { mode: 'cors' });
+    const jsonResponse = await state?.json() ?? {};
+
+    if(jsonResponse?.sigla) return true;
+
+    return false;
+  }
   
   const handleDistrictChange = (event) => {
     setDistrict(event.target.value);
@@ -154,6 +166,12 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     if(noMaskCpf?.length < 11 && noMaskCpf?.length > 0) {
       setInvalidCpf(true);
+      invalid = true;
+    }
+
+    const validState = await isValidState(state);
+    if(!validState) {
+      setInvalidState(true);
       invalid = true;
     }
 
@@ -327,7 +345,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
           <label className='inputLabel'>Cidade</label>
           <input type="text" maxLength="250" className='signUpInput' required={hasAddress} id='city' value={city} placeholder='Cidade' onChange={handleCityChange} />
           <label className='inputLabel'>UF</label>
-          <input type="text" maxLength="2" className='signUpInput' required={hasAddress} id='state' value={state} placeholder='UF' onChange={handleStateChange} />
+          <input type="text" maxLength="2" className={`signUpInput invalid${invalidState}`} required={hasAddress} id='state' value={state} placeholder='UF' onChange={handleStateChange} />
           <label className='inputLabel'>Bairro</label>
           <input type="text" maxLength="250" className='signUpInput' required={hasAddress} id='district' value={district} placeholder='Bairro' onChange={handleDistrictChange} />
           <label className='inputLabel'>Senha</label>
