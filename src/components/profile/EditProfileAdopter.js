@@ -81,6 +81,43 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     setCpf(cpfMask(event.target.value));
   };
 
+  function isValidCpf(CPF) {
+    if (CPF.length !== 11 || 
+      CPF === "00000000000" || 
+      CPF === "11111111111" || 
+      CPF === "22222222222" || 
+      CPF === "33333333333" || 
+      CPF === "44444444444" || 
+      CPF === "55555555555" || 
+      CPF === "66666666666" || 
+      CPF === "77777777777" || 
+      CPF === "88888888888" || 
+      CPF === "99999999999")
+        return false;		
+    
+    let add = 0;
+    let i = 0;
+    let rev = 0;
+    for (i=0; i < 9; i ++)
+      add += parseInt(CPF.charAt(i)) * (10 - i);
+      rev = 11 - (add % 11);
+      if (rev === 10 || rev === 11)
+        rev = 0;
+      if (rev !== parseInt(CPF.charAt(9)))
+        return false;
+
+    add = 0;
+    for (i = 0; i < 10; i ++)
+      add += parseInt(CPF.charAt(i)) * (11 - i);
+    rev = 11 - (add % 11);
+    if (rev === 10 || rev === 11)
+      rev = 0;
+    if (rev !== parseInt(CPF.charAt(10)))
+      return false;
+    
+    return true;
+  }
+
   const handleBirthDateChange = (event) => {
     setBirthDate(event.target.value);
   };
@@ -165,6 +202,11 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     }
 
     if(noMaskCpf?.length < 11 && noMaskCpf?.length > 0) {
+      setInvalidCpf(true);
+      invalid = true;
+    }
+
+    if(!isValidCpf(noMaskCpf) && noMaskCpf?.length > 0){
       setInvalidCpf(true);
       invalid = true;
     }
