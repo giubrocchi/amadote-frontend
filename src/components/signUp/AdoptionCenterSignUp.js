@@ -3,6 +3,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import { apiBaseUrl } from '../utils/links';
 import { ThreeDots } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { AiFillCheckCircle } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 
 function AdoptionCenterSignUp() {
   const [registrationDocument, setPdfFile] = useState(null);
@@ -25,6 +27,8 @@ function AdoptionCenterSignUp() {
   const [invalidCnpj, setInvalidCnpj] = useState(false);
   const [invalidZipCode, setInvalidZipCode] = useState(false);
   const [invalidState, setInvalidState] = useState(false);
+
+  const [isConfirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleFileChange = (event) => {
@@ -239,7 +243,7 @@ function AdoptionCenterSignUp() {
       else if(response.status === 401) showErrorAlert('E-mail já cadastrado!');
       else if(response.status === 500) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
       else{
-        toast.success('Sua solicitação de cadastro foi realizada com sucesso!', {duration: 5000});
+        setConfirmationModalOpen(true);
         event.target.reset();
         setCorporateName('');
         setTelephone('');
@@ -270,6 +274,22 @@ function AdoptionCenterSignUp() {
 
   return (
     <div className='formBody'>
+      { isConfirmationModalOpen &&
+        <div className='animalModal'>
+          <div className='deleteAccountModalBody' style={{maxWidth: '500px', width: '70%'}}>
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <IconContext.Provider value={{color: "#76CA66", size: '40px'}}>
+                <AiFillCheckCircle style={{marginTop: '0.83em', minWidth: '40px'}}/>
+              </IconContext.Provider>
+              <h2>Solicitação de cadastro realizada com sucesso!</h2>
+            </div>
+            <p style={{marginBottom: '40px'}}>Fique de olho no seu e-mail, nós te notificaremos quando analisarmos sua solicitação.</p>
+            <button type='cancel' className='signUpButton' onClick={() => setConfirmationModalOpen(false)}>
+              Fechar
+            </button>
+          </div>
+        </div>
+      }
       <form className='signUpForm' onSubmit={handleSubmit}>
         <input type="text" maxLength="250" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
         <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
