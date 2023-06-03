@@ -305,7 +305,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
           <label className='inputLabel'>Telefone</label>
           <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
           <label className='inputLabel'>E-mail</label>
-          <input type="email" maxLength="250" className='signUpInput' disabled id='email' value={email} placeholder='E-mail*' />
+          <input type="email" maxLength="250" className={`signUpInput disabledInput`} disabled id='email' value={email} placeholder='E-mail*' />
           <label className='inputLabel'>CNPJ</label>
           <input type="text" className={`signUpInput disabledInput`} disabled id='CNPJ' value={CNPJ} placeholder='CNPJ*' />
           <label className='inputLabel'>CEP</label>
