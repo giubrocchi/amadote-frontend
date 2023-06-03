@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 function EditProfileAdoptionCenter({profileInfos = {}}) {
   const [fullName, setFullName] = useState(profileInfos.fullName);
   const [telephone, setTelephone] = useState(phoneMask(profileInfos.telephone));
-  const [email, setEmail] = useState(profileInfos.email);
+  const email = profileInfos.email;
   const [password, setPassword] = useState('************');
   const [cpf, setCpf] = useState(cpfMask(profileInfos.CPF));
   const [birthDate, setBirthDate] = useState(profileInfos.birthDate);
@@ -50,10 +50,6 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       .replace(/(\d{2})(\d)/,"($1) $2")
       .replace(/(\d)(\d{4})$/,"$1-$2");
   }
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
   
   const handlePasswordChange = (event) => {
     setInvalidPassword(false);
@@ -229,7 +225,6 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       body: JSON.stringify({
         fullName,
         telephone: noMaskTelephone,
-        email,
         address:{
           streetName,
           number,
@@ -371,7 +366,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
           <label className='inputLabel'>Telefone</label>
           <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
           <label className='inputLabel'>E-mail</label>
-          <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
+          <input type="email" maxLength="250" className='signUpInput' disabled id='email' value={email} placeholder='E-mail*' />
           <label className='inputLabel'>CPF</label>
           <input type="text" className={`signUpInput invalid${invalidCpf}`} required={hasCpf} id='CPF' value={cpf} placeholder='CPF' onChange={handleCpfChange}/>
           <label className='inputLabel'>Data de nascimento</label>
