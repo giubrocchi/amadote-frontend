@@ -315,6 +315,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     if(response.status === 500) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
     if(response.status === 404) showErrorAlert('Perfil não encontrado. Entre com sua conta e tente novamente.');
     if(response.status === 400) showErrorAlert('Senha incorreta!');
+    if(response.status === 401) showErrorAlert('E-mail já cadastrado.');
     else {
       localStorage.removeItem('loggedId');
       navigate('/perfil');
