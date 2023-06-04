@@ -225,31 +225,35 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     const hasEmailChanged = previousEmail !== email;
     const body = hasEmailChanged
       ? JSON.stringify({
-        corporateName,
+        fullName,
         telephone: noMaskTelephone,
         email,
         address:{
           streetName,
           number,
           complement,
-          zipCode: noMaskTelephone,
+          zipCode: noMaskZipCode,
           city,
           state,
           district
-        }
+        },
+        CPF: noMaskCpf,
+        birthDate
       })
       : JSON.stringify({
-        corporateName,
+        fullName,
         telephone: noMaskTelephone,
         address:{
           streetName,
           number,
           complement,
-          zipCode: noMaskTelephone,
+          zipCode: noMaskZipCode,
           city,
           state,
           district
-        }
+        },
+        CPF: noMaskCpf,
+        birthDate
       });
     const response = await fetch(`${apiBaseUrl}/api/adopter/${profileInfos._id}`, {
       method: 'PUT',
