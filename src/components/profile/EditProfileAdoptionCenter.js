@@ -173,7 +173,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
           streetName,
           number,
           complement,
-          zipCode: noMaskTelephone,
+          zipCode: noMaskZipCode,
           city,
           state,
           district
@@ -181,7 +181,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       })
       : JSON.stringify({
         corporateName,
-        telephone: noMaskTelephone,
+        telephone: noMaskZipCode,
         address:{
           streetName,
           number,
