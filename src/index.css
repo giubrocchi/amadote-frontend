@@ -480,7 +480,7 @@ textarea {
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   padding: 20px 40px;
   margin-bottom: 40px;
@@ -493,6 +493,7 @@ textarea {
 .solicitationTextLabel{
   margin-right: 5px;
   font-weight: bold;
+  white-space: nowrap;
 }
 
 .solicitationTextLine{
@@ -501,7 +502,7 @@ textarea {
 
 .solicitationButtonBox{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-evenly;
 }
 
@@ -989,6 +990,18 @@ textarea {
   
   .aboutCardDescription{
     font-size: 16px;
+    margin-top: 5px;
+  }
+
+  .solicitationTextLabel, .solicitationTextData{
+    display: flex;
+  }
+
+  .solicitationTextLabel{
+    margin-bottom: 0px;
+  }
+
+  .solicitationTextData{
     margin-top: 5px;
   }
 }

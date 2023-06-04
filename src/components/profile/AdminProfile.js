@@ -17,6 +17,28 @@ export default function AdminProfile({ adminName }) {
     navigate('/entrar');
   }
 
+  function phoneMask(phone){
+    return phone.replace(/\D/g,'')
+      .replace(/(\d{2})(\d)/,"($1) $2")
+      .replace(/(\d)(\d{4})$/,"$1-$2");
+  }
+
+  function cnpjMask(cnpj){
+    return cnpj
+      .replace(/\D+/g, '')
+      .replace(/(\d{2})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1/$2')
+      .replace(/(\d{4})(\d)/, '$1-$2')
+      .replace(/(-\d{2})\d+?$/, '$1');
+  }
+
+  function zipCodeMask(zipCode){
+    return zipCode.replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1');
+  }
+
   useEffect(() => {
     getSolicitations();
   },[change]);
@@ -70,46 +92,48 @@ export default function AdminProfile({ adminName }) {
             {
               solicitations.map((data) => {
                 return <div className='solicitationBox' key={data._id}>
-                  <div className='solicitationTextBox'>
-                    <div className='solicitationTextLine'>
-                      <p className='solicitationTextLabel'>Razão social:</p><p className='solicitationTextData'>{data.corporateName}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Telefone:</p><p className='solicitationTextData'>{data.telephone}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>E-mail:</p><p className='solicitationTextData'>{data.email}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>CNPJ:</p><p className='solicitationTextData'>{data.CNPJ}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Documento de registo:</p><a href={data.registrationDocument} className='solicitationTextData'>Download</a>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Data:</p><p className='solicitationTextData'>{(new Date(parseInt(data.createdAt))).toLocaleDateString()}</p>
-                    </div>
-                  </div>
-                  <div className='solicitationTextBox'>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Endereço:</p><p className='solicitationTextData'>{data.address.streetName}, {data.address.number}</p>
-                    </div>
-                    {data.address.complement &&
+                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                    <div className='solicitationTextBox'>
                       <div className='solicitationTextLine'>
-                        <p className='solicitationTextLabel'>Complemento:</p><p className='solicitationTextData'>{data.address.complement}</p>
+                        <p className='solicitationTextLabel'>Razão social:</p><p className='solicitationTextData'>{data.corporateName}</p>
                       </div>
-                    }
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>CEP:</p><p className='solicitationTextData'>{data.address.zipCode}</p>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Telefone:</p><p className='solicitationTextData'>{phoneMask(data.telephone)}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>E-mail:</p><p className='solicitationTextData'>{data.email}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>CNPJ:</p><p className='solicitationTextData'>{cnpjMask(data.CNPJ)}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Documento de registo:</p><a href={data.registrationDocument} className='solicitationTextData'>Download</a>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Data:</p><p className='solicitationTextData'>{(new Date(parseInt(data.createdAt))).toLocaleDateString()}</p>
+                      </div>
                     </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Cidade:</p><p className='solicitationTextData'>{data.address.city}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>UF:</p><p className='solicitationTextData'>{data.address.state}</p>
-                    </div>
-                    <div className='solicitationTextLine'>
-                    <p className='solicitationTextLabel'>Bairro:</p><p className='solicitationTextData'>{data.address.district}</p>
+                    <div className='solicitationTextBox'>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Endereço:</p><p className='solicitationTextData'>{data.address.streetName}, {data.address.number}</p>
+                      </div>
+                      {data.address.complement &&
+                        <div className='solicitationTextLine'>
+                          <p className='solicitationTextLabel'>Complemento:</p><p className='solicitationTextData'>{data.address.complement}</p>
+                        </div>
+                      }
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>CEP:</p><p className='solicitationTextData'>{zipCodeMask(data.address.zipCode)}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Cidade:</p><p className='solicitationTextData'>{data.address.city}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>UF:</p><p className='solicitationTextData'>{data.address.state}</p>
+                      </div>
+                      <div className='solicitationTextLine'>
+                      <p className='solicitationTextLabel'>Bairro:</p><p className='solicitationTextData'>{data.address.district}</p>
+                      </div>
                     </div>
                   </div>
                   <div className='solicitationButtonBox'>
