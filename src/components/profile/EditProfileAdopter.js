@@ -83,6 +83,8 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
 
   function isValidCpf(CPF) {
+    if(!CPF) return false;
+
     if (CPF.length !== 11 || 
       CPF === "00000000000" || 
       CPF === "11111111111" || 
@@ -171,6 +173,8 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   };
 
   async function isValidState(uf) {
+    if(!uf) return false;
+
     const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`
     const state = await fetch(apiUrl, { mode: 'cors' });
     const jsonResponse = await state?.json() ?? {};
@@ -213,7 +217,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
     }
 
     const validState = await isValidState(state);
-    if(!validState) {
+    if(!validState && state?.length) {
       setInvalidState(true);
       invalid = true;
     }
