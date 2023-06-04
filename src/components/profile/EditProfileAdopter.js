@@ -8,6 +8,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
   const [fullName, setFullName] = useState(profileInfos.fullName);
   const [telephone, setTelephone] = useState(phoneMask(profileInfos.telephone));
   const [email, setEmail] = useState(profileInfos.email);
+  const previousEmail = profileInfos.email;
   const [password, setPassword] = useState('************');
   const [cpf, setCpf] = useState(cpfMask(profileInfos.CPF));
   const [birthDate, setBirthDate] = useState(profileInfos.birthDate);
@@ -221,6 +222,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
 
     setLoading(true);
 
+    const hasEmailChanged = previousEmail !== email;
     const response = await fetch(`${apiBaseUrl}/api/adopter/${profileInfos._id}`, {
       method: 'PUT',
       headers: {
@@ -229,7 +231,7 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       body: JSON.stringify({
         fullName,
         telephone: noMaskTelephone,
-        email,
+        email: hasEmailChanged ? email : '',
         address:{
           streetName,
           number,
