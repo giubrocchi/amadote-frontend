@@ -181,12 +181,12 @@ function EditProfileAdoptionCenter({profileInfos = {}}) {
       })
       : JSON.stringify({
         corporateName,
-        telephone: noMaskZipCode,
+        telephone: noMaskTelephone,
         address:{
           streetName,
           number,
           complement,
-          zipCode: noMaskTelephone,
+          zipCode: noMaskZipCode,
           city,
           state,
           district
