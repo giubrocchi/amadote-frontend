@@ -14,7 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-h1{
+h1, h2{
   color:#1C3144;
 }
 
@@ -73,6 +73,10 @@ p{
   font-size: 18px;
 }
 
+.false .headerTabName{
+  color: #fff;
+}
+
 .true{
   background-color: #fff !important;
   border-top: 1px #1C3144 solid !important;
@@ -86,7 +90,6 @@ p{
   border-left: 1px rgba(0,0,0,0) solid;
   border-right: 1px rgba(0,0,0,0) solid;
   border-bottom: 1px #1C3144 solid;
-  color: #fff;
 }
 
 .headerIcon{
@@ -197,10 +200,21 @@ button:hover{
   color: #FFF;
   font-size: 18px;
   margin-top: 0px;
+  cursor: pointer;
 }
 
 .footerHeader{
   font-weight: bold;
+}
+
+#footerLogoColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footerLogo{
+  width: 100px;
 }
 
 .animalModal{
@@ -911,6 +925,94 @@ textarea {
   display: inline;
 }
 
+.photoSlider{
+  width: 450px;
+  height: 300px;
+  align-items: center;
+  max-width: 100%;
+}
+
+.photoGrid{
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content 1fr min-content;
+}
+
+.animalBody{
+  display: flex;
+  flex-direction: row;
+  padding-left: 10%;
+  padding-right: 10%;
+  gap: 50px;
+}
+
+#leftAnimalColumn{
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.animalPhoto{
+  object-fit: cover;
+  min-width: 100%;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 16px;
+  border: 1px solid #1C3144;
+  box-shadow: 3px 3px 3px #a9a9a9;
+}
+
+.animalPersonalities{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.animalHistory{
+  margin-bottom: 30px;
+}
+
+.animalData{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.animalData p{
+  margin: 4px 0px;
+}
+
+.adoptButton{
+  background-color: #1C3144;
+  color: #F9A03F;
+  padding: 20px;
+  border: 0px;
+  border-radius: 15px;
+  max-width: fit-content;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: bold;
+  align-self: center;
+}
+
+.animalAdoptionCenterInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orgInfo{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.orgInfo p{
+  margin: 0px;
+}
+
 @media (max-width: 800px) {
 	.signUpSelect{
     margin: 0px 10px;
@@ -1003,6 +1105,27 @@ textarea {
 
   .solicitationTextData{
     margin-top: 5px;
+  }
+
+  .animalBody{
+    flex-direction: column;
+    gap: 20px
+  }
+
+  .photoSlider {
+    max-height: 250px;
+  }
+
+  .animalPhoto {
+    max-height: 100%;
+  }
+
+  #leftAnimalColumn{
+    gap: 20px;
+  }
+
+  #footerLogoColumn{
+    align-items: center;
   }
 }
 
