@@ -944,6 +944,7 @@ textarea {
   padding-left: 10%;
   padding-right: 10%;
   gap: 50px;
+  justify-content: space-evenly;
 }
 
 #leftAnimalColumn{
