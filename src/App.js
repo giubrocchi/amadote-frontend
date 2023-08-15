@@ -11,6 +11,8 @@ import EditProfile from './components/profile/EditProfile';
 import AnimalsPage from './components/AnimalsPage';
 import AnimalPage from './components/AnimalPage';
 import AboutUs from './components/AboutUs';
+import Posts from './components/Posts';
+import Faq from './components/Faq'
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
     path: '/institucional',
     element: <><Header path='institucional'/><AboutUs /><Footer /></>
   },
+  {
+    path: '/postagens',
+    element: <><Header path='postagens'/><Posts /><Footer /></>
+  },
+  {
+    path: '/faq',
+    element: <><Header path='faq'/><Faq /><Footer /></>
+  }
 ]);
 
 export default function App() {

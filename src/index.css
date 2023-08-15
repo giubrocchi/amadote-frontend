@@ -1150,4 +1150,40 @@ textarea {
   .footerBody{
     flex-direction: row;
   }
+
+  .faqBody {
+    padding: 2rem;
+  }
+  
+  .faqList {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .faqItem {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+  
+  .faqQuestion {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .faqAnswer {
+    font-size: 1rem;
+    color: #444;
+  }
+
+  .postsBody {
+    padding: 2rem;
+  }
+  
+  .postsList {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  
 }
