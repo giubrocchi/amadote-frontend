@@ -14,7 +14,7 @@ export default function Faq(){
     
       return (
         <div className='faqBody'>
-          <h1>Perguntas Frequentes</h1>
+          <h1 id="PergTitle">Perguntas Frequentes</h1>
           <div className='faqList'>
             {faqData.map((item, index) => (
               <div className='faqItem' key={index}>
