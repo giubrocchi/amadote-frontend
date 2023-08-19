@@ -1193,5 +1193,38 @@ textarea {
   }
   
 
+.formGroup {
+  margin-bottom: 20px;
+}
+
+#postTitle,
+#postContent {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#postContent {
+  resize: vertical;
+}
+
+.solicitationButton {
+  cursor: pointer;
+  background-color: #048;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.solicitationButton:hover {
+  background-color: #036;
+}
+
+
+
   
 }

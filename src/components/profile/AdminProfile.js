@@ -146,7 +146,20 @@ export default function AdminProfile({ adminName }) {
           </div>
         </TabPanel>
         <TabPanel>
+        <div className='adminProfileBox'>
           <h2>Fazer publicação</h2>
+          <form>
+            <div className='formGroup'>
+              <label htmlFor='postTitle'>Título da Postagem:</label>
+              <input type='text' id='postTitle' name='postTitle' />
+            </div>
+            <div className='formGroup'>
+              <label htmlFor='postContent'>Conteúdo:</label>
+              <textarea id='postContent' name='postContent' rows='4'></textarea>
+            </div>
+            <button className='solicitationButton'>Publicar</button>
+          </form>
+        </div>
         </TabPanel>
       </Tabs>
       <Toaster/>
