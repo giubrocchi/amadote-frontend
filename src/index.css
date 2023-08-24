@@ -1159,6 +1159,7 @@ textarea {
   #PergTitle{
     text-align: center;
   }
+  }
   
   .faqList {
     display: grid;
@@ -1241,10 +1242,4 @@ textarea {
 
 .fileInput {
   display: none;
-}
-
-
-
-
-  
 }
