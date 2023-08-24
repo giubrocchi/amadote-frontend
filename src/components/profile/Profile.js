@@ -13,8 +13,8 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getUserProfile(id){
-      if(!id) navigate('/entrar');
+    async function getUserProfile(id) {
+      if (!id) navigate('/entrar');
 
       setLoading(true);
 
@@ -22,23 +22,21 @@ export default function Profile() {
       const adoptionCenterUrl = `${apiBaseUrl}/api/adoptionCenter/${id}`;
       const adopterResult = await fetch(adopterUrl);
 
-      if(adopterResult.ok) {
-        const jsonAdopterResult = await adopterResult?.json() ?? {};
+      if (adopterResult.ok) {
+        const jsonAdopterResult = (await adopterResult?.json()) ?? {};
 
         setProfile(jsonAdopterResult.profile);
         setName(jsonAdopterResult.fullName);
-      }
-
-      else{
+      } else {
         const adoptionCenterResult = await fetch(adoptionCenterUrl);
-        if(adoptionCenterResult.ok){
-          const jsonAdoptionCenterResult = await adoptionCenterResult?.json() ?? {};
+        if (adoptionCenterResult.ok) {
+          const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
 
           setProfile(jsonAdoptionCenterResult.profile);
           setName(jsonAdoptionCenterResult.corporateName);
         }
       }
-      
+
       setLoading(false);
     }
 
@@ -46,24 +44,24 @@ export default function Profile() {
   }, [navigate]);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center'}}>
-      {profile === 'adopter' &&
-        <AdopterProfile adopterName={name}/>
-      }
-      {profile === 'admin' &&
-        <AdminProfile adminName={name}/>
-      }
-      {profile === 'adoptionCenter' &&
-        <AdoptionCenterProfile corporateName={name}/>
-      }
-      {loading &&
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+      }}
+    >
+      {profile === 'adopter' && <AdopterProfile adopterName={name} />}
+      {profile === 'admin' && <AdminProfile adminName={name} />}
+      {profile === 'adoptionCenter' && <AdoptionCenterProfile corporateName={name} />}
+      {loading && (
         <ColorRing
           visible={true}
           height="200"
           width="200"
           colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
         />
-      }
+      )}
     </div>
-  )
+  );
 }

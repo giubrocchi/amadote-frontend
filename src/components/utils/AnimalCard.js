@@ -14,47 +14,56 @@ export default function AnimalCard({ animalInfo, buttonOptions }) {
   const monthPlural = months === 1 ? 'mês' : 'meses';
   const navigate = useNavigate();
 
-  function executeButtonAction(event){
+  function executeButtonAction(event) {
     buttonFunction();
     event.stopPropagation();
   }
 
   return (
-    <div className='ACProfileAnimalBox' key={_id} onClick={() => navigate(`/animais/${_id}`)}>
-      <img src={photos[0]} alt='Animal' className='ACProfileAnimalImage'/>
-      <div style={{display: 'flex', flexDirection: 'row', gap: '8px', marginTop: '5px'}}>
-        <h2 className='ACProfileAnimalName'>{name}</h2>
-        { sex === 'F' &&
-          <IconContext.Provider value={{color: "#F9A03F", size:'25px'}}>
+    <div className="ACProfileAnimalBox" key={_id} onClick={() => navigate(`/animais/${_id}`)}>
+      <img src={photos[0]} alt="Animal" className="ACProfileAnimalImage" />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          gap: '8px',
+          marginTop: '5px',
+        }}
+      >
+        <h2 className="ACProfileAnimalName">{name}</h2>
+        {sex === 'F' && (
+          <IconContext.Provider value={{ color: '#F9A03F', size: '25px' }}>
             <BsGenderFemale />
           </IconContext.Provider>
-        }
-        { sex === 'M' &&
-          <IconContext.Provider value={{color: "#3F88C5", size:'25px'}}>
+        )}
+        {sex === 'M' && (
+          <IconContext.Provider value={{ color: '#3F88C5', size: '25px' }}>
             <BsGenderMale />
           </IconContext.Provider>
-        }
+        )}
       </div>
-      <div className='ACProfileAnimalLabel'>
-        <p className='ACProfileAnimalKey'>Espécie:</p>
-        <p className='ACProfileAnimalValue'>{species}</p>
+      <div className="ACProfileAnimalLabel">
+        <p className="ACProfileAnimalKey">Espécie:</p>
+        <p className="ACProfileAnimalValue">{species}</p>
       </div>
-      <div className='ACProfileAnimalLabel'>
-        <p className='ACProfileAnimalKey'>Idade:</p>
-        <p className='ACProfileAnimalValue'>
+      <div className="ACProfileAnimalLabel">
+        <p className="ACProfileAnimalKey">Idade:</p>
+        <p className="ACProfileAnimalValue">
           {age > 0 ? `${age} ano${agePlural}` : `${months} ${monthPlural}`}
         </p>
       </div>
-      <div className='ACProfileAnimalPersonalities'>
-        {
-          personality?.map(personality => {
-            return <div key={personality} className='ACProfileAnimalPersonality'>
+      <div className="ACProfileAnimalPersonalities">
+        {personality?.map((personality) => {
+          return (
+            <div key={personality} className="ACProfileAnimalPersonality">
               <p>{personality}</p>
             </div>
-          })
-        }
+          );
+        })}
       </div>
-      <button className='ACProfileAnimalButton' onClick={executeButtonAction}>{buttonText}</button>
+      <button className="ACProfileAnimalButton" onClick={executeButtonAction}>
+        {buttonText}
+      </button>
     </div>
   );
 }

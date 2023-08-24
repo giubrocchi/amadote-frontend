@@ -14,8 +14,8 @@ export default function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getUserProfile(id){
-      if(!id) navigate('/entrar');
+    async function getUserProfile(id) {
+      if (!id) navigate('/entrar');
 
       setLoading(true);
 
@@ -23,23 +23,21 @@ export default function Profile() {
       const adoptionCenterUrl = `${apiBaseUrl}/api/adoptionCenter/${id}`;
       const adopterResult = await fetch(adopterUrl);
 
-      if(adopterResult.ok) {
-        const jsonAdopterResult = await adopterResult?.json() ?? {};
+      if (adopterResult.ok) {
+        const jsonAdopterResult = (await adopterResult?.json()) ?? {};
 
         setProfile(jsonAdopterResult.profile);
         setProfileInfos(jsonAdopterResult);
-      }
-
-      else{
+      } else {
         const adoptionCenterResult = await fetch(adoptionCenterUrl);
-        if(adoptionCenterResult.ok){
-          const jsonAdoptionCenterResult = await adoptionCenterResult?.json() ?? {};
+        if (adoptionCenterResult.ok) {
+          const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
 
           setProfile(jsonAdoptionCenterResult.profile);
           setProfileInfos(jsonAdoptionCenterResult);
         }
       }
-      
+
       setLoading(false);
     }
 
@@ -47,28 +45,35 @@ export default function Profile() {
   }, [navigate]);
 
   return (
-    <div style={{display: 'flex', justifyContent: 'center', alignContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
-      <div onClick={() => navigate('/perfil')} style={{alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer'}}>
-        <IconContext.Provider value={{color: "#1C3144", size:'40px', }}>
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignContent: 'center',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
+      <div
+        onClick={() => navigate('/perfil')}
+        style={{ alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer' }}
+      >
+        <IconContext.Provider value={{ color: '#1C3144', size: '40px' }}>
           <AiOutlineArrowLeft />
         </IconContext.Provider>
       </div>
-      
-      <h1 style={{marginBottom: '50px'}}>Editar perfil</h1>
-      {profile === 'adopter' &&
-        <EditProfileAdopter profileInfos={profileInfos}/>
-      }
-      {profile === 'adoptionCenter' &&
-        <EditProfileAdoptionCenter profileInfos={profileInfos}/>
-      }
-      {loading &&
+
+      <h1 style={{ marginBottom: '50px' }}>Editar perfil</h1>
+      {profile === 'adopter' && <EditProfileAdopter profileInfos={profileInfos} />}
+      {profile === 'adoptionCenter' && <EditProfileAdoptionCenter profileInfos={profileInfos} />}
+      {loading && (
         <ColorRing
           visible={true}
           height="200"
           width="200"
           colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
         />
-      }
+      )}
     </div>
-  )
+  );
 }

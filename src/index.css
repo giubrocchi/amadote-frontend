@@ -2,8 +2,18 @@
 
 body {
   margin: 0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
+    'Cantarell',
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -14,52 +24,53 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-h1, h2{
-  color:#1C3144;
+h1,
+h2 {
+  color: #1c3144;
 }
 
-p{
+p {
   font-size: 18px;
 }
 
-.headerBody{
+.headerBody {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #3F88C5;
+  background-color: #3f88c5;
   position: sticky;
   top: 0;
   z-index: 100;
   margin-bottom: 50px;
 }
 
-.headerAmadote{
+.headerAmadote {
   font-weight: normal;
   font-size: 28px;
   margin: 0px;
   text-decoration: none;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.headerLogo{
+.headerLogo {
   height: 35px;
 }
 
-.headerAmadoteMobile{
+.headerAmadoteMobile {
   font-weight: normal;
   font-size: 28px;
   margin: 10px 20px;
 }
 
-.headerBottom{
+.headerBottom {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.headerTab{
+.headerTab {
   width: 100%;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: 0px;
 }
 
@@ -67,34 +78,34 @@ p{
   outline: none;
 }
 
-.headerTabName{
+.headerTabName {
   margin: 8px 0px;
   font-weight: normal;
   font-size: 18px;
 }
 
-.false .headerTabName{
+.false .headerTabName {
   color: #fff;
 }
 
-.true{
+.true {
   background-color: #fff !important;
-  border-top: 1px #1C3144 solid !important;
-  border-left: 1px #1C3144 solid !important;
-  border-right: 1px #1C3144 solid !important;
-  border-bottom: 1px rgba(0,0,0,0) solid !important;
+  border-top: 1px #1c3144 solid !important;
+  border-left: 1px #1c3144 solid !important;
+  border-right: 1px #1c3144 solid !important;
+  border-bottom: 1px rgba(0, 0, 0, 0) solid !important;
 }
 
-.false{
-  border-top: 1px rgba(0,0,0,0) solid;
-  border-left: 1px rgba(0,0,0,0) solid;
-  border-right: 1px rgba(0,0,0,0) solid;
-  border-bottom: 1px #1C3144 solid;
+.false {
+  border-top: 1px rgba(0, 0, 0, 0) solid;
+  border-left: 1px rgba(0, 0, 0, 0) solid;
+  border-right: 1px rgba(0, 0, 0, 0) solid;
+  border-bottom: 1px #1c3144 solid;
 }
 
-.headerIcon{
+.headerIcon {
   height: 100%;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: 0px;
   margin-right: 20px;
   align-self: center;
@@ -104,50 +115,50 @@ p{
   outline: none;
 }
 
-.headerIconMobile{
+.headerIconMobile {
   height: 100%;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border: 0px;
   align-self: center;
   padding: 10px 20px;
 }
 
-button:hover{
+button:hover {
   cursor: pointer;
 }
 
-.iconTab{
+.iconTab {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-.iconTabMobile{
+.iconTabMobile {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: -webkit-fill-available;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-bottom-left-radius: 20px;
 }
 
-.headerTopMobile{
+.headerTopMobile {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 
-.modalOverlay{
+.modalOverlay {
   background-color: rgba(83, 83, 83, 0.5);
   position: fixed;
   width: 100%;
   height: 100%;
 }
 
-.sidebar{
+.sidebar {
   position: fixed;
   right: 0;
-  background-color: #FFF;
+  background-color: #fff;
   width: 80%;
   height: 100%;
   border-top-left-radius: 20px;
@@ -156,7 +167,7 @@ button:hover{
   flex-direction: column;
 }
 
-.headerLogoBox{
+.headerLogoBox {
   display: flex;
   flex-direction: row;
   height: 40px;
@@ -167,7 +178,7 @@ button:hover{
   width: fit-content;
 }
 
-.headerBottomMobile{
+.headerBottomMobile {
   display: flex;
   flex-direction: column;
   border-top: 1px #8d8d8d solid;
@@ -175,9 +186,9 @@ button:hover{
   overflow-y: auto;
 }
 
-.headerTabMobile{
+.headerTabMobile {
   width: 100%;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   border-bottom: 1px #8d8d8d solid;
   border-top: none;
   border-left: none;
@@ -187,8 +198,8 @@ button:hover{
   padding: 10px 20px;
 }
 
-.footerBody{
-  background-color: #3F88C5;
+.footerBody {
+  background-color: #3f88c5;
   display: flex;
   margin-top: 50px;
   padding: 30px 30px;
@@ -196,28 +207,28 @@ button:hover{
   box-sizing: border-box;
 }
 
-.footerCategory{
-  color: #FFF;
+.footerCategory {
+  color: #fff;
   font-size: 18px;
   margin-top: 0px;
   cursor: pointer;
 }
 
-.footerHeader{
+.footerHeader {
   font-weight: bold;
 }
 
-#footerLogoColumn{
+#footerLogoColumn {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.footerLogo{
+.footerLogo {
   width: 100px;
 }
 
-.animalModal{
+.animalModal {
   background-color: rgba(112, 112, 112, 0.5);
   width: 100%;
   height: 100%;
@@ -230,8 +241,8 @@ button:hover{
   align-items: center;
 }
 
-.animalModalBody{
-  background-color: #FFFFFF;
+.animalModalBody {
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   border-radius: 20px;
@@ -272,55 +283,55 @@ textarea {
   height: 100px;
 }
 
-.animalModalClose{
+.animalModalClose {
   align-self: flex-end;
   border: 1px solid #c5741d;
   border-radius: 10px;
-  background-color: #F9A03F;
-  color: #FFFFFF;
+  background-color: #f9a03f;
+  color: #ffffff;
   font-size: 20px;
   margin-top: -20px;
   margin-right: -20px;
 }
 
-.editImagesBox{
+.editImagesBox {
   overflow-x: scroll;
   display: flex;
   gap: 20px;
   padding-bottom: 10px;
 }
 
-.editImage{
+.editImage {
   width: 200px;
   height: 150px;
   object-fit: cover;
 }
 
-.editImageExclude{
+.editImageExclude {
   background-color: rgba(186, 0, 0, 0.66);
   border: none;
   border-radius: 10px;
   margin-top: 10px;
 }
 
-.editImageContainer{
+.editImageContainer {
   display: flex;
   flex-direction: column;
 }
 
-.deleteButtonsBox{
+.deleteButtonsBox {
   display: flex;
   flex-direction: row;
   gap: 30px;
   justify-content: space-between;
 }
 
-.deleteButton{
+.deleteButton {
   background-color: rgba(186, 0, 0, 0.8) !important;
   align-self: center;
 }
 
-.animalModalLabel{
+.animalModalLabel {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -328,58 +339,58 @@ textarea {
   margin-bottom: 20px;
 }
 
-.animalModalLabelTitle{
+.animalModalLabelTitle {
   font-size: 20px;
   font-weight: bold;
   margin: 0px 10px 0px 0px;
 }
 
-.animalModalLabel label{
+.animalModalLabel label {
   margin-right: 20px;
 }
 
-.animalButton{
+.animalButton {
   margin: 20px 0px;
 }
 
-.animalModalTitle{
+.animalModalTitle {
   text-align: center;
 }
 
-.deleteAccountModalBody{
+.deleteAccountModalBody {
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   flex-direction: column;
   border-radius: 20px;
   padding: 35px;
 }
 
-.ACProfileBody{
+.ACProfileBody {
   width: 80%;
   display: flex;
   flex-direction: column;
 }
 
-.ACProfileTitleBox{
+.ACProfileTitleBox {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.ACProfileTitle{
+.ACProfileTitle {
   margin: 0px 20px 0px 0px;
 }
 
-.ACProfileAddButton{
-  border: 1px solid #1C3144;
+.ACProfileAddButton {
+  border: 1px solid #1c3144;
   border-radius: 10px;
-  background-color: #3F88C5;
+  background-color: #3f88c5;
   display: flex;
   align-items: center;
   padding: 2px;
 }
 
-.ACProfileAnimalsList{
+.ACProfileAnimalsList {
   display: grid;
   grid-template-columns: repeat(auto-fill, 220px);
   justify-content: center;
@@ -388,8 +399,8 @@ textarea {
   margin-top: 50px;
 }
 
-.ACProfileAnimalBox{
-  background-color: #FFFFFF;
+.ACProfileAnimalBox {
+  background-color: #ffffff;
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
   padding: 10px;
@@ -399,38 +410,38 @@ textarea {
   justify-content: space-between;
 }
 
-.ACProfileAnimalImage{
+.ACProfileAnimalImage {
   width: 200px;
   height: 150px;
   object-fit: cover;
   border-radius: 16px;
 }
 
-.ACProfileAnimalName{
+.ACProfileAnimalName {
   font-weight: 600;
   font-size: 22px;
   margin: 0px;
-  color: #1C3144;
+  color: #1c3144;
 }
 
-.ACProfileAnimalLabel{
+.ACProfileAnimalLabel {
   display: flex;
 }
 
-.ACProfileAnimalKey{
+.ACProfileAnimalKey {
   font-weight: 600;
   font-size: 16px;
   margin: 5px 5px 5px 0px;
-  color: #1C3144;
+  color: #1c3144;
 }
 
-.ACProfileAnimalValue{
+.ACProfileAnimalValue {
   font-size: 16px;
   margin: 5px 0px;
-  color: #1C3144;
+  color: #1c3144;
 }
 
-.ACProfileAnimalPersonalities{
+.ACProfileAnimalPersonalities {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -441,22 +452,22 @@ textarea {
   overflow: hidden;
 }
 
-.ACProfileAnimalPersonality{
-  background: #1C3144;
+.ACProfileAnimalPersonality {
+  background: #1c3144;
   border-radius: 10px;
   padding: 2px 8px;
   height: fit-content;
 }
 
-.ACProfileAnimalPersonality p{
-  color: #FFFFFF;
+.ACProfileAnimalPersonality p {
+  color: #ffffff;
   margin: 0px;
   font-size: 14px;
 }
 
-.ACProfileAnimalButton{
-  color: #FFFFFF;
-  background-color: #3F88C5;
+.ACProfileAnimalButton {
+  color: #ffffff;
+  background-color: #3f88c5;
   border-radius: 16px;
   padding: 8px 25px;
   border: none;
@@ -464,13 +475,13 @@ textarea {
   font-weight: bold;
 }
 
-.ACProfileHeader{
+.ACProfileHeader {
   margin-bottom: 20px;
 }
 
-.ACProfileEditButton{
-  color: #FFFFFF;
-  background-color: #3F88C5;
+.ACProfileEditButton {
+  color: #ffffff;
+  background-color: #3f88c5;
   border-radius: 10px;
   padding: 8px 25px;
   border: none;
@@ -478,19 +489,19 @@ textarea {
   font-weight: bold;
 }
 
-.ACProfileNameBox{
+.ACProfileNameBox {
   display: flex;
   align-items: center;
   gap: 30px;
 }
 
-.adminProfileBody{
+.adminProfileBody {
   padding: 0px 10%;
   align-items: center;
   width: 100%;
 }
 
-.solicitationBox{
+.solicitationBox {
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 20px;
   display: flex;
@@ -500,27 +511,28 @@ textarea {
   margin-bottom: 40px;
 }
 
-.solicitationTextLabel, .solicitationTextData{
+.solicitationTextLabel,
+.solicitationTextData {
   display: inline;
 }
 
-.solicitationTextLabel{
+.solicitationTextLabel {
   margin-right: 5px;
   font-weight: bold;
   white-space: nowrap;
 }
 
-.solicitationTextLine{
+.solicitationTextLine {
   margin-bottom: 15px;
 }
 
-.solicitationButtonBox{
+.solicitationButtonBox {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.solicitationButton{
+.solicitationButton {
   outline: none;
   border: none;
   font-size: 20px;
@@ -529,79 +541,78 @@ textarea {
   font-weight: bold;
 }
 
-#accept{
-  background-color: #F9A03F;
+#accept {
+  background-color: #f9a03f;
 }
 
-#reject{
-  background-color: #1C3144;
-  color: #FFF;
+#reject {
+  background-color: #1c3144;
+  color: #fff;
 }
 
-.adminProfileBox{
+.adminProfileBox {
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
 
-.signInText{
+.signInText {
   display: inline;
   font-weight: normal;
 }
 
-.signInTextButton{
+.signInTextButton {
   display: inline;
   text-decoration: underline;
-  color: #1C3144;
+  color: #1c3144;
   cursor: pointer;
 }
 
-
-.signInBox{
+.signInBox {
   text-align: center;
   margin-top: 25px;
 }
 
-.formBody{
+.formBody {
   width: 100%;
   text-align: -webkit-center;
 }
 
-.signUpForm{
+.signUpForm {
   display: flex;
   flex-direction: column;
 }
 
-.signUpInput{
+.signUpInput {
   font-family: Inter;
   font-size: 18px;
-  color: #1C3144;
+  color: #1c3144;
   border-radius: 10px;
-  border: 1px solid #3F88C5;
+  border: 1px solid #3f88c5;
   outline: none;
   padding: 6px 10px;
   margin-bottom: 20px;
   background-color: rgba(63, 137, 197, 0.25);
 }
 
-.signUpFile{
+.signUpFile {
   font-family: Inter;
 }
 
-.disabledInput{
+.disabledInput {
   color: #757575;
 }
 
-.inputLabel{
+.inputLabel {
   text-align: left;
   font-size: 20px;
   margin-bottom: 10px;
   margin-right: 20px;
 }
 
-::-webkit-file-upload-button{
+::-webkit-file-upload-button {
   font-family: Inter;
-  background-color: #D2D2D2;
+  background-color: #d2d2d2;
   border: 0px;
   border-radius: 30px;
   padding: 5px 20px;
@@ -609,25 +620,25 @@ textarea {
   margin-bottom: 20px;
 }
 
-.signUpButton{
+.signUpButton {
   font-size: 18px;
   font-family: Inter;
   font-weight: bold;
   justify-content: center;
   display: flex;
-  background-color: #3F88C5;
-  color: #FFF;
+  background-color: #3f88c5;
+  color: #fff;
   border: 0px;
   border-radius: 30px;
   padding: 10px 20px;
 }
 
-.signUpInputLabel{
+.signUpInputLabel {
   text-align: left;
   margin-top: 0;
 }
 
-.signUpSelect{
+.signUpSelect {
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 10px #919191;
@@ -637,7 +648,7 @@ textarea {
   width: 170px;
 }
 
-.signUpContainer{
+.signUpContainer {
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -645,12 +656,12 @@ textarea {
   margin-bottom: 10px;
 }
 
-.signUpUser{
+.signUpUser {
   display: flex;
   flex-direction: row;
 }
 
-.signUpBody{
+.signUpBody {
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -677,30 +688,30 @@ textarea {
   cursor: pointer;
 }
 
-.invalidtrue{
+.invalidtrue {
   border-color: #ff6464;
 }
 
-.signUpTitle{
+.signUpTitle {
   display: flex;
   flex-direction: row;
-  color: #1C3144;
+  color: #1c3144;
   align-items: center;
   text-align: center;
 }
 
-.passwordTip{
+.passwordTip {
   text-align: start;
   font-size: 14px;
   margin: 0px 0px 20px 0px;
   color: #535353;
 }
 
-.inputWithTip{
+.inputWithTip {
   margin-bottom: 5px;
 }
 
-.homeScroll{
+.homeScroll {
   display: flex;
   flex-direction: row;
   overflow-x: auto;
@@ -708,44 +719,41 @@ textarea {
   padding: 20px 20px;
 }
 
-.homeScroll::-webkit-scrollbar-track
-{
-	border-radius: 10px;
-	background-color: #d6d6d6;
+.homeScroll::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #d6d6d6;
 }
 
-.homeScroll::-webkit-scrollbar
-{
+.homeScroll::-webkit-scrollbar {
   height: 6px;
-	background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
-.homeScroll::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-color: #707070;
+.homeScroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #707070;
 }
 
-.homeBody{
+.homeBody {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.homeAnimalsSection{
+.homeAnimalsSection {
   width: 80%;
 }
 
-.homeSubtitle{
-  color:#1C3144;
+.homeSubtitle {
+  color: #1c3144;
   margin: 10px 0px;
 }
 
-.homeDescription{
+.homeDescription {
   margin: 0px;
 }
 
-.animalsList{
+.animalsList {
   display: grid;
   grid-template-columns: repeat(auto-fill, 220px);
   justify-content: center;
@@ -753,12 +761,12 @@ textarea {
   inline-size: -webkit-fill-available;
 }
 
-.animalsBody{
+.animalsBody {
   display: flex;
   flex-direction: column;
 }
 
-.animalsHeader{
+.animalsHeader {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -768,19 +776,19 @@ textarea {
   margin-bottom: 20px;
 }
 
-.animalsSection{
+.animalsSection {
   display: flex;
   flex-direction: row;
   width: 80%;
   align-self: center;
 }
 
-.aboutBody{
+.aboutBody {
   display: flex;
   flex-direction: column;
 }
 
-.aboutHeader{
+.aboutHeader {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -790,7 +798,7 @@ textarea {
   margin-bottom: 10px;
 }
 
-.aboutSection{
+.aboutSection {
   display: flex;
   flex-direction: row;
   width: 80%;
@@ -798,7 +806,7 @@ textarea {
   justify-content: center;
 }
 
-.aboutList{
+.aboutList {
   display: flex;
   justify-content: center;
   grid-gap: 70px;
@@ -806,13 +814,13 @@ textarea {
   flex-wrap: wrap;
 }
 
-.aboutList h2{
+.aboutList h2 {
   font-size: 30px;
   padding-bottom: 2px;
 }
 
-.aboutCard{
-  background-color: #3F88C5;
+.aboutCard {
+  background-color: #3f88c5;
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
   display: flex;
@@ -822,12 +830,12 @@ textarea {
   width: 250px;
 
   /*text*/
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: justify;
 }
 
-.aboutCard2{
-  background-color: #F9A03F;
+.aboutCard2 {
+  background-color: #f9a03f;
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
   display: flex;
@@ -837,52 +845,52 @@ textarea {
   width: 250px;
 
   /*text*/
-  color: #1C3144;
+  color: #1c3144;
   text-align: justify;
 }
 
-.aboutLogo{
+.aboutLogo {
   height: 200px;
   padding: 30px;
 }
 
-.aboutUs{
+.aboutUs {
   height: 180px;
   padding: 20px;
 }
 
-.aboutUsHeader{
+.aboutUsHeader {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   grid-gap: 20px;
   width: 75%;
   margin: 20px;
-  
+
   /*border*/
-  border-color: #1C3144;
+  border-color: #1c3144;
   border-style: solid;
   border-width: 1px;
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
 }
 
-.aboutUsCard{
+.aboutUsCard {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 10px;
 
   /*text*/
-  color: #1C3144;
+  color: #1c3144;
 }
 
-.aboutUsCard h3{
+.aboutUsCard h3 {
   margin-bottom: 0px;
   margin-top: 0px;
 }
 
-.help{
+.help {
   display: flex;
   flex-direction: column;
   width: 80%;
@@ -892,8 +900,8 @@ textarea {
   margin-bottom: 10px;
 }
 
-.helpCard{
-  background-color: #1C3144;
+.helpCard {
+  background-color: #1c3144;
   display: flex;
   flex-direction: column;
   margin: 20px;
@@ -903,42 +911,42 @@ textarea {
   line-height: 15px;
 
   /*text*/
-  color: #F9A03F;
+  color: #f9a03f;
 
   /*border*/
   box-shadow: 5px 5px 10px #a9a9a9;
   border-radius: 15px;
 }
 
-.helpCard p{
+.helpCard p {
   margin: 10px 0px;
 }
 
-.helpPix{
+.helpPix {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
 
-.animalsDescription{
+.animalsDescription {
   display: inline;
 }
 
-.photoSlider{
+.photoSlider {
   width: 450px;
   height: 300px;
   align-items: center;
   max-width: 100%;
 }
 
-.photoGrid{
+.photoGrid {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: min-content 1fr min-content;
 }
 
-.animalBody{
+.animalBody {
   display: flex;
   flex-direction: row;
   padding-left: 10%;
@@ -947,23 +955,23 @@ textarea {
   justify-content: space-evenly;
 }
 
-#leftAnimalColumn{
+#leftAnimalColumn {
   display: flex;
   flex-direction: column;
   gap: 50px;
 }
 
-.animalPhoto{
+.animalPhoto {
   object-fit: cover;
   min-width: 100%;
   width: 100%;
   min-height: 100%;
   border-radius: 16px;
-  border: 1px solid #1C3144;
+  border: 1px solid #1c3144;
   box-shadow: 3px 3px 3px #a9a9a9;
 }
 
-.animalPersonalities{
+.animalPersonalities {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -971,23 +979,23 @@ textarea {
   margin-bottom: 30px;
 }
 
-.animalHistory{
+.animalHistory {
   margin-bottom: 30px;
 }
 
-.animalData{
+.animalData {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.animalData p{
+.animalData p {
   margin: 4px 0px;
 }
 
-.adoptButton{
-  background-color: #1C3144;
-  color: #F9A03F;
+.adoptButton {
+  background-color: #1c3144;
+  color: #f9a03f;
   padding: 20px;
   border: 0px;
   border-radius: 15px;
@@ -998,201 +1006,53 @@ textarea {
   align-self: center;
 }
 
-.animalAdoptionCenterInfo{
+.animalAdoptionCenterInfo {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.orgInfo{
+.orgInfo {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.orgInfo p{
+.orgInfo p {
   margin: 0px;
 }
 
-@media (max-width: 800px) {
-	.signUpSelect{
-    margin: 0px 10px;
-    width: 45%;
-  }
-
-  .signUpUser{
-    margin: 30px 0px;
-  }
-
-  .signUpForm{
-    width: 90%;
-  }
-
-  .signUpFile{
-    font-size: 14px;
-  }
-  
-  .signInBox{
-    font-size: 14px;
-  }
-  
-  .animalModalTitle{
-    font-size: 22px;
-  }
-
-  .animalModalLabelTitle{
-    font-size: 18px;
-  }
-
-  .animalModalBody{
-    padding: 20px;
-    display: flex;
-    align-items: center;
-  }
-
-  .animalModalClose{
-    margin-top: -10px;
-    margin-right: -10px;
-  }
-
-  .animalModalLabel{
-    font-size: 18px;
-  }
-  
-  .footerBody{
-    flex-direction: column;
-  }
-
-  .footerColumn{
-    margin-bottom: 20px;
-  }
-
-  .animalsTitle{
-    font-size: 24px;
-    margin-top: 0px;
-  }
-
-  .animalsDescription{
-    font-size: 16px;
-    margin-top: 0px;
-  }
-
-  .animalsHeader{
-    width: 90%;
-  }
-
-  .ACProfileBody h1{
-    font-size: 26px;
-    margin-top: 0px;
-  }
-
-  .aboutCardTitle{
-    font-size: 24px;
-    margin-top: 5px;
-  }
-  
-  .aboutCardDescription{
-    font-size: 16px;
-    margin-top: 5px;
-  }
-
-  .solicitationTextLabel, .solicitationTextData{
-    display: flex;
-  }
-
-  .solicitationTextLabel{
-    margin-bottom: 0px;
-  }
-
-  .solicitationTextData{
-    margin-top: 5px;
-  }
-
-  .animalBody{
-    flex-direction: column;
-    gap: 20px
-  }
-
-  .photoSlider {
-    max-height: 250px;
-  }
-
-  .animalPhoto {
-    max-height: 100%;
-  }
-
-  #leftAnimalColumn{
-    gap: 20px;
-  }
-
-  #footerLogoColumn{
-    align-items: center;
-  }
+.faqList {
+  display: grid;
+  gap: 24px;
 }
 
-@media (min-width: 800px) {
-	.signUpUser{
-    margin: 50px 0px;
-  }
-  
-  .signUpForm{
-    width: 500px;
-  }
+.faqItem {
+  border: 1px solid #ccc;
+  padding: 16px;
+  border-radius: 15px;
+  box-shadow: 5px 5px 10px #a9a9a9;
+}
 
-  .signUpFile{
-    font-size: 18px;
-  }
-  
-  .signInBox{
-    font-size: 16px;
-  }
-  
-  .footerBody{
-    flex-direction: row;
-  }
+.faqQuestion {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
 
-  .faqBody {
-    padding: 32px; 
-    background-size: 100%
-  }
+.faqAnswer {
+  font-size: 16px;
+  color: #444;
+}
 
-  #PergTitle{
-    text-align: center;
-  }
-  }
-  
-  .faqList {
-    display: grid;
-    gap: 24px; 
-  }
-  
-  .faqItem {
-    border: 1px solid #ccc;
-    padding: 16px; 
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px #a9a9a9;
-  }
-  
-  .faqQuestion {
-    font-size: 24px; 
-    margin-bottom: 8px; 
-  }
-  
-  .faqAnswer {
-    font-size: 16px; 
-    color: #444;
-  }
-  
-  .postsBody {
-    padding: 32px; 
-    background-size: 100%;
-  }
-  
-  .postsList {
-    display: grid;
-    gap: 24px; 
-  }
-  
+.postsBody {
+  padding: 32px;
+  background-size: 100%;
+}
+
+.postsList {
+  display: grid;
+  gap: 24px;
+}
 
 .formGroup {
   margin-bottom: 20px;
@@ -1242,4 +1102,152 @@ textarea {
 
 .fileInput {
   display: none;
+}
+
+@media (max-width: 800px) {
+  .signUpSelect {
+    margin: 0px 10px;
+    width: 45%;
+  }
+
+  .signUpUser {
+    margin: 30px 0px;
+  }
+
+  .signUpForm {
+    width: 90%;
+  }
+
+  .signUpFile {
+    font-size: 14px;
+  }
+
+  .signInBox {
+    font-size: 14px;
+  }
+
+  .animalModalTitle {
+    font-size: 22px;
+  }
+
+  .animalModalLabelTitle {
+    font-size: 18px;
+  }
+
+  .animalModalBody {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .animalModalClose {
+    margin-top: -10px;
+    margin-right: -10px;
+  }
+
+  .animalModalLabel {
+    font-size: 18px;
+  }
+
+  .footerBody {
+    flex-direction: column;
+  }
+
+  .footerColumn {
+    margin-bottom: 20px;
+  }
+
+  .animalsTitle {
+    font-size: 24px;
+    margin-top: 0px;
+  }
+
+  .animalsDescription {
+    font-size: 16px;
+    margin-top: 0px;
+  }
+
+  .animalsHeader {
+    width: 90%;
+  }
+
+  .ACProfileBody h1 {
+    font-size: 26px;
+    margin-top: 0px;
+  }
+
+  .aboutCardTitle {
+    font-size: 24px;
+    margin-top: 5px;
+  }
+
+  .aboutCardDescription {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+
+  .solicitationTextLabel,
+  .solicitationTextData {
+    display: flex;
+  }
+
+  .solicitationTextLabel {
+    margin-bottom: 0px;
+  }
+
+  .solicitationTextData {
+    margin-top: 5px;
+  }
+
+  .animalBody {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .photoSlider {
+    max-height: 250px;
+  }
+
+  .animalPhoto {
+    max-height: 100%;
+  }
+
+  #leftAnimalColumn {
+    gap: 20px;
+  }
+
+  #footerLogoColumn {
+    align-items: center;
+  }
+}
+
+@media (min-width: 800px) {
+  .signUpUser {
+    margin: 50px 0px;
+  }
+
+  .signUpForm {
+    width: 500px;
+  }
+
+  .signUpFile {
+    font-size: 18px;
+  }
+
+  .signInBox {
+    font-size: 16px;
+  }
+
+  .footerBody {
+    flex-direction: row;
+  }
+
+  .faqBody {
+    padding: 32px;
+    background-size: 100%;
+  }
+
+  #PergTitle {
+    text-align: center;
+  }
 }

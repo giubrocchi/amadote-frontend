@@ -20,7 +20,7 @@ function AdoptionCenterSignUp() {
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [district, setDistrict] = useState('');
-  
+
   const [loading, setLoading] = useState(false);
   const [invalidTelephone, setInvalidTelephone] = useState(false);
   const [invalidPassword, setInvalidPassword] = useState(false);
@@ -45,20 +45,21 @@ function AdoptionCenterSignUp() {
   };
 
   const phoneMask = (phone) => {
-    return phone.replace(/\D/g,'')
-      .replace(/(\d{2})(\d)/,"($1) $2")
-      .replace(/(\d)(\d{4})$/,"$1-$2");
-  }
+    return phone
+      .replace(/\D/g, '')
+      .replace(/(\d{2})(\d)/, '($1) $2')
+      .replace(/(\d)(\d{4})$/, '$1-$2');
+  };
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-  
+
   const handlePasswordChange = (event) => {
     setInvalidPassword(false);
     setPassword(event.target.value);
   };
-  
+
   const handleCNPJChange = (event) => {
     setInvalidCnpj(false);
     setCNPJ(cnpjMask(event.target.value));
@@ -72,70 +73,72 @@ function AdoptionCenterSignUp() {
       .replace(/(\d{3})(\d)/, '$1/$2')
       .replace(/(\d{4})(\d)/, '$1-$2')
       .replace(/(-\d{2})\d+?$/, '$1');
-  }
+  };
 
   function isValidCnpj(value) {
     if (!value) return false;
-  
+
     if (value.length !== 14) return false;
-  
+
     const match = value.match(/\d/g);
     const numbers = Array.isArray(match) ? match.map(Number) : [];
 
-    if (numbers.length !== 14) return false
-    
+    if (numbers.length !== 14) return false;
+
     const items = [...new Set(numbers)];
 
     if (items.length === 1) return false;
-  
+
     const calc = (x) => {
-      const slice = numbers.slice(0, x)
-      let factor = x - 7
-      let sum = 0
-  
+      const slice = numbers.slice(0, x);
+      let factor = x - 7;
+      let sum = 0;
+
       for (let i = x; i >= 1; i--) {
-        const n = slice[x - i]
-        sum += n * factor--
-        if (factor < 2) factor = 9
+        const n = slice[x - i];
+        sum += n * factor--;
+        if (factor < 2) factor = 9;
       }
-  
-      const result = 11 - (sum % 11)
-  
-      return result > 9 ? 0 : result
-    }
-  
-    const digits = numbers.slice(12)
-    
-    const digit0 = calc(12)
-    if (digit0 !== digits[0]) return false
-  
-    const digit1 = calc(13)
-    return digit1 === digits[1]
+
+      const result = 11 - (sum % 11);
+
+      return result > 9 ? 0 : result;
+    };
+
+    const digits = numbers.slice(12);
+
+    const digit0 = calc(12);
+    if (digit0 !== digits[0]) return false;
+
+    const digit1 = calc(13);
+    return digit1 === digits[1];
   }
-  
+
   const handleStreetNameChange = (event) => {
     setStreetName(event.target.value);
   };
-  
+
   const handleNumberChange = (event) => {
     setNumber(event.target.value);
   };
-  
+
   const handleComplementChange = (event) => {
     setComplement(event.target.value);
   };
-  
+
   const handleZipCodeChange = async (event) => {
     const zipCode = event.target.value;
 
     setZipCode(zipCodeMask(zipCode));
     setInvalidZipCode(false);
 
-    if(zipCode.length >= 8){
-      const zipCodeInfo = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`, { mode: 'cors' });
+    if (zipCode.length >= 8) {
+      const zipCodeInfo = await fetch(`https://viacep.com.br/ws/${zipCode}/json/`, {
+        mode: 'cors',
+      });
 
-      if(zipCodeInfo.ok){
-        const jsonZipCodeInfo = await zipCodeInfo.json() ?? {};
+      if (zipCodeInfo.ok) {
+        const jsonZipCodeInfo = (await zipCodeInfo.json()) ?? {};
 
         setStreetName(jsonZipCodeInfo.logradouro);
         setDistrict(jsonZipCodeInfo.bairro);
@@ -146,30 +149,31 @@ function AdoptionCenterSignUp() {
   };
 
   const zipCodeMask = (zipCode) => {
-    return zipCode.replace(/\D/g, '')
+    return zipCode
+      .replace(/\D/g, '')
       .replace(/(\d{5})(\d)/, '$1-$2')
       .replace(/(-\d{3})\d+?$/, '$1');
-  }
-  
+  };
+
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
-  
+
   const handleStateChange = (event) => {
     setInvalidState(false);
     setState(event.target.value?.toUpperCase());
   };
 
   async function isValidState(uf) {
-    const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`
+    const apiUrl = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}`;
     const state = await fetch(apiUrl, { mode: 'cors' });
-    const jsonResponse = await state?.json() ?? {};
+    const jsonResponse = (await state?.json()) ?? {};
 
-    if(jsonResponse?.sigla) return true;
+    if (jsonResponse?.sigla) return true;
 
     return false;
   }
-  
+
   const handleDistrictChange = (event) => {
     setDistrict(event.target.value);
   };
@@ -182,33 +186,33 @@ function AdoptionCenterSignUp() {
     const noMaskZipCode = zipCode.replace(/\D/g, '');
     let invalid = false;
 
-    if(noMaskTelephone.length < 8) {
+    if (noMaskTelephone.length < 8) {
       setInvalidTelephone(true);
       invalid = true;
     }
 
-    if(!isValidPassword(password)) {
+    if (!isValidPassword(password)) {
       setInvalidPassword(true);
       invalid = true;
     }
 
-    if(noMaskCnpj.length < 14 || !isValidCnpj(noMaskCnpj)) {
+    if (noMaskCnpj.length < 14 || !isValidCnpj(noMaskCnpj)) {
       setInvalidCnpj(true);
       invalid = true;
     }
 
-    if(noMaskZipCode.length < 8) {
+    if (noMaskZipCode.length < 8) {
       setInvalidZipCode(true);
       invalid = true;
     }
 
     const validState = await isValidState(state);
-    if(!validState) {
+    if (!validState) {
       setInvalidState(true);
       invalid = true;
     }
 
-    if(invalid) return;
+    if (invalid) return;
 
     const reader = new FileReader();
     reader.onloadend = async () => {
@@ -218,7 +222,7 @@ function AdoptionCenterSignUp() {
       const response = await fetch(`${apiBaseUrl}/api/adoptionCenter`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           corporateName,
@@ -233,16 +237,17 @@ function AdoptionCenterSignUp() {
           zipCode: noMaskZipCode,
           city,
           state,
-          district
+          district,
         }),
       });
 
       setLoading(false);
 
-      if(response.status === 400) showErrorAlert('Preencha todos os campos corretamente.');
-      else if(response.status === 401) showErrorAlert('E-mail já cadastrado!');
-      else if(response.status === 500) showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
-      else{
+      if (response.status === 400) showErrorAlert('Preencha todos os campos corretamente.');
+      else if (response.status === 401) showErrorAlert('E-mail já cadastrado!');
+      else if (response.status === 500)
+        showErrorAlert('Ops! Ocorreu um erro, tente novamente mais tarde.');
+      else {
         setConfirmationModalOpen(true);
         event.target.reset();
         setCorporateName('');
@@ -258,51 +263,160 @@ function AdoptionCenterSignUp() {
         setState('');
         setDistrict('');
       }
-    }
+    };
     reader.readAsDataURL(registrationDocument);
   };
 
-  function isValidPassword(password){
-    const validPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[a-zA-Z]).{8,}$/;
+  function isValidPassword(password) {
+    const validPasswordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[a-zA-Z]).{8,}$/;
 
     return validPasswordRegex.test(password);
   }
 
-  function showErrorAlert(message){
+  function showErrorAlert(message) {
     toast.error(message);
   }
 
   return (
-    <div className='formBody'>
-      { isConfirmationModalOpen &&
-        <div className='animalModal'>
-          <div className='deleteAccountModalBody' style={{maxWidth: '500px', width: '70%'}}>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-              <IconContext.Provider value={{color: "#76CA66", size: '40px'}}>
-                <AiFillCheckCircle style={{marginTop: '0.83em', minWidth: '40px'}}/>
+    <div className="formBody">
+      {isConfirmationModalOpen && (
+        <div className="animalModal">
+          <div className="deleteAccountModalBody" style={{ maxWidth: '500px', width: '70%' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <IconContext.Provider value={{ color: '#76CA66', size: '40px' }}>
+                <AiFillCheckCircle style={{ marginTop: '0.83em', minWidth: '40px' }} />
               </IconContext.Provider>
               <h2>Solicitação de cadastro realizada com sucesso!</h2>
             </div>
-            <p style={{marginBottom: '40px'}}>Fique de olho no seu e-mail, nós te notificaremos quando analisarmos sua solicitação.</p>
-            <button type='cancel' className='signUpButton' onClick={() => setConfirmationModalOpen(false)}>
+            <p style={{ marginBottom: '40px' }}>
+              Fique de olho no seu e-mail, nós te notificaremos quando analisarmos sua solicitação.
+            </p>
+            <button
+              type="cancel"
+              className="signUpButton"
+              onClick={() => setConfirmationModalOpen(false)}
+            >
               Fechar
             </button>
           </div>
         </div>
-      }
-      <form className='signUpForm' onSubmit={handleSubmit}>
-        <input type="text" maxLength="250" className='signUpInput' required id='corporateName' value={corporateName} placeholder='Razão social*' onChange={handleCorporateNameChange} />
-        <input type="tel" maxLength="15" className={`signUpInput invalid${invalidTelephone}`} required id='telephone' value={telephone} placeholder='Telefone*' onChange={handleTelephoneChange} />
-        <input type="email" maxLength="250" className='signUpInput' required id='email' value={email} placeholder='E-mail*' onChange={handleEmailChange} />
-        <input type="text" className={`signUpInput invalid${invalidCnpj}`} required id='CNPJ' value={CNPJ} placeholder='CNPJ*' onChange={handleCNPJChange} />
-        <input type="text" className={`signUpInput invalid${invalidZipCode}`} required id='zipCode' value={zipCode} placeholder='CEP*' onChange={handleZipCodeChange} />
-        <input type="text" maxLength="250" className='signUpInput' required id='streetName' value={streetName} placeholder='Rua*' onChange={handleStreetNameChange} />
-        <input type="text" maxLength="20" className='signUpInput' required id='number' value={number} placeholder='Número*' onChange={handleNumberChange} />
-        <input type="text" maxLength="250" className='signUpInput' id='complement' value={complement} placeholder='Complemento' onChange={handleComplementChange} />
-        <input type="text" maxLength="250" className='signUpInput' required id='city' value={city} placeholder='Cidade*' onChange={handleCityChange} />
-        <input type="text" maxLength="2" className={`signUpInput invalid${invalidState}`} required id='state' value={state} placeholder='UF*' onChange={handleStateChange} />
-        <input type="text" maxLength="250" className='signUpInput' required id='district' value={district} placeholder='Bairro*' onChange={handleDistrictChange} />
-        <div style={{display: invalidPassword ? 'unset' : 'none', color: 'red', textAlign: 'left'}}>
+      )}
+      <form className="signUpForm" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          maxLength="250"
+          className="signUpInput"
+          required
+          id="corporateName"
+          value={corporateName}
+          placeholder="Razão social*"
+          onChange={handleCorporateNameChange}
+        />
+        <input
+          type="tel"
+          maxLength="15"
+          className={`signUpInput invalid${invalidTelephone}`}
+          required
+          id="telephone"
+          value={telephone}
+          placeholder="Telefone*"
+          onChange={handleTelephoneChange}
+        />
+        <input
+          type="email"
+          maxLength="250"
+          className="signUpInput"
+          required
+          id="email"
+          value={email}
+          placeholder="E-mail*"
+          onChange={handleEmailChange}
+        />
+        <input
+          type="text"
+          className={`signUpInput invalid${invalidCnpj}`}
+          required
+          id="CNPJ"
+          value={CNPJ}
+          placeholder="CNPJ*"
+          onChange={handleCNPJChange}
+        />
+        <input
+          type="text"
+          className={`signUpInput invalid${invalidZipCode}`}
+          required
+          id="zipCode"
+          value={zipCode}
+          placeholder="CEP*"
+          onChange={handleZipCodeChange}
+        />
+        <input
+          type="text"
+          maxLength="250"
+          className="signUpInput"
+          required
+          id="streetName"
+          value={streetName}
+          placeholder="Rua*"
+          onChange={handleStreetNameChange}
+        />
+        <input
+          type="text"
+          maxLength="20"
+          className="signUpInput"
+          required
+          id="number"
+          value={number}
+          placeholder="Número*"
+          onChange={handleNumberChange}
+        />
+        <input
+          type="text"
+          maxLength="250"
+          className="signUpInput"
+          id="complement"
+          value={complement}
+          placeholder="Complemento"
+          onChange={handleComplementChange}
+        />
+        <input
+          type="text"
+          maxLength="250"
+          className="signUpInput"
+          required
+          id="city"
+          value={city}
+          placeholder="Cidade*"
+          onChange={handleCityChange}
+        />
+        <input
+          type="text"
+          maxLength="2"
+          className={`signUpInput invalid${invalidState}`}
+          required
+          id="state"
+          value={state}
+          placeholder="UF*"
+          onChange={handleStateChange}
+        />
+        <input
+          type="text"
+          maxLength="250"
+          className="signUpInput"
+          required
+          id="district"
+          value={district}
+          placeholder="Bairro*"
+          onChange={handleDistrictChange}
+        />
+        <div
+          style={{
+            display: invalidPassword ? 'unset' : 'none',
+            color: 'red',
+            textAlign: 'left',
+          }}
+        >
           <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
           <ul>
             <li>Pelo menos uma letra minúscula;</li>
@@ -310,20 +424,45 @@ function AdoptionCenterSignUp() {
             <li>Pelo menos uma letra maiúscula.</li>
           </ul>
         </div>
-        <input type="password" maxLength="250" className={`signUpInput invalid${invalidPassword} inputWithTip`} required id='password' value={password} placeholder='Senha*' onChange={handlePasswordChange} />
-        <p className='passwordTip'>Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo menos uma letra maiúscula e uma minúscula.</p>
-        <p className='signUpInputLabel'>Documento de registro (PDF)*</p>
-        <input type="file" className='signUpFile' required accept=".pdf" onChange={handleFileChange} />
-        <button type="submit" className='signUpButton'>
+        <input
+          type="password"
+          maxLength="250"
+          className={`signUpInput invalid${invalidPassword} inputWithTip`}
+          required
+          id="password"
+          value={password}
+          placeholder="Senha*"
+          onChange={handlePasswordChange}
+        />
+        <p className="passwordTip">
+          Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo
+          menos uma letra maiúscula e uma minúscula.
+        </p>
+        <p className="signUpInputLabel">Documento de registro (PDF)*</p>
+        <input
+          type="file"
+          className="signUpFile"
+          required
+          accept=".pdf"
+          onChange={handleFileChange}
+        />
+        <button type="submit" className="signUpButton">
           {!loading && 'Solicitar cadastro'}
-          {loading && <ThreeDots height='21' radius='9' color="#1C3144" ariaLabel="three-dots-loading"/>}
+          {loading && (
+            <ThreeDots height="21" radius="9" color="#1C3144" ariaLabel="three-dots-loading" />
+          )}
         </button>
       </form>
-      <div className='signInBox'>
-        <h3 className='signInText'>Já possui uma conta? </h3>
-        <h3 className='signInTextButton' onClick={() => navigate('/entrar', {state: {path: 'adoptionCenter'}})}>Entrar</h3>
+      <div className="signInBox">
+        <h3 className="signInText">Já possui uma conta? </h3>
+        <h3
+          className="signInTextButton"
+          onClick={() => navigate('/entrar', { state: { path: 'adoptionCenter' } })}
+        >
+          Entrar
+        </h3>
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }
