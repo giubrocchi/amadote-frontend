@@ -13,6 +13,7 @@ import AnimalPage from './components/AnimalPage';
 import AboutUs from './components/AboutUs';
 import Posts from './components/Posts';
 import Faq from './components/Faq';
+import Dashboard from './components/profile/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -111,6 +112,16 @@ const router = createBrowserRouter([
       <>
         <Header path="faq" />
         <Faq />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/perfil/dashboard',
+    element: (
+      <>
+        <Header path="entrar" />
+        <Dashboard />
         <Footer />
       </>
     ),

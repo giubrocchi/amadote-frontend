@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { BiPlus, BiLogOut } from 'react-icons/bi';
+import { BiPlus, BiLogOut, BiBarChart } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
 import CreateAnimalModal from './CreateAnimalModal';
 import EditAnimalModal from './EditAnimalModal';
@@ -61,6 +61,14 @@ export default function AdoptionCenterProfile({ corporateName }) {
         <button className="ACProfileEditButton" onClick={() => navigate('/perfil/editar')}>
           Editar perfil
         </button>
+      </div>
+      <div className="ACProfileOptions">
+        <div className="ACProfileOption" onClick={() => navigate('/perfil/dashboard')}>
+          <IconContext.Provider value={{ color: '#666666', size: '60px' }}>
+            <BiBarChart />
+          </IconContext.Provider>
+          <h2 className="ACProfileOptionTitle">Análise estatística de adoções</h2>
+        </div>
       </div>
       <div className="ACProfileAnimals">
         <div className="ACProfileTitleBox">
