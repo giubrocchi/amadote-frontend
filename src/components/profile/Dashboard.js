@@ -26,22 +26,6 @@ export default function Dashboard() {
   const [yearAdoptions, setYearAdoptions] = useState([]);
   const [yearAdoptionsLabels, setYearAdoptionsLabels] = useState([]);
 
-  const chartOptions = {
-    responsive: true,
-    plugins: { legend: { display: false }, title: { display: true, text: 'Chart.js Line Chart' } },
-  };
-  const data = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'Animais',
-        data: [1, 2, 32, 4, 5, 65, 7],
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-    ],
-  };
-
   useEffect(() => {
     async function getAdoptionsData(id) {
       const adoptedAnimals = await fetch(`${apiBaseUrl}/api/adoptionProposal/getDoneOng`, {
