@@ -1171,6 +1171,44 @@ textarea {
   color: #f9a03f;
 }
 
+.dashboardGraph {
+  display: flex;
+  flex-direction: column;
+  border: #cecece 2px solid;
+  border-radius: 20px;
+  width: 40%;
+  padding: 8px 15px;
+  max-height: 400px;
+}
+
+.dashboardGraphRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.graphButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.graphButton {
+  background-color: #cecece;
+  color: #1c3144;
+  padding: 7px 15px;
+  border: 0px;
+  border-radius: 15px;
+  max-width: fit-content;
+  font-family: Inter;
+  font-size: 16px;
+}
+
+.graphButtonSelected {
+  background-color: #f9a03f;
+}
+
 @media (max-width: 800px) {
   .signUpSelect {
     margin: 0px 10px;
@@ -1285,6 +1323,19 @@ textarea {
 
   #footerLogoColumn {
     align-items: center;
+  }
+
+  .dashboardRow {
+    flex-direction: column;
+  }
+
+  .dashboardGraphRow {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .dashboardGraph {
+    width: 93%;
   }
 }
 

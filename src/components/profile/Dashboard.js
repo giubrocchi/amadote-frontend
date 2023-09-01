@@ -24,7 +24,9 @@ export default function Dashboard() {
   const [yearRegistered, setYearRegistered] = useState([]);
   const [yearRegisteredLabels, setYearRegisteredLabels] = useState([]);
   const [yearAdoptions, setYearAdoptions] = useState([]);
+  const [yearAdoptionsAmadote, setYearAdoptionsAmadote] = useState([]);
   const [yearAdoptionsLabels, setYearAdoptionsLabels] = useState([]);
+  const [adoptionType, setAdoptionType] = useState('total');
 
   useEffect(() => {
     async function getAdoptionsData(id) {
@@ -147,6 +149,21 @@ export default function Dashboard() {
       }, {});
       const monthlyAdopted = monthlyYearPairs.map((key) => monthlyAdoptedCount[key] || 0);
 
+      const monthlyAdoptedAmadoteCount = adoptedAnimals.reduce(
+        (previous, { adoptedAt, status }) => {
+          if (adoptedAt < lastYear || status !== 'adopted') return previous;
+
+          var key = months[adoptedAt?.getMonth()] + '/' + adoptedAt?.getFullYear();
+          previous[key] = (previous[key] || 0) + 1;
+
+          return previous;
+        },
+        {},
+      );
+      const monthlyAdoptedAmadote = monthlyYearPairs.map(
+        (key) => monthlyAdoptedAmadoteCount[key] || 0,
+      );
+
       setTotalAdoptions(total);
       setAdoptionsAmadote(totalAmadote);
       setAdoptionsOtherMeans(totalOtherMeans);
@@ -156,6 +173,7 @@ export default function Dashboard() {
       setYearRegistered(monthlyRegistered);
       setYearRegisteredLabels(monthlyYearPairs);
       setYearAdoptions(monthlyAdopted);
+      setYearAdoptionsAmadote(monthlyAdoptedAmadote);
       setYearAdoptionsLabels(monthlyYearPairs);
     }
 
@@ -198,8 +216,9 @@ export default function Dashboard() {
             <p className="dashboardBoxData">{amadoteAdoptionsAverage}</p>
           </div>
         </div>
-        <div className="dashboardRow" style={{ marginTop: 30 }}>
-          <div className="dashboardBox">
+        <div className="dashboardGraphRow" style={{ marginTop: 30 }}>
+          <div className="dashboardGraph">
+            <button style={{ visibility: 'hidden' }}></button>
             <Line
               data={{
                 labels: yearRegisteredLabels,
@@ -214,6 +233,10 @@ export default function Dashboard() {
               }}
               options={{
                 responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                  yAxes: [{ ticks: { beginAtZero: true } }],
+                },
                 plugins: {
                   legend: { display: false },
                   title: { display: true, text: 'Número de animais registrados' },
@@ -221,27 +244,45 @@ export default function Dashboard() {
               }}
             />
           </div>
-          <div className="dashboardBox">
-            <Line
-              data={{
-                labels: yearAdoptionsLabels,
-                datasets: [
-                  {
-                    label: 'Animais',
-                    data: yearAdoptions,
-                    borderColor: 'rgb(255, 99, 132)',
-                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          <div className="dashboardGraph">
+            <div className="graphButtonContainer">
+              <button
+                onClick={() => setAdoptionType('total')}
+                className={`graphButton ${adoptionType === 'total' ? 'graphButtonSelected' : ''}`}
+              >
+                Total
+              </button>
+              <button
+                onClick={() => setAdoptionType('amadote')}
+                className={`graphButton ${adoptionType === 'amadote' ? 'graphButtonSelected' : ''}`}
+              >
+                Amadote
+              </button>
+            </div>
+            <div style={{ height: '-webkit-fill-available' }}>
+              <Line
+                data={{
+                  labels: yearAdoptionsLabels,
+                  datasets: [
+                    {
+                      label: 'Animais',
+                      data: adoptionType === 'total' ? yearAdoptions : yearAdoptionsAmadote,
+                      borderColor: 'rgb(255, 99, 132)',
+                      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    },
+                  ],
+                }}
+                options={{
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+                  plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Número de adoções' },
                   },
-                ],
-              }}
-              options={{
-                responsive: true,
-                plugins: {
-                  legend: { display: false },
-                  title: { display: true, text: 'Número de adoções' },
-                },
-              }}
-            />
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
