@@ -132,7 +132,7 @@ export default function AdminProfile({ adminName }) {
                       <div className="solicitationTextLine">
                         <p className="solicitationTextLabel">Data:</p>
                         <p className="solicitationTextData">
-                          {new Date(parseInt(data.createdAt)).toLocaleDateString()}
+                          {new Date(data.createdAt).toLocaleDateString()}
                         </p>
                       </div>
                     </div>

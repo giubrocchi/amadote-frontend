@@ -19,7 +19,10 @@ import {
   Baby,
 } from '@phosphor-icons/react';
 import { IconContext } from 'react-icons';
+import toast, { Toaster } from 'react-hot-toast';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import UserInformationModal from './adoption/UserInformationModal';
+import AdoptionInformationModal from './adoption/AdoptionInformationModal';
 
 const personalityIcons = {
   Brincalhão: <MaskHappy size={30} color="#9747FF" />,
@@ -46,6 +49,10 @@ export default function AnimalsPage() {
   const [months, setMonths] = useState();
   const [birth, setBirth] = useState();
   const [adoptionCenter, setAdoptionCenter] = useState({});
+  const [user, setUser] = useState({});
+
+  const [isUserInformationModalOpen, setUserInformationModalOpen] = useState(false);
+  const [isAdoptionInformationModalOpen, setAdoptionInformationModalOpen] = useState(false);
 
   useEffect(() => {
     async function getAnimal() {
@@ -84,8 +91,45 @@ export default function AnimalsPage() {
     else setCurrentPhotoIndex((previousValue) => setCurrentPhotoIndex(previousValue + 1));
   }
 
+  async function onAdoptButtonClicked() {
+    const adopter = await getUserProfile(localStorage.getItem('loggedId'));
+
+    if (!adopter.ok) {
+      toast.error('Você deve entrar com uma conta de adotante para poder realizar a adoção.');
+
+      return;
+    }
+
+    const jsonResponse = (await adopter?.json()) ?? {};
+
+    setUser(jsonResponse);
+    setUserInformationModalOpen(true);
+  }
+
+  async function getUserProfile(id) {
+    const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
+    const adopterResult = await fetch(adopterUrl);
+
+    return adopterResult;
+  }
+
   return (
     <div className="animalBody">
+      {isUserInformationModalOpen && (
+        <UserInformationModal
+          user={user}
+          setUserInformationModalOpen={setUserInformationModalOpen}
+          setAdoptionInformationModalOpen={setAdoptionInformationModalOpen}
+        />
+      )}
+      {isAdoptionInformationModalOpen && (
+        <AdoptionInformationModal
+          user={user}
+          setAdoptionInformationModalOpen={setAdoptionInformationModalOpen}
+          animalId={animalId}
+          adoptionCenterId={adoptionCenter?._id}
+        />
+      )}
       <div className="animalColumn" id="leftAnimalColumn">
         <div className={`photoSlider ${animal?.photos?.length > 1 ? 'photoGrid' : ''}`}>
           {animal?.photos?.length > 1 && (
@@ -100,7 +144,9 @@ export default function AnimalsPage() {
             </IconContext.Provider>
           )}
         </div>
-        <button className="adoptButton">Quero adotar!</button>
+        <button className="adoptButton" onClick={onAdoptButtonClicked}>
+          Quero adotar!
+        </button>
         <div className="animalAdoptionCenterInfo">
           <div className="orgInfo">
             <p>Publicado por:</p>
@@ -108,7 +154,7 @@ export default function AnimalsPage() {
           </div>
           <div className="orgInfo">
             <p>Data:</p>
-            <p>{new Date(parseInt(animal?.createdAt))?.toLocaleDateString('en-GB')}</p>
+            <p>{new Date(animal?.createdAt)?.toLocaleDateString('en-GB')}</p>
           </div>
         </div>
       </div>
@@ -197,6 +243,7 @@ export default function AnimalsPage() {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }
