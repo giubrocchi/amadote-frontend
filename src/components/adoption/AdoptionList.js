@@ -97,7 +97,7 @@ export default function AdoptionList() {
         {!loading &&
           adoptions?.map((adoption) => (
             <div className="adoptionBox" key={adoption?._id}>
-              <img src={adoption?.animal?.photos?.[0]} />
+              <img src={adoption?.animal?.photos?.[0]} alt="animal" />
               <div className="adoptionInformation">
                 <h1>{adoption?.animal?.name}</h1>
                 <p>
