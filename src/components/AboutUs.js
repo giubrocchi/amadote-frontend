@@ -113,12 +113,12 @@ export default function AboutUs() {
           os animais a encontrarem um lar.
         </p>
         <div className="helpCard">
-          <p>Nossa chave PIX é o nosso E-mail:</p>
+          <p>Nossa chave PIX é o nosso e-mail:</p>
           <div className="helpPix">
             <IconContext.Provider value={{ color: '#F9A03F', size: '25px' }}>
               <IoIosMail />
             </IconContext.Provider>
-            <p>amadote@gmail.com</p>
+            <p>amadoteoficial@gmail.com</p>
           </div>
         </div>
       </div>

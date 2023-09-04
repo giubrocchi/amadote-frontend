@@ -394,6 +394,7 @@ textarea {
 .ACProfileOptions {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .ACProfileOption {
@@ -941,6 +942,7 @@ textarea {
 
 .helpCard p {
   margin: 10px 0px;
+  line-height: normal;
 }
 
 .helpPix {
@@ -1224,6 +1226,60 @@ textarea {
   font-size: 18px;
 }
 
+.adoptionsBody {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20%;
+  justify-content: center;
+}
+
+.adoptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.adoptionBox {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  padding: 15px;
+}
+
+.adoptionBox img {
+  height: 200px;
+  width: 250px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.adoptionInformation {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+
+.adoptionInformation p,
+.adoptionInformation h1 {
+  margin: 0px;
+}
+
+.adoptionStatusinAnalysis {
+  color: #f9a03f;
+}
+
+.adoptionStatusconcluded {
+  color: rgb(11, 182, 34);
+}
+
+.adoptionStatusrejected {
+  color: #e94747;
+}
+
 @media (max-width: 800px) {
   .signUpSelect {
     margin: 0px 10px;
@@ -1351,6 +1407,19 @@ textarea {
 
   .dashboardGraph {
     width: 93%;
+  }
+
+  .adoptionBox {
+    flex-direction: column;
+  }
+
+  .adoptionBox img {
+    max-height: 300px;
+    height: max-content;
+    min-height: 160px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 20px;
   }
 }
 

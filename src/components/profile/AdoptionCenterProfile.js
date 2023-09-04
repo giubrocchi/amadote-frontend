@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { BiPlus, BiLogOut, BiBarChart } from 'react-icons/bi';
+import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
 import { IconContext } from 'react-icons';
 import CreateAnimalModal from './CreateAnimalModal';
 import EditAnimalModal from './EditAnimalModal';
@@ -63,6 +64,12 @@ export default function AdoptionCenterProfile({ corporateName }) {
         </button>
       </div>
       <div className="ACProfileOptions">
+        <div className="ACProfileOption" onClick={() => navigate('/perfil/adocoes')}>
+          <IconContext.Provider value={{ color: '#666666', size: '60px' }}>
+            <HiOutlineChatBubbleOvalLeftEllipsis />
+          </IconContext.Provider>
+          <h2 className="ACProfileOptionTitle">Minhas adoções</h2>
+        </div>
         <div className="ACProfileOption" onClick={() => navigate('/perfil/dashboard')}>
           <IconContext.Provider value={{ color: '#666666', size: '60px' }}>
             <BiBarChart />
