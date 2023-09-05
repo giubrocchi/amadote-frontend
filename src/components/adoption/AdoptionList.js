@@ -23,14 +23,14 @@ export default function AdoptionList() {
       if (adopterResult.ok) {
         const jsonAdopterResult = (await adopterResult?.json()) ?? {};
 
-        getAdoptions({ _idAdopter: jsonAdopterResult._id });
+        await getAdoptions({ _idAdopter: jsonAdopterResult._id });
         setUserType('adopter');
       } else {
         const adoptionCenterResult = await fetch(adoptionCenterUrl);
         if (adoptionCenterResult.ok) {
           const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
 
-          getAdoptions({ _idAdoptionCenter: jsonAdoptionCenterResult._id });
+          await getAdoptions({ _idAdoptionCenter: jsonAdoptionCenterResult._id });
           setUserType('adoptionCenter');
         }
       }
@@ -86,34 +86,81 @@ export default function AdoptionList() {
     <div className="adoptionsBody">
       <h1 style={{ textAlign: 'center', marginBottom: '50px' }}>Suas adoções</h1>
       {loading && (
-        <ColorRing
-          visible={true}
-          height="200"
-          width="200"
-          colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
-        />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <ColorRing
+            visible={true}
+            height="200"
+            width="200"
+            colors={['#1C3144', '#1C3144', '#1C3144', '#1C3144', '#1C3144']}
+          />
+        </div>
       )}
       <div className="adoptionContainer">
-        {!loading &&
-          adoptions?.map((adoption) => (
-            <div className="adoptionBox" key={adoption?._id}>
-              <img src={adoption?.animal?.photos?.[0]} alt="animal" />
-              <div className="adoptionInformation">
-                <h1>{adoption?.animal?.name}</h1>
-                <p>
-                  Data da solicitação: {new Date(adoption?.createdAt)?.toLocaleDateString('en-GB')}
-                </p>
-                {userType === 'adopter' && <p>ONG: {adoption?.adoptionCenter?.corporateName}</p>}
-                {userType === 'adoptionCenter' && <p>Adotante: {adoption?.adopter?.fullName}</p>}
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                  <p>Status:&nbsp;</p>
-                  <p className={`adoptionStatus${adoption?.status}`}>
-                    {adoptionStatus[adoption?.status]}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+        {!loading && adoptions?.some(({ status }) => status === 'inAnalysis') && (
+          <>
+            <h2 style={{ margin: 0 }}>Em análise</h2>
+            {adoptions?.map((adoption) => {
+              if (adoption?.status === 'inAnalysis')
+                return (
+                  <div className="adoptionBox" key={adoption?._id}>
+                    <img src={adoption?.animal?.photos?.[0]} alt="animal" />
+                    <div className="adoptionInformation">
+                      <h1>{adoption?.animal?.name}</h1>
+                      <p>
+                        Data da solicitação:{' '}
+                        {new Date(adoption?.createdAt)?.toLocaleDateString('en-GB')}
+                      </p>
+                      {userType === 'adopter' && (
+                        <p>ONG: {adoption?.adoptionCenter?.corporateName}</p>
+                      )}
+                      {userType === 'adoptionCenter' && (
+                        <p>Adotante: {adoption?.adopter?.fullName}</p>
+                      )}
+                      <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <p>Status:&nbsp;</p>
+                        <p className={`adoptionStatus${adoption?.status}`}>
+                          {adoptionStatus[adoption?.status]}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+            })}
+          </>
+        )}
+
+        {!loading && adoptions?.some(({ status }) => status !== 'inAnalysis') && (
+          <>
+            <h2 style={{ margin: 0 }}>Finalizados</h2>
+            {adoptions?.map((adoption) => {
+              if (adoption?.status !== 'inAnalysis')
+                return (
+                  <div className="adoptionBox" key={adoption?._id}>
+                    <img src={adoption?.animal?.photos?.[0]} alt="animal" />
+                    <div className="adoptionInformation">
+                      <h1>{adoption?.animal?.name}</h1>
+                      <p>
+                        Data da solicitação:{' '}
+                        {new Date(adoption?.createdAt)?.toLocaleDateString('en-GB')}
+                      </p>
+                      {userType === 'adopter' && (
+                        <p>ONG: {adoption?.adoptionCenter?.corporateName}</p>
+                      )}
+                      {userType === 'adoptionCenter' && (
+                        <p>Adotante: {adoption?.adopter?.fullName}</p>
+                      )}
+                      <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <p>Status:&nbsp;</p>
+                        <p className={`adoptionStatus${adoption?.status}`}>
+                          {adoptionStatus[adoption?.status]}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+            })}
+          </>
+        )}
       </div>
     </div>
   );
