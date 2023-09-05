@@ -125,6 +125,7 @@ export default function AdoptionList() {
                     </div>
                   </div>
                 );
+              return;
             })}
           </>
         )}
@@ -158,6 +159,7 @@ export default function AdoptionList() {
                     </div>
                   </div>
                 );
+              return;
             })}
           </>
         )}
