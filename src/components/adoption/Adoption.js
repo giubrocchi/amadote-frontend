@@ -32,8 +32,6 @@ export default function Adoption() {
     rejected: 'Rejeitada',
   };
 
-  console.log(adoption);
-
   useEffect(() => {
     if (author) {
       socket.current = io(apiBaseUrl);
@@ -50,7 +48,15 @@ export default function Adoption() {
       });
       const jsonMessages = (await messages?.json()) ?? [];
       const mappedMessages = jsonMessages.sort(
-        (previous, newData) => new Date(newData?.sentAt) - new Date(previous?.sentAt),
+        (previous, newData) => new Date(previous?.sentAt) - new Date(newData?.sentAt),
+      );
+
+      jsonMessages.sort((previous, newData) =>
+        console.log({
+          previous,
+          newData,
+          date: new Date(previous?.sentAt) - new Date(newData?.sentAt),
+        }),
       );
 
       setMessages(mappedMessages);
