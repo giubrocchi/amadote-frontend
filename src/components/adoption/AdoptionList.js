@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../utils/links';
 import { ColorRing } from 'react-loader-spinner';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdoptionList() {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,7 @@ export default function AdoptionList() {
     concluded: 'Concluída',
     rejected: 'Rejeitada',
   };
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getUserProfile(id) {
@@ -102,7 +104,15 @@ export default function AdoptionList() {
             {adoptions?.map((adoption) => {
               if (adoption?.status === 'inAnalysis')
                 return (
-                  <div className="adoptionBox" key={adoption?._id}>
+                  <div
+                    className="adoptionBox"
+                    key={adoption?._id}
+                    onClick={() =>
+                      navigate(`/perfil/adocoes/${adoption?._id}`, {
+                        state: { adoptionInfo: adoption, userType },
+                      })
+                    }
+                  >
                     <img src={adoption?.animal?.photos?.[0]} alt="animal" />
                     <div className="adoptionInformation">
                       <h1>{adoption?.animal?.name}</h1>

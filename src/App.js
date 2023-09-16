@@ -15,6 +15,7 @@ import Posts from './components/Posts';
 import Faq from './components/Faq';
 import Dashboard from './components/profile/Dashboard';
 import AdoptionList from './components/adoption/AdoptionList';
+import Adoption from './components/adoption/Adoption';
 
 const router = createBrowserRouter([
   {
@@ -133,6 +134,16 @@ const router = createBrowserRouter([
       <>
         <Header path="entrar" />
         <AdoptionList />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/perfil/adocoes/:id',
+    element: (
+      <>
+        <Header path="entrar" />
+        <Adoption />
         <Footer />
       </>
     ),

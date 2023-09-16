@@ -1247,6 +1247,7 @@ textarea {
   border-radius: 20px;
   box-shadow: 5px 5px 10px #a9a9a9;
   padding: 15px;
+  cursor: pointer;
 }
 
 .adoptionBox img {
@@ -1278,6 +1279,149 @@ textarea {
 
 .adoptionStatusrejected {
   color: #e94747;
+}
+
+.adoptionBody {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10%;
+  justify-content: center;
+}
+
+.adoptContainer {
+  display: flex;
+  flex-direction: row;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  padding: 30px;
+  max-height: 65vh;
+}
+
+.adoptionInfo {
+  width: 50%;
+}
+
+.adoptionChat {
+  border-radius: 20px;
+  box-shadow: inset 3px 3px 10px #a9a9a9;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chatMessages {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  height: -webkit-fill-available;
+  overflow-y: scroll;
+}
+
+.chatMessages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatMessages::-webkit-scrollbar-track {
+  background: none;
+}
+
+.chatMessages::-webkit-scrollbar-thumb {
+  background-color: #b4b4b4;
+  border-radius: 20px;
+}
+
+.chatBubble {
+  padding: 10px 15px;
+  width: fit-content;
+  max-width: 80%;
+  border-radius: 20px;
+}
+
+.sender {
+  background-color: #f5aa5a;
+  align-self: flex-end;
+}
+
+.receiver {
+  background-color: #6cafe6;
+}
+
+.adoptionChatInput {
+  width: 100%;
+  min-height: fit-content;
+  max-height: 40%;
+  display: flex;
+}
+
+.adoptionChatTextarea {
+  font-size: 18px;
+  font-family: Inter;
+  width: 100%;
+  min-height: 1.5em;
+  overflow-y: scroll;
+  box-shadow: inset 1px 1px 4px #a9a9a9;
+  border-radius: 20px;
+  padding: 10px;
+  outline: none;
+}
+
+.adoptionChatTextarea::-webkit-scrollbar {
+  display: none;
+}
+
+.adoptionAnimalPhoto {
+  max-width: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.adoptionAnimalName {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+}
+
+.adoptionInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: scroll;
+}
+
+.adoptionInfo::-webkit-scrollbar {
+  width: 8px;
+}
+
+.adoptionInfo::-webkit-scrollbar-track {
+  background: none;
+}
+
+.adoptionInfo::-webkit-scrollbar-thumb {
+  background-color: #b4b4b4;
+  border-radius: 20px;
+}
+
+.adoptionOrganizationInfo p,
+.adoptionAdopterInfo p {
+  margin: 10px 0px;
+}
+
+.adoptionAnimalInfo p {
+  margin: 10px 0px;
+}
+
+.adoptionHouseSituation {
+  background: #6cafe6;
+  border-radius: 20px;
+  padding: 4px 8px;
+}
+
+.adoptionHouseSituation p {
+  margin: 0;
+  font-size: 17px;
+  width: fit-content;
 }
 
 @media (max-width: 800px) {
@@ -1420,6 +1564,24 @@ textarea {
     width: 100%;
     object-fit: cover;
     border-radius: 20px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .adoptContainer {
+    flex-direction: column-reverse;
+    gap: 20px;
+    max-height: unset;
+  }
+
+  .adoptionInfo {
+    width: 100%;
+    overflow-y: unset;
+  }
+
+  .adoptionChat {
+    width: 100%;
+    height: 70vh;
   }
 }
 
