@@ -51,14 +51,6 @@ export default function Adoption() {
         (previous, newData) => new Date(previous?.sentAt) - new Date(newData?.sentAt),
       );
 
-      jsonMessages.sort((previous, newData) =>
-        console.log({
-          previous,
-          newData,
-          date: new Date(previous?.sentAt) - new Date(newData?.sentAt),
-        }),
-      );
-
       setMessages(mappedMessages);
     }
 
