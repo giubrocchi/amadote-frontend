@@ -52,6 +52,7 @@ export default function Dashboard() {
     }
 
     function parseData(adopted, all) {
+      console.log(adopted);
       const adoptedAnimals = adopted?.map((row) => {
         return { ...row, adoptedAt: new Date(row?.adoptedAt) };
       });
@@ -234,9 +235,7 @@ export default function Dashboard() {
               options={{
                 responsive: true,
                 maintainAspectRatio: false,
-                scales: {
-                  yAxes: [{ ticks: { beginAtZero: true } }],
-                },
+                scales: { y: { beginAtZero: true } },
                 plugins: {
                   legend: { display: false },
                   title: { display: true, text: 'Número de animais registrados' },
@@ -275,7 +274,7 @@ export default function Dashboard() {
                 options={{
                   responsive: true,
                   maintainAspectRatio: false,
-                  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+                  scales: { y: { beginAtZero: true } },
                   plugins: {
                     legend: { display: false },
                     title: { display: true, text: 'Número de adoções' },

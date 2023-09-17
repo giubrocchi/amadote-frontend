@@ -1,5 +1,5 @@
 import { React, useRef, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
 import { apiBaseUrl } from '../utils/links';
 import { IconContext } from 'react-icons';
@@ -15,17 +15,23 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 import { houseSituationOptions } from '../utils/constants';
+import FinishAdoptionModal from './FinishAdoptionModal';
 
 export default function Adoption() {
-  const location = useLocation();
-  const adoption = location?.state?.adoptionInfo ?? {};
-  const userType = location?.state?.userType ?? {};
+  const { id: adoptionId } = useParams();
+  const [userType, setUserType] = useState('');
+
   const socket = useRef();
   const [messages, setMessages] = useState([]);
+  const [adoption, setAdoption] = useState({});
   const [currentMessage, setCurrentMessage] = useState('');
+  const [finishModalOpen, setSFinishModalOpen] = useState(false);
+  const [finishMode, setFinishMode] = useState('');
+
   const author = localStorage.getItem('loggedId');
   const receiver =
     author === adoption?.adopter?._id ? adoption?.adoptionCenter?._id : adoption?.adopter?._id;
+
   const adoptionStatus = {
     inAnalysis: 'Em análise',
     concluded: 'Concluída',
@@ -61,6 +67,52 @@ export default function Adoption() {
     }
   }, [author, receiver]);
 
+  useEffect(() => {
+    async function getAdoption() {
+      const response = await fetch(`${apiBaseUrl}/api/adoptionProposal/getid/${adoptionId}`);
+      const jsonResponse = (await response?.json()) ?? [];
+
+      const mappedAdoption = await mapAdoption(jsonResponse);
+      setAdoption(mappedAdoption);
+    }
+
+    async function mapAdoption(adoption) {
+      const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${adoption?._idAdopter}`);
+      const jsonAdopterResult = (await adopterResult?.json()) ?? {};
+
+      const animalResult = await fetch(`${apiBaseUrl}/api/animal/getid/${adoption?._idAnimal}`);
+      const jsonAnimalResult = (await animalResult?.json()) ?? {};
+
+      const adoptionCenterResult = await fetch(
+        `${apiBaseUrl}/api/adoptionCenter/${adoption?._idAdoptionCenter}`,
+      );
+      const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+
+      return {
+        ...adoption,
+        adopter: jsonAdopterResult,
+        animal: jsonAnimalResult,
+        adoptionCenter: jsonAdoptionCenterResult,
+      };
+    }
+
+    async function getUserProfile(id) {
+      const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
+      const adoptionCenterUrl = `${apiBaseUrl}/api/adoptionCenter/${id}`;
+      const adopterResult = await fetch(adopterUrl);
+
+      if (adopterResult.ok) setUserType('adopter');
+      else {
+        const adoptionCenterResult = await fetch(adoptionCenterUrl);
+
+        if (adoptionCenterResult.ok) setUserType('adoptionCenter');
+      }
+    }
+
+    getUserProfile(localStorage.getItem('loggedId'));
+    getAdoption();
+  }, [adoptionId]);
+
   async function handleSendMessage() {
     const trimmedMessage = currentMessage.trim();
 
@@ -84,8 +136,51 @@ export default function Adoption() {
     toast.error('Erro ao enviar mensagem.\nTente novamente mais tarde.');
   }
 
+  async function getAdoption() {
+    const response = await fetch(`${apiBaseUrl}/api/adoptionProposal/getid/${adoptionId}`);
+    const jsonResponse = (await response?.json()) ?? [];
+
+    const mappedAdoption = await mapAdoption(jsonResponse);
+    setAdoption(mappedAdoption);
+  }
+
+  async function mapAdoption(adoption) {
+    const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${adoption?._idAdopter}`);
+    const jsonAdopterResult = (await adopterResult?.json()) ?? {};
+
+    const animalResult = await fetch(`${apiBaseUrl}/api/animal/getid/${adoption?._idAnimal}`);
+    const jsonAnimalResult = (await animalResult?.json()) ?? {};
+
+    const adoptionCenterResult = await fetch(
+      `${apiBaseUrl}/api/adoptionCenter/${adoption?._idAdoptionCenter}`,
+    );
+    const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+
+    return {
+      ...adoption,
+      adopter: jsonAdopterResult,
+      animal: jsonAnimalResult,
+      adoptionCenter: jsonAdoptionCenterResult,
+    };
+  }
+
+  function openFinishAdoptionModal(mode) {
+    setFinishMode(mode);
+    setSFinishModalOpen(true);
+  }
+
+  console.log(adoption);
+
   return (
     <div className="adoptionBody">
+      {finishModalOpen && (
+        <FinishAdoptionModal
+          setSFinishModalOpen={setSFinishModalOpen}
+          adoption={adoption}
+          finishMode={finishMode}
+          getAdoption={getAdoption}
+        />
+      )}
       <div className="adoptContainer">
         <div className="adoptionInfo">
           {userType === 'adopter' && (
@@ -171,6 +266,25 @@ export default function Adoption() {
                         {new Date(adoption?.createdAt).toLocaleDateString('en-GB')}
                       </p>
                       <p>Situação: {adoptionStatus[adoption?.status]}</p>
+                      {adoption?.acceptedAt && (
+                        <div
+                          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+                        >
+                          <p style={{ margin: 0 }}>Documento de confirmação:&nbsp;</p>
+                          <a href={adoption?.confirmationDocument} style={{ fontSize: 18 }}>
+                            Abrir
+                          </a>
+                        </div>
+                      )}
+                      {adoption?.excludedAt && (
+                        <div
+                          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
+                        >
+                          <p style={{ margin: 0 }}>
+                            Documento da rejeição: {adoption?.exclusionDescription}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </AccordionItemPanel>
                 </AccordionItem>
@@ -244,6 +358,24 @@ ${adoption?.adopter?.address?.city} - ${adoption?.adopter?.address?.state}`}
                   </AccordionItemPanel>
                 </AccordionItem>
               </Accordion>
+              {!adoption?.acceptedAt && !adoption?.excludedAt && (
+                <div className="adoptionButtonContainer">
+                  <button
+                    className="adoptionFinishButton"
+                    onClick={() => openFinishAdoptionModal('confirm')}
+                    style={{ backgroundColor: '#3f88c5' }}
+                  >
+                    Confirmar adoção
+                  </button>
+                  <button
+                    className="adoptionFinishButton"
+                    onClick={() => openFinishAdoptionModal('reject')}
+                    style={{ backgroundColor: '#e94747' }}
+                  >
+                    Rejeitar adoção
+                  </button>
+                </div>
+              )}
             </div>
           )}
         </div>
