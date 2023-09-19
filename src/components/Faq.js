@@ -3,12 +3,16 @@ import React from 'react';
 export default function Faq() {
   const faqData = [
     {
-      question: 'Qual é o processo de adoção?',
-      answer: 'O processo de adoção é.....',
+      question: 'Quem pode realizar uma adoção?',
+      answer: 'Qualquer pessoa, plenamente capaz, maior de 18 anos, mediante assinatura do contrato de adoção.',
     },
     {
-      question: 'Como faço para adotar um animal?',
-      answer: 'Para adotar um animal é necessário... ...',
+      question: 'Preciso pagar alguma coisa? ',
+      answer: 'Nadinha. Nós não cobramos taxa de adoção. Mas é claro que ficamos felizes quando ajudam nosso trabalho a continuar.',
+    },
+    {
+      question: 'O que é adoção responsável?',
+      answer: 'É o processo que esclarece quem deseja adotar, mas não sabe exatamente todas as suas responabilidades com aquela vida. Geralmente, as pessoas consideram ração, casa e carinho suficientes, mas ter um amigo de quatro patas vai muito além disso.'
     },
   ];
 

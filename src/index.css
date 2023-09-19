@@ -1058,20 +1058,25 @@ textarea {
 }
 
 .faqItem {
-  border: 1px solid #ccc;
-  padding: 16px;
-  border-radius: 15px;
-  box-shadow: 5px 5px 10px #a9a9a9;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .faqQuestion {
-  font-size: 24px;
-  margin-bottom: 8px;
+  padding: 20px;
+  text-align: left;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
 .faqAnswer {
-  font-size: 16px;
-  color: #444;
+  padding: 20px;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
 }
 
 .postsBody {
