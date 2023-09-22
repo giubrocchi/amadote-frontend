@@ -1586,6 +1586,19 @@ textarea {
     object-fit: cover;
     border-radius: 20px;
   }
+
+  .adoptionBody {
+    margin: 0px;
+  }
+
+  .adoptContainer {
+    width: 100%;
+    padding: 30px 0px;
+  }
+
+  .adoptionAnimalPhoto {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 1000px) {

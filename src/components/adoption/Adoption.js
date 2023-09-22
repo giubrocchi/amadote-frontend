@@ -47,6 +47,8 @@ export default function Adoption() {
 
   useEffect(() => {
     async function getMessages() {
+      if (!author || !receiver) return;
+
       const messages = await fetch(`${apiBaseUrl}/api/chat/getChat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -169,8 +171,6 @@ export default function Adoption() {
     setSFinishModalOpen(true);
   }
 
-  console.log(adoption);
-
   return (
     <div className="adoptionBody">
       {finishModalOpen && (
@@ -281,7 +281,7 @@ export default function Adoption() {
                           style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
                         >
                           <p style={{ margin: 0 }}>
-                            Documento da rejeição: {adoption?.exclusionDescription}
+                            Motivo da rejeição: {adoption?.exclusionDescription}
                           </p>
                         </div>
                       )}

@@ -137,7 +137,7 @@ export default function FinishAdoptionModal({
               />
 
               <button type="submit" className="signUpButton animalButton">
-                {!loading && 'Rejitar'}
+                {!loading && 'Rejeitar'}
                 {loading && (
                   <ThreeDots
                     height="21"
