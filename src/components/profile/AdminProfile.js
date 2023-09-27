@@ -9,6 +9,7 @@ import { IconContext } from 'react-icons';
 
 export default function AdminProfile({ adminName }) {
   const [solicitations, setSolicitations] = useState([]);
+  const [adoptions, setAdoptions] = useState([]);
   const [change, setChange] = useState(true);
   const navigate = useNavigate();
 
@@ -44,6 +45,44 @@ export default function AdminProfile({ adminName }) {
   useEffect(() => {
     getSolicitations();
   }, [change]);
+
+  useEffect(() => {
+    async function getAdoptions() {
+      const response = await fetch(`${apiBaseUrl}/api/adoptionProposal/getAllConcluded`);
+      const jsonResponse = (await response?.json()) ?? [];
+
+      const mappedAdoptions = await mapAdoptions(jsonResponse);
+      setAdoptions(mappedAdoptions);
+    }
+
+    async function mapAdoptions(adoptions) {
+      const mappedAdoptions = await Promise.all(
+        adoptions.map(async (adoption) => {
+          const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${adoption?._idAdopter}`);
+          const jsonAdopterResult = (await adopterResult?.json()) ?? {};
+
+          const animalResult = await fetch(`${apiBaseUrl}/api/animal/getid/${adoption?._idAnimal}`);
+          const jsonAnimalResult = (await animalResult?.json()) ?? {};
+
+          const adoptionCenterResult = await fetch(
+            `${apiBaseUrl}/api/adoptionCenter/${adoption?._idAdoptionCenter}`,
+          );
+          const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+
+          return {
+            ...adoption,
+            adopter: jsonAdopterResult,
+            animal: jsonAnimalResult,
+            adoptionCenter: jsonAdoptionCenterResult,
+          };
+        }),
+      );
+
+      return mappedAdoptions;
+    }
+
+    getAdoptions();
+  }, []);
 
   async function getSolicitations() {
     const url = `${apiBaseUrl}/api/adoptionCenter/solicitations`;
@@ -93,6 +132,7 @@ export default function AdminProfile({ adminName }) {
         <TabList>
           <Tab>Solicitações de cadastro</Tab>
           <Tab>Publicar</Tab>
+          <Tab>Adoções concluídas</Tab>
         </TabList>
         <TabPanel>
           <div className="adminProfileBox">
@@ -215,6 +255,41 @@ export default function AdminProfile({ adminName }) {
               </div>
               <button className="solicitationButton">Publicar</button>
             </form>
+          </div>
+        </TabPanel>
+        <TabPanel>
+          <div className="adminAdoptions">
+            {adoptions?.map((adoption) => (
+              <div
+                className="adoptionBox"
+                key={adoption?._id}
+                onClick={() => navigate(`/perfil/adocoes/${adoption?._id}`)}
+              >
+                <img
+                  src={adoption?.animal?.photos?.[0]}
+                  alt="animal"
+                  style={{ maxWidth: '200px' }}
+                />
+                <div className="adoptionInformation">
+                  <h1>{adoption?.animal?.name}</h1>
+                  <p>Espécie: {adoption?.animal?.species}</p>
+                  <p>Raça: {adoption?.animal?.breed}</p>
+                  <p>
+                    Data da solicitação:&nbsp;
+                    {new Date(adoption?.createdAt)?.toLocaleDateString('en-GB')}
+                  </p>
+                  <p>
+                    Data da adoção:&nbsp;
+                    {new Date(adoption?.acceptedAt)?.toLocaleDateString('en-GB')}
+                  </p>
+                  <p>ONG: {adoption?.adoptionCenter?.corporateName}</p>
+                  <p>Adotante: {adoption?.adopter?.fullName}</p>
+                  <p>
+                    Contrato de adoção: <a href={adoption?.confirmationDocument}>Abrir</a>
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </TabPanel>
       </Tabs>

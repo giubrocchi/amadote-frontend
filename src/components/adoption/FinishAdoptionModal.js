@@ -40,6 +40,7 @@ export default function FinishAdoptionModal({
           body: JSON.stringify({
             confirmationDocument: pdfBase64,
             animalId: adoption?.animal?._id,
+            adopterEmail: adoption?.adopter?.email,
           }),
         },
       );
