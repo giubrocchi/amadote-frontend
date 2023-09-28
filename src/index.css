@@ -1456,6 +1456,11 @@ textarea {
   gap: 20px;
 }
 
+.animalsFilterContainer {
+  min-width: 250px;
+  margin: 0px 30px 0px 0px;
+}
+
 @media (max-width: 800px) {
   .signUpSelect {
     margin: 0px 10px;
@@ -1609,6 +1614,15 @@ textarea {
 
   .adoptionAnimalPhoto {
     max-width: 100%;
+  }
+
+  .animalsSection {
+    flex-direction: column;
+  }
+
+  .animalsFilterContainer {
+    min-width: 100px;
+    margin: 0px 0px 30px 0px;
   }
 }
 
