@@ -76,7 +76,7 @@ export default function AnimalsPage() {
     }
 
     getUser(localStorage.getItem('loggedId'));
-  }, []);
+  }, [animalId]);
 
   useEffect(() => {
     async function getAnimal() {
