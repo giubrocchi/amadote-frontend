@@ -11,9 +11,9 @@ export default function AdminProfile({ adminName }) {
   const [solicitations, setSolicitations] = useState([]);
   const [adoptions, setAdoptions] = useState([]);
   const [change, setChange] = useState(true);
-  const [titlePost, setTitlePost] = useState("")
-  const [contentPost, setContentPost] = useState("")
-  const [imagePost, setImagePost] = useState([]);
+  // const [titlePost, setTitlePost] = useState("")
+  // const [contentPost, setContentPost] = useState("")
+  // const [imagePost, setImagePost] = useState([]);
   const navigate = useNavigate();
 
   function logout() {
@@ -21,16 +21,15 @@ export default function AdminProfile({ adminName }) {
     navigate('/entrar');
   }
 
-  async function registerPost(e){
-    e.preventDefault()
-    try{
-      /*const userPost = await  postar na API POST*/
-
-    }catch(err){
-      console.log("Erro na postagem",err)
-      alert("Erro na postagem, tente novamente!")
-    }
-  }
+  // async function registerPost(e) {
+  //   e.preventDefault();
+  //   try {
+  //     /*const userPost = await  postar na API POST*/
+  //   } catch (err) {
+  //     console.log('Erro na postagem', err);
+  //     alert('Erro na postagem, tente novamente!');
+  //   }
+  // }
 
   function phoneMask(phone) {
     return phone
@@ -243,27 +242,45 @@ export default function AdminProfile({ adminName }) {
           </div>
         </TabPanel>
         <TabPanel>
-                <div className='adminProfileBox'>
-                <h2>Fazer publicação</h2>
-                    <form>
-                      <div className='formGroup'>
-                        <label htmlFor='postTitle'>Título da Postagem:</label>
-                        <input type='text' id='postTitle' name='postTitle' onChange={e => setTitlePost(e.target.value)} />
-                      </div>
-                      <div className='formGroup'>
-                        <label htmlFor='postContent'>Conteúdo:</label>
-                        <textarea id='postContent' name='postContent' rows='4' onChange={e => setContentPost(e.target.value)}></textarea>
-                      </div>
-                      <div className='formGroup'>
-                        <label>Enviar imagem: </label>
-                        <label className='fileInputLabel'>
-                          Escolher imagem
-                          <input type='file' id='postImage' name='postImage' accept='image/*' className='fileInput' onChange={e => setImagePost}/>
-                        </label>
-                      </div>
-                      <button className='solicitationButton' onClick={registerPost}>Publicar</button>
-                    </form>
+          <div className="adminProfileBox">
+            <form>
+              {/* <div className="formGroup">
+                <label htmlFor="postTitle">Título da Postagem:</label>
+                <input
+                  type="text"
+                  id="postTitle"
+                  name="postTitle"
+                  onChange={(e) => setTitlePost(e.target.value)}
+                />
               </div>
+              <div className="formGroup">
+                <label htmlFor="postContent">Conteúdo:</label>
+                <textarea
+                  id="postContent"
+                  name="postContent"
+                  rows="4"
+                  onChange={(e) => setContentPost(e.target.value)}
+                ></textarea>
+              </div>
+              <div className="formGroup">
+                <label>Enviar imagem: </label>
+                <label className="fileInputLabel">
+                  Escolher imagem
+                  <input
+                    type="file"
+                    id="postImage"
+                    name="postImage"
+                    accept="image/*"
+                    className="fileInput"
+                    onChange={(e) => setImagePost}
+                  />
+                </label>
+              </div>
+              <button className="solicitationButton" onClick={registerPost}>
+                Publicar
+              </button> */}
+            </form>
+          </div>
         </TabPanel>
         <TabPanel>
           <div className="adminAdoptions">

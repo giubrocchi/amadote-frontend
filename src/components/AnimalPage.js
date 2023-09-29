@@ -21,6 +21,7 @@ import {
 import { IconContext } from 'react-icons';
 import toast, { Toaster } from 'react-hot-toast';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import UserInformationModal from './adoption/UserInformationModal';
 import AdoptionInformationModal from './adoption/AdoptionInformationModal';
 
@@ -48,11 +49,34 @@ export default function AnimalsPage() {
   const [age, setAge] = useState();
   const [months, setMonths] = useState();
   const [birth, setBirth] = useState();
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [isAdopterLogged, setIsAdopterLogged] = useState(false);
+  const [userFavourites, setUserFavourites] = useState([]);
   const [adoptionCenter, setAdoptionCenter] = useState({});
   const [user, setUser] = useState({});
 
+  const favouriteErrorMessage =
+    'Você deve entrar com uma conta de adotante para adicionar o animal aos favoritos!';
+
   const [isUserInformationModalOpen, setUserInformationModalOpen] = useState(false);
   const [isAdoptionInformationModalOpen, setAdoptionInformationModalOpen] = useState(false);
+
+  useEffect(() => {
+    async function getUser(id) {
+      const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${id}`);
+
+      if (adopterResult.ok) {
+        const jsonAdopter = await adopterResult?.json();
+        const isFavourite = jsonAdopter?.favourites?.includes(animalId);
+
+        setIsAdopterLogged(true);
+        setIsFavourite(isFavourite);
+        if (jsonAdopter?.favourites) setUserFavourites(jsonAdopter.favourites);
+      }
+    }
+
+    getUser(localStorage.getItem('loggedId'));
+  }, []);
 
   useEffect(() => {
     async function getAnimal() {
@@ -113,6 +137,48 @@ export default function AnimalsPage() {
     return adopterResult;
   }
 
+  async function addToFavourites() {
+    if (!isAdopterLogged) toast.error(favouriteErrorMessage);
+
+    const response = await fetch(`${apiBaseUrl}/api/adopter/${localStorage.getItem('loggedId')}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ favourites: [...userFavourites, animalId] }),
+    });
+
+    if (response.status === 500) {
+      toast.error('Ops! Ocorreu um erro, tente novamente mais tarde.');
+
+      return;
+    }
+
+    setIsFavourite(true);
+    setUserFavourites([...userFavourites, animalId]);
+  }
+
+  async function removeFromFavourites() {
+    if (!isAdopterLogged) toast.error(favouriteErrorMessage);
+
+    const response = await fetch(`${apiBaseUrl}/api/adopter/${localStorage.getItem('loggedId')}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ favourites: userFavourites.filter((id) => id !== animalId) }),
+    });
+
+    if (response.status === 500) {
+      toast.error('Ops! Ocorreu um erro, tente novamente mais tarde.');
+
+      return;
+    }
+
+    setIsFavourite(false);
+    setUserFavourites(userFavourites.filter((id) => id !== animalId));
+  }
+
   return (
     <div className="animalBody">
       {isUserInformationModalOpen && (
@@ -144,9 +210,28 @@ export default function AnimalsPage() {
             </IconContext.Provider>
           )}
         </div>
-        <button className="adoptButton" onClick={onAdoptButtonClicked}>
-          Quero adotar!
-        </button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-evenly',
+            alignItems: 'center',
+          }}
+        >
+          <button className="adoptButton" onClick={onAdoptButtonClicked}>
+            Quero adotar!
+          </button>
+          {!isFavourite && (
+            <IconContext.Provider value={{ color: 'rgba(186, 0, 0, 0.66)', size: '50px' }}>
+              <FaRegHeart onClick={addToFavourites} style={{ cursor: 'pointer' }} />
+            </IconContext.Provider>
+          )}
+          {isFavourite && (
+            <IconContext.Provider value={{ color: 'rgba(186, 0, 0, 0.66)', size: '50px' }}>
+              <FaHeart onClick={removeFromFavourites} style={{ cursor: 'pointer' }} />
+            </IconContext.Provider>
+          )}
+        </div>
         <div className="animalAdoptionCenterInfo">
           <div className="orgInfo">
             <p>Publicado por:</p>

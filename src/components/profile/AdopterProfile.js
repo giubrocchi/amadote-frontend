@@ -1,11 +1,33 @@
-import { React } from 'react';
+import { React, useState, useEffect } from 'react';
 import { BiLogOut } from 'react-icons/bi';
 import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
 import { IconContext } from 'react-icons';
 import { useNavigate } from 'react-router-dom';
+import { apiBaseUrl } from '../utils/links';
+import AnimalCard from '../utils/AnimalCard';
 
-export default function AdoptionCenterProfile({ adopterName }) {
+export default function AdopterProfile({ adopterName }) {
   const navigate = useNavigate();
+  const [favouriteAnimals, setFavouriteAnimals] = useState([]);
+
+  useEffect(() => {
+    async function getAnimals(id) {
+      const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${id}`);
+      const jsonAdopter = await adopterResult.json();
+      const animals = await Promise.all(
+        jsonAdopter?.favourites?.map(async (id) => {
+          const animalResponse = await fetch(`${apiBaseUrl}/api/animal/getid/${id}`);
+          const animal = await animalResponse?.json();
+
+          return animal;
+        }),
+      );
+
+      setFavouriteAnimals(animals);
+    }
+
+    getAnimals(localStorage.getItem('loggedId'));
+  }, []);
 
   function logout() {
     localStorage.removeItem('loggedId');
@@ -39,7 +61,20 @@ export default function AdoptionCenterProfile({ adopterName }) {
         <div className="ACProfileTitleBox">
           <h1 className="ACProfileTitle">Pets favoritados</h1>
         </div>
-        <div className="ACProfileAnimalsList"></div>
+        <div className="ACProfileAnimalsList">
+          {favouriteAnimals.map((animal) => {
+            return (
+              <AnimalCard
+                animalInfo={animal}
+                key={animal._id}
+                buttonOptions={{
+                  buttonText: 'Ver mais',
+                  buttonFunction: () => navigate(`/animais/${animal._id}`),
+                }}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
