@@ -14,14 +14,36 @@ export default function AdopterProfile({ adopterName }) {
     async function getAnimals(id) {
       const adopterResult = await fetch(`${apiBaseUrl}/api/adopter/${id}`);
       const jsonAdopter = await adopterResult.json();
+      const deletedAnimals = [];
       const animals = await Promise.all(
-        jsonAdopter?.favourites?.map(async (id) => {
-          const animalResponse = await fetch(`${apiBaseUrl}/api/animal/getid/${id}`);
+        jsonAdopter?.favourites?.map(async (animalId) => {
+          const animalResponse = await fetch(`${apiBaseUrl}/api/animal/getid/${animalId}`);
+
+          if (animalResponse.status === 404) {
+            deletedAnimals.push(animalId);
+
+            return;
+          }
+
           const animal = await animalResponse?.json();
 
           return animal;
         }),
       );
+
+      if (deletedAnimals.length) {
+        await fetch(`${apiBaseUrl}/api/adopter/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            favourites: jsonAdopter?.favourites?.filter(
+              (animalId) => !deletedAnimals.includes(animalId),
+            ),
+          }),
+        });
+      }
 
       setFavouriteAnimals(animals);
     }

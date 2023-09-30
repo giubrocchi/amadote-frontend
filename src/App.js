@@ -16,6 +16,7 @@ import Faq from './components/Faq';
 import Dashboard from './components/profile/Dashboard';
 import AdoptionList from './components/adoption/AdoptionList';
 import Adoption from './components/adoption/Adoption';
+import Post from './components/Post';
 
 const router = createBrowserRouter([
   {
@@ -144,6 +145,16 @@ const router = createBrowserRouter([
       <>
         <Header path="entrar" />
         <Adoption />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/postagens/:id',
+    element: (
+      <>
+        <Header path="postagens" />
+        <Post />
         <Footer />
       </>
     ),

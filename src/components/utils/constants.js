@@ -46,5 +46,11 @@ const houseSituationOptions = [
   { label: 'Há risco de fuga', value: 'scapePossibility' },
   { label: 'Local reservado para o animal', value: 'reservedLocal' },
 ];
+const postCategories = [
+  { value: 'responsibleAdoption', label: 'Adoção responsável' },
+  { value: 'animalCare', label: 'Cuidados com o animal' },
+  { value: 'shelterSupport', label: 'Apoio a abrigos' },
+  { value: 'curiosities', label: 'Curiosidades' },
+];
 
-export { species, sizes, sex, personalities, houseSituationOptions };
+export { species, sizes, sex, personalities, houseSituationOptions, postCategories };

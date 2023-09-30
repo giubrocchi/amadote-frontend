@@ -1,35 +1,39 @@
 import { React, useState, useEffect } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { apiBaseUrl } from '../utils/links';
+import { postCategories } from '../utils/constants';
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-tabs/style/react-tabs.css';
+import Select from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { BiLogOut } from 'react-icons/bi';
 import { IconContext } from 'react-icons';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import { convertToHTML } from 'draft-convert';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default function AdminProfile({ adminName }) {
+  const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
   const [solicitations, setSolicitations] = useState([]);
   const [adoptions, setAdoptions] = useState([]);
   const [change, setChange] = useState(true);
-  // const [titlePost, setTitlePost] = useState("")
-  // const [contentPost, setContentPost] = useState("")
-  // const [imagePost, setImagePost] = useState([]);
+  const [postTitle, setPostTitle] = useState('');
+  const [postText, setPostText] = useState('');
+  const [postImage, setPostImage] = useState();
+  const [postCategory, setPostCategory] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const html = convertToHTML(editorState.getCurrentContent());
+
+    setPostText(html);
+  }, [editorState]);
 
   function logout() {
     localStorage.removeItem('loggedId');
     navigate('/entrar');
   }
-
-  // async function registerPost(e) {
-  //   e.preventDefault();
-  //   try {
-  //     /*const userPost = await  postar na API POST*/
-  //   } catch (err) {
-  //     console.log('Erro na postagem', err);
-  //     alert('Erro na postagem, tente novamente!');
-  //   }
-  // }
 
   function phoneMask(phone) {
     return phone
@@ -127,6 +131,50 @@ export default function AdminProfile({ adminName }) {
     if (response.status !== 200)
       toast.error('Erro ao realizar análise, tente novamente mais tarde.');
     else setChange(!change);
+  }
+
+  async function registerPost(event) {
+    event.preventDefault();
+
+    if (!postCategory) {
+      toast.error('Selecione uma categoria.');
+
+      return;
+    }
+
+    if (postText.length < 20) {
+      toast.error('Seu texto não atingiu o limite mínimo de caracteres :(');
+
+      return;
+    }
+
+    const base64Image = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64data = reader.result.split(',')[1];
+        resolve(base64data);
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(postImage);
+    });
+
+    const response = await fetch(`${apiBaseUrl}/api/post`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        image: base64Image,
+        text: postText,
+        title: postTitle,
+        category: postCategory,
+      }),
+    });
+
+    if (response.status === 400) toast.error('Preencha todos os campos corretamente.');
+    else if (response.status === 500)
+      toast.error('Ops! Ocorreu um erro, tente novamente mais tarde.');
+    else navigate('/postagens');
   }
 
   return (
@@ -243,42 +291,60 @@ export default function AdminProfile({ adminName }) {
         </TabPanel>
         <TabPanel>
           <div className="adminProfileBox">
-            <form>
-              {/* <div className="formGroup">
-                <label htmlFor="postTitle">Título da Postagem:</label>
+            <form onSubmit={registerPost}>
+              <div className="formGroup">
+                <label>Imagem: </label>
                 <input
-                  type="text"
-                  id="postTitle"
-                  name="postTitle"
-                  onChange={(e) => setTitlePost(e.target.value)}
+                  type="file"
+                  className="signUpFile"
+                  required
+                  accept="image/png, image/jpeg"
+                  onChange={(e) => setPostImage(e.target.files[0])}
                 />
               </div>
               <div className="formGroup">
-                <label htmlFor="postContent">Conteúdo:</label>
-                <textarea
-                  id="postContent"
-                  name="postContent"
-                  rows="4"
-                  onChange={(e) => setContentPost(e.target.value)}
-                ></textarea>
+                <label>Título:</label>
+                <input
+                  type="text"
+                  required
+                  className="postTitle"
+                  value={postTitle}
+                  onChange={(e) => setPostTitle(e.target.value)}
+                />
               </div>
               <div className="formGroup">
-                <label>Enviar imagem: </label>
-                <label className="fileInputLabel">
-                  Escolher imagem
-                  <input
-                    type="file"
-                    id="postImage"
-                    name="postImage"
-                    accept="image/*"
-                    className="fileInput"
-                    onChange={(e) => setImagePost}
-                  />
-                </label>
+                <label>Categoria:</label>
+                <Select
+                  name="category"
+                  options={postCategories}
+                  placeholder="Categoria"
+                  onChange={({ value }) => setPostCategory(value)}
+                  styles={{
+                    control: (baseStyles) => ({
+                      ...baseStyles,
+                      marginBottom: '20px',
+                      fontSize: '18px',
+                      color: '#1C3144',
+                      borderRadius: '5px',
+                      border: '1px solid #ccc',
+                      outline: 'none',
+                    }),
+                  }}
+                />
               </div>
-              <button className="solicitationButton" onClick={registerPost}>
+              <div className="formGroup">
+                <label>Texto:</label>
+                <Editor
+                  wrapperClassName="textEditorWrapper"
+                  editorClassName="textEditor"
+                  toolbar={{ image: { uploadEnabled: false } }}
+                  editorState={editorState}
+                  onEditorStateChange={setEditorState}
+                />
+              </div>
+              <button type="submit" className="postButton">
                 Publicar
-              </button> */}
+              </button>
             </form>
           </div>
         </TabPanel>

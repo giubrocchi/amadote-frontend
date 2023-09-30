@@ -206,7 +206,7 @@ export default function AnimalsPage() {
           </div>
         </div>
         <div className="animalsList">
-          {filteredAnimals?.slice(0, 20).map((animal) => {
+          {filteredAnimals?.map((animal) => {
             return (
               <AnimalCard
                 animalInfo={animal}
