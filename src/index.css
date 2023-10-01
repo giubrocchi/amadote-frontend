@@ -115,14 +115,6 @@ p {
   outline: none;
 }
 
-.headerIconMobile {
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0);
-  border: 0px;
-  align-self: center;
-  padding: 10px 20px;
-}
-
 button:hover {
   cursor: pointer;
 }
@@ -131,15 +123,6 @@ button:hover {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-}
-
-.iconTabMobile {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: -webkit-fill-available;
-  background-color: #ffffff;
-  border-bottom-left-radius: 20px;
 }
 
 .headerTopMobile {
@@ -222,6 +205,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  align-self: center;
 }
 
 .footerLogo {
@@ -762,6 +746,7 @@ textarea {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 30px;
 }
 
 .homeAnimalsSection {
@@ -775,6 +760,21 @@ textarea {
 
 .homeDescription {
   margin: 0px;
+}
+
+.homeSupportInfo {
+  width: 300px;
+  text-align: center;
+}
+
+.homeSupportButton {
+  background: #3f88c5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  color: #fff;
+  font-size: 22px;
+  padding: 15px 20px;
 }
 
 .animalsList {
@@ -1090,7 +1090,7 @@ textarea {
 
 .postsList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: repeat(auto-fill, minmax(auto, 300px));
   justify-content: center;
   grid-gap: 30px;
   inline-size: -webkit-fill-available;
@@ -1514,8 +1514,7 @@ textarea {
 }
 
 .postPageImage {
-  max-width: 280px;
-  width: 100%;
+  width: 280px;
   height: 180px;
   object-fit: cover;
   border-radius: 16px;
@@ -1563,6 +1562,81 @@ textarea {
 
 .postContent {
   margin-top: 20px;
+}
+
+.ongsBody {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.ongBox {
+  background-color: #ffffff;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 15px;
+}
+
+.ongCorporateName {
+  margin: 0px;
+  font-size: 22px;
+}
+
+.ongDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ongDetails p {
+  margin: 0px;
+  font-size: 18px;
+}
+
+.ongsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, auto));
+  justify-content: center;
+  grid-gap: 30px;
+  inline-size: -webkit-fill-available;
+}
+
+.animalsOngInfoBox {
+  background-color: #ffffff;
+  box-shadow: 5px 5px 10px #a9a9a9;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 15px;
+  width: 100%;
+}
+
+.animalsOngInfoBox h2 {
+  margin: 0px;
+}
+
+.ongInfoContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}
+
+.ongInfoColumn {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 15px;
+}
+
+.ongInfoColumn p {
+  margin: 0px;
 }
 
 @media (max-width: 800px) {
@@ -1727,6 +1801,28 @@ textarea {
   .animalsFilterContainer {
     min-width: 100px;
     margin: 0px 0px 30px 0px;
+  }
+
+  .postPageImage {
+    max-width: 280px;
+    width: 100%;
+  }
+
+  .postPageBox {
+    max-width: 80vw;
+  }
+
+  .ongInfoContainer {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .ongInfoColumn {
+    width: 100%;
+  }
+
+  .animalsOngInfoBox {
+    width: 90%;
   }
 }
 

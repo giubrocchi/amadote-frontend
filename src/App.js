@@ -17,6 +17,8 @@ import Dashboard from './components/profile/Dashboard';
 import AdoptionList from './components/adoption/AdoptionList';
 import Adoption from './components/adoption/Adoption';
 import Post from './components/Post';
+import Ongs from './components/Ongs';
+import Ong from './components/Ong';
 
 const router = createBrowserRouter([
   {
@@ -155,6 +157,26 @@ const router = createBrowserRouter([
       <>
         <Header path="postagens" />
         <Post />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/ongs',
+    element: (
+      <>
+        <Header path="ongs" />
+        <Ongs />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/ongs/:id',
+    element: (
+      <>
+        <Header path="ongs" />
+        <Ong />
         <Footer />
       </>
     ),

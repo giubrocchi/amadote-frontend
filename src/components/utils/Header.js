@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineHeart, AiOutlineMail, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 
 export default function Header({ path }) {
@@ -74,6 +74,9 @@ export default function Header({ path }) {
                 <button className={'headerTabMobile'} onClick={() => handleButtonClick('animais')}>
                   <h2 className="headerTabName">Animais disponíveis</h2>
                 </button>
+                <button className={'headerTabMobile'} onClick={() => handleButtonClick('ongs')}>
+                  <h2 className="headerTabName">ONGs cadastradas</h2>
+                </button>
                 <button
                   className={'headerTabMobile'}
                   onClick={() => handleButtonClick('postagens')}
@@ -89,29 +92,9 @@ export default function Header({ path }) {
                 >
                   <h2 className="headerTabName">Institucional</h2>
                 </button>
-                <div className="iconTabMobile">
-                  <button
-                    className="headerIconMobile"
-                    onClick={() => handleButtonClick('favoritos')}
-                  >
-                    <IconContext.Provider value={{ color: 'black', size: '28px' }}>
-                      <AiOutlineHeart />
-                    </IconContext.Provider>
-                  </button>
-                  <button
-                    className="headerIconMobile"
-                    onClick={() => handleButtonClick('mensagens')}
-                  >
-                    <IconContext.Provider value={{ color: 'black', size: '28px' }}>
-                      <AiOutlineMail />
-                    </IconContext.Provider>
-                  </button>
-                  <button className="headerIconMobile" onClick={() => handleButtonClick('entrar')}>
-                    <IconContext.Provider value={{ color: 'black', size: '28px' }}>
-                      <AiOutlineUser />
-                    </IconContext.Provider>
-                  </button>
-                </div>
+                <button className="headerTabMobile" onClick={() => handleButtonClick('entrar')}>
+                  <h2 className="headerTabName">Meu perfil</h2>
+                </button>
               </div>
             </div>
           </div>
@@ -143,6 +126,12 @@ export default function Header({ path }) {
               <h2 className="headerTabName">Animais disponíveis</h2>
             </button>
             <button
+              className={'headerTab ' + (path === 'ongs')}
+              onClick={() => handleButtonClick('ongs')}
+            >
+              <h2 className="headerTabName">ONGs cadastradas</h2>
+            </button>
+            <button
               className={'headerTab ' + (path === 'postagens')}
               onClick={() => handleButtonClick('postagens')}
             >
@@ -161,32 +150,6 @@ export default function Header({ path }) {
               <h2 className="headerTabName">Institucional</h2>
             </button>
             <div className="headerTab iconTab">
-              <button
-                className={'headerIcon ' + (path === 'favoritos')}
-                onClick={() => handleButtonClick('favoritos')}
-              >
-                <IconContext.Provider
-                  value={{
-                    color: path === 'favoritos' ? '#F9A03F' : 'white',
-                    size: '28px',
-                  }}
-                >
-                  <AiOutlineHeart />
-                </IconContext.Provider>
-              </button>
-              <button
-                className={'headerIcon ' + (path === 'mensagens')}
-                onClick={() => handleButtonClick('mensagens')}
-              >
-                <IconContext.Provider
-                  value={{
-                    color: path === 'mensagens' ? '#F9A03F' : 'white',
-                    size: '28px',
-                  }}
-                >
-                  <AiOutlineMail />
-                </IconContext.Provider>
-              </button>
               <button
                 className={'headerIcon ' + (path === 'entrar')}
                 onClick={() => handleButtonClick('entrar')}

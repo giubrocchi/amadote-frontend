@@ -138,7 +138,11 @@ export default function AnimalsPage() {
   }
 
   async function addToFavourites() {
-    if (!isAdopterLogged) toast.error(favouriteErrorMessage);
+    if (!isAdopterLogged) {
+      toast.error(favouriteErrorMessage);
+
+      return;
+    }
 
     const response = await fetch(`${apiBaseUrl}/api/adopter/${localStorage.getItem('loggedId')}`, {
       method: 'PUT',
@@ -159,7 +163,11 @@ export default function AnimalsPage() {
   }
 
   async function removeFromFavourites() {
-    if (!isAdopterLogged) toast.error(favouriteErrorMessage);
+    if (!isAdopterLogged) {
+      toast.error(favouriteErrorMessage);
+
+      return;
+    }
 
     const response = await fetch(`${apiBaseUrl}/api/adopter/${localStorage.getItem('loggedId')}`, {
       method: 'PUT',
