@@ -19,6 +19,7 @@ import Adoption from './components/adoption/Adoption';
 import Post from './components/Post';
 import Ongs from './components/Ongs';
 import Ong from './components/Ong';
+import MatchTest from './components/MatchTest';
 
 const router = createBrowserRouter([
   {
@@ -177,6 +178,16 @@ const router = createBrowserRouter([
       <>
         <Header path="ongs" />
         <Ong />
+        <Footer />
+      </>
+    ),
+  },
+  {
+    path: '/match',
+    element: (
+      <>
+        <Header path="animais" />
+        <MatchTest />
         <Footer />
       </>
     ),

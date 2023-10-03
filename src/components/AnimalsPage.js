@@ -152,6 +152,7 @@ export default function AnimalsPage() {
               display: 'inline',
               cursor: 'pointer',
             }}
+            onClick={() => navigate('/match')}
           >
             teste de match
           </p>
