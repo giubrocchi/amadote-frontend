@@ -347,8 +347,9 @@ ${adoption?.adopter?.address?.city} - ${adoption?.adopter?.address?.state}`}
                           <div className="adoptionHouseSituation" key={situation}>
                             <p>
                               {
-                                houseSituationOptions.find((option) => option?.value === situation)
-                                  ?.label
+                                Object.values(houseSituationOptions)
+                                  .flat()
+                                  .find((option) => option?.value === situation)?.label
                               }
                             </p>
                           </div>

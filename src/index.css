@@ -1704,6 +1704,13 @@ textarea {
   font-weight: bold;
 }
 
+.postBody .adoptionFinishButton {
+  background-color: #e94747;
+  position: absolute;
+  right: 10%;
+  padding: 10px;
+}
+
 @media (max-width: 800px) {
   .signUpSelect {
     margin: 0px 10px;
@@ -1904,6 +1911,10 @@ textarea {
 
   .matchButton {
     font-size: 18px;
+  }
+
+  .postBody .adoptionFinishButton {
+    position: inherit;
   }
 }
 

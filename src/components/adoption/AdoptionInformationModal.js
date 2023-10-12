@@ -99,7 +99,10 @@ contato com você`);
             onChange={handlePetSitterChange}
           />
           <label className="inputLabel">Situação da residência</label>
-          {houseSituationOptions.map(({ value, label }) => {
+          <label className="inputLabel" style={{ fontSize: 18 }}>
+            Tipo de residência
+          </label>
+          {houseSituationOptions.house.map(({ value, label }) => {
             return (
               <div className="checkboxValue" key={value}>
                 <input
@@ -113,7 +116,74 @@ contato com você`);
               </div>
             );
           })}
-
+          <label className="inputLabel" style={{ fontSize: 18 }}>
+            Andares
+          </label>
+          {houseSituationOptions.floors.map(({ value, label }) => {
+            return (
+              <div className="checkboxValue" key={value}>
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  value={value}
+                  name="houseSituation"
+                  onChange={handleHouseSituationChange}
+                />
+                <label className="checkboxText">{label}</label>
+              </div>
+            );
+          })}
+          <label className="inputLabel" style={{ fontSize: 18 }}>
+            Telas
+          </label>
+          {houseSituationOptions.meshed.map(({ value, label }) => {
+            return (
+              <div className="checkboxValue" key={value}>
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  value={value}
+                  name="houseSituation"
+                  onChange={handleHouseSituationChange}
+                />
+                <label className="checkboxText">{label}</label>
+              </div>
+            );
+          })}
+          <label className="inputLabel" style={{ fontSize: 18 }}>
+            Quintal
+          </label>
+          {houseSituationOptions.backyard.map(({ value, label }) => {
+            return (
+              <div className="checkboxValue" key={value}>
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  value={value}
+                  name="houseSituation"
+                  onChange={handleHouseSituationChange}
+                />
+                <label className="checkboxText">{label}</label>
+              </div>
+            );
+          })}
+          <label className="inputLabel" style={{ fontSize: 18 }}>
+            Outros
+          </label>
+          {houseSituationOptions.other.map(({ value, label }) => {
+            return (
+              <div className="checkboxValue" key={value}>
+                <input
+                  type="checkbox"
+                  className="checkbox"
+                  value={value}
+                  name="houseSituation"
+                  onChange={handleHouseSituationChange}
+                />
+                <label className="checkboxText">{label}</label>
+              </div>
+            );
+          })}
           <button type="submit" className="signUpButton animalButton">
             {!loading && 'Solicitar adoção'}
             {loading && (
