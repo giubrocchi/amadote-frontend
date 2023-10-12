@@ -64,6 +64,7 @@ export default function Post() {
       <p>Data de publicação: {new Date(post?.createdAt)?.toLocaleDateString('en-GB')}</p>
       <img src={post?.image} alt={post?.title} className="inPostImage" />
       <div className="postContent">{parse(post?.text ?? '')}</div>
+      <Toaster />
     </div>
   );
 }
