@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import Select from 'react-select';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -27,6 +28,41 @@ export default function Dashboard() {
   const [yearAdoptionsAmadote, setYearAdoptionsAmadote] = useState([]);
   const [yearAdoptionsLabels, setYearAdoptionsLabels] = useState([]);
   const [adoptionType, setAdoptionType] = useState('total');
+  const currentDate = new Date();
+  const [dateToCompare, setDateToCompare] = useState({
+    label: '7 dias',
+    value: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 7),
+  });
+  const dateOptions = [
+    {
+      label: '7 dias',
+      value: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - 7),
+    },
+    {
+      label: '15 dias',
+      value: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate() - 15,
+      ),
+    },
+    {
+      label: '30 dias',
+      value: new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, currentDate.getDate()),
+    },
+    {
+      label: '6 meses',
+      value: new Date(currentDate.getFullYear(), currentDate.getMonth() - 6, currentDate.getDate()),
+    },
+    {
+      label: '1 ano',
+      value: new Date(currentDate.getFullYear() - 1, currentDate.getMonth(), currentDate.getDate()),
+    },
+    {
+      label: '5 anos',
+      value: new Date(currentDate.getFullYear() - 5, currentDate.getMonth(), currentDate.getDate()),
+    },
+  ];
 
   useEffect(() => {
     async function getAdoptionsData(id) {
@@ -52,7 +88,6 @@ export default function Dashboard() {
     }
 
     function parseData(adopted, all) {
-      console.log(adopted);
       const adoptedAnimals = adopted?.map((row) => {
         return { ...row, adoptedAt: new Date(row?.adoptedAt) };
       });
@@ -60,19 +95,22 @@ export default function Dashboard() {
         return { ...row, createdAt: new Date(row?.createdAt) };
       });
 
+      const total = adoptedAnimals?.filter(
+        ({ adoptedAt }) => adoptedAt > dateToCompare.value,
+      ).length;
+      const totalAmadote = adoptedAnimals?.filter(
+        ({ adoptedAt, status }) => adoptedAt > dateToCompare.value && status === 'adopted',
+      ).length;
+      const totalOtherMeans = adoptedAnimals?.filter(
+        ({ adoptedAt, status }) =>
+          adoptedAt > dateToCompare.value && status === 'adoptedByOtherMeans',
+      ).length;
       const currentDate = new Date();
       const lastMonth = new Date(
         currentDate.getFullYear(),
         currentDate.getMonth() - 1,
         currentDate.getDate(),
       );
-      const total = adoptedAnimals?.filter(({ adoptedAt }) => adoptedAt > lastMonth).length;
-      const totalAmadote = adoptedAnimals?.filter(
-        ({ adoptedAt, status }) => adoptedAt > lastMonth && status === 'adopted',
-      ).length;
-      const totalOtherMeans = adoptedAnimals?.filter(
-        ({ adoptedAt, status }) => adoptedAt > lastMonth && status === 'adoptedByOtherMeans',
-      ).length;
       const registered = allAnimals?.filter(({ createdAt }) => createdAt > lastMonth).length;
       const months = [
         'jan',
@@ -181,13 +219,43 @@ export default function Dashboard() {
     const id = localStorage.getItem('loggedId');
 
     getAdoptionsData(id);
-  }, []);
+  }, [dateToCompare.value]);
+
+  function handleDateChange(newDate) {
+    setDateToCompare(newDate);
+  }
 
   return (
     <div className="dashboardBody">
       <h1 style={{ alignSelf: 'center' }}>Dashboard</h1>
       <div className="dashboardData">
-        <h1 className="dashboardRowTile">Número de adoções nos últimos 30 dias</h1>
+        <h1
+          className="dashboardRowTile"
+          style={{ marginTop: 20, display: 'inline-block', lineHeight: '30px' }}
+        >
+          Número de adoções nos últimos&nbsp;
+          <Select
+            name="date"
+            options={dateOptions}
+            value={dateToCompare ?? dateOptions[0]}
+            onChange={(value) => handleDateChange(value)}
+            styles={{
+              control: (baseStyles) => ({
+                ...baseStyles,
+                backgroundColor: 'rgba(63, 137, 197, 0.25)',
+                marginBottom: '0px',
+                fontSize: '18px',
+                color: '#1C3144',
+                borderRadius: '10px',
+                border: '1px solid #3F88C5',
+                outline: 'none',
+                lineHeight: '18px',
+              }),
+              container: (baseStyles) => ({ ...baseStyles, display: 'inline-block' }),
+              option: (baseStyles) => ({ ...baseStyles, fontSize: '18px' }),
+            }}
+          />
+        </h1>
         <div className="dashboardRow">
           <div className="dashboardBox">
             <h3 className="dashboardBoxTitle">Total</h3>
