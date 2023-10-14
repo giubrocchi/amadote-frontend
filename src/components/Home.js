@@ -8,6 +8,21 @@ export default function Home() {
   const [animals, setAnimals] = useState([]);
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    function handleResize() {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setWidth]);
 
   useEffect(() => {
     async function getAnimals() {
@@ -36,6 +51,43 @@ export default function Home() {
 
   return (
     <div className="homeBody">
+      <div className="homeIntroSection">
+        <img
+          src={`https://amadote.blob.core.windows.net/amadote/banner${
+            width < 800 ? 'Small' : ''
+          }.png`}
+          className="homeBannerImage"
+          alt="banner"
+          onClick={() => navigate('/match')}
+        />
+        <h1>Bem-vinde ao Amadote!</h1>
+        <p className="homeIntroText">
+          Bem-vinde ao nosso site de adoção de animais! Encontre aqui o seu novo melhor amigo e faça
+          a diferença na vida de um animal necessitado. Estamos aqui para ajudar no processo de
+          adoção e fornecer orientação contínua.
+        </p>
+        <p className="homeIntroText homeIntroLink" onClick={() => navigate('/institucional')}>
+          Saiba mais.
+        </p>
+        <div className="homeUsers">
+          <div
+            className="homeUserType"
+            onClick={() => navigate('/entrar', { state: { path: 'adopter' } })}
+          >
+            <p className="homePersonType">Sou pessoa física</p>
+            <label className="signUpSubTitle">Quero adotar um animal</label>
+          </div>
+          <div
+            className="homeUserType"
+            onClick={() => navigate('/entrar', { state: { path: 'adoptionCenter' } })}
+          >
+            <p className="homePersonType">Sou ONG</p>
+            <label className="signUpSubTitle">
+              Quero divulgar um animal e ter controle das adoções
+            </label>
+          </div>
+        </div>
+      </div>
       <div className="homeAnimalsSection">
         <h2 className="homeSubtitle">Pets em destaque</h2>
         <p className="homeDescription">
@@ -55,6 +107,21 @@ export default function Home() {
                 />
               );
             })}
+            {animals?.length === 0 && (
+              <div
+                className="ACProfileAnimalBox"
+                style={{
+                  width: 220,
+                  height: 350,
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  fontSize: 26,
+                  color: '#b3b3b3',
+                }}
+              >
+                Não temos animais disponíveis no momento :(
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -66,6 +133,21 @@ export default function Home() {
             {posts?.slice(0, 20).map((post) => (
               <PostCard post={post} />
             ))}
+            {posts?.length === 0 && (
+              <div
+                className="postPageBox"
+                style={{
+                  width: 300,
+                  height: 220,
+                  justifyContent: 'center',
+                  textAlign: 'center',
+                  fontSize: 26,
+                  color: '#b3b3b3',
+                }}
+              >
+                Não temos posts disponíveis no momento :(
+              </div>
+            )}
           </div>
         </div>
       </div>

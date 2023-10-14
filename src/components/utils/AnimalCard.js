@@ -28,6 +28,7 @@ export default function AnimalCard({ animalInfo, buttonOptions }) {
           flexDirection: 'row',
           gap: '8px',
           marginTop: '5px',
+          maxWidth: '200px',
         }}
       >
         <h2 className="ACProfileAnimalName">{name}</h2>
