@@ -54,14 +54,18 @@ export default function Post() {
 
   return (
     <div className="postBody">
+      <div className="postHeader">
+        <h1 style={{ textAlign: 'center' }}>{post?.title}</h1>
+        <p>Categoria: {postCategories.find(({ value }) => value === post?.category)?.label}</p>
+        <p>Data de publicação: {new Date(post?.createdAt)?.toLocaleDateString('en-GB')}</p>
+      </div>
       {isAdmin && (
-        <button className="adoptionFinishButton" onClick={() => deletePost(post?._id)}>
-          Deletar
-        </button>
+        <div className="buttonContainer">
+          <button className="adoptionFinishButton" onClick={() => deletePost(post?._id)}>
+            Deletar
+          </button>
+        </div>
       )}
-      <h1 style={{ textAlign: 'center' }}>{post?.title}</h1>
-      <p>Categoria: {postCategories.find(({ value }) => value === post?.category)?.label}</p>
-      <p>Data de publicação: {new Date(post?.createdAt)?.toLocaleDateString('en-GB')}</p>
       <img src={post?.image} alt={post?.title} className="inPostImage" />
       <div className="postContent">{parse(post?.text ?? '')}</div>
       <Toaster />
