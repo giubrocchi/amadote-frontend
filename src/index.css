@@ -1789,7 +1789,8 @@ textarea {
 
 .adoptionFinishButton {
   background-color: #e94747;
-  padding: 6px 14px;
+  font-size: 15px;
+  padding: 4px 12px;
   border: none;
   color: #fff;
   border-radius: 5px;
@@ -2036,7 +2037,7 @@ textarea {
   }
 
   .postBody .adoptionFinishButton {
-    position: inherit;
+    position: relative;
   }
 }
 
