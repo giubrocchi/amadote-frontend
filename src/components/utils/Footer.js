@@ -40,7 +40,9 @@ export default function Footer() {
         </p>
       </div>
       <div className="footerColumn">
-        <p className="footerCategory footerHeader">Sobre nós</p>
+        <p className="footerCategory footerHeader" onClick={() => navigate('/institucional')}>
+          Sobre nós
+        </p>
         <p className="footerCategory" onClick={() => navigate('/institucional')}>
           Institucional
         </p>
