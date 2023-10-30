@@ -41,11 +41,10 @@ export default function Header({ path }) {
           <div className="headerTopMobile">
             <div className="headerLogoBox" onClick={() => navigate('/')}>
               <img
-                src="https://amadote.blob.core.windows.net/amadote/logo_amadote_laranja.png"
+                src="https://amadote.blob.core.windows.net/amadote/LogoNova.png"
                 className="headerLogo"
                 alt="Logo Amadote"
               />
-              <h1 className="headerAmadote">Amadote</h1>
             </div>
             <button className="headerIcon" onClick={() => toggleModal()}>
               <IconContext.Provider value={{ color: 'white', size: '28px' }}>
@@ -60,7 +59,6 @@ export default function Header({ path }) {
           >
             <div className="sidebar" onClick={(e) => e.stopPropagation()}>
               <div className="headerTopMobile">
-                <h1 className="headerAmadoteMobile">AmaDote</h1>
                 <button className="headerIcon" onClick={() => toggleModal()}>
                   <IconContext.Provider value={{ color: 'black', size: '28px' }}>
                     <AiOutlineMenu />
@@ -105,11 +103,10 @@ export default function Header({ path }) {
           <div className="headerTop">
             <div className="headerLogoBox" onClick={() => navigate('/')}>
               <img
-                src="https://amadote.blob.core.windows.net/amadote/logo_amadote_laranja.png"
+                src="https://amadote.blob.core.windows.net/amadote/LogoNova.png"
                 className="headerLogo"
                 alt="Logo Amadote"
               />
-              <h1 className="headerAmadote">Amadote</h1>
             </div>
           </div>
           <div className="headerBottom">
