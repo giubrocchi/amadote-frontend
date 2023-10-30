@@ -1019,9 +1019,8 @@ textarea {
 
 .photoSlider {
   width: 450px;
-  height: 300px;
-  align-items: center;
   max-width: 100%;
+  align-items: center;
 }
 
 .photoGrid {
@@ -1049,7 +1048,7 @@ textarea {
   object-fit: cover;
   min-width: 100%;
   width: 100%;
-  min-height: 100%;
+  max-height: 100%;
   border-radius: 16px;
   border: 1px solid #1c3144;
   box-shadow: 3px 3px 3px #a9a9a9;
@@ -1607,6 +1606,11 @@ textarea {
   flex-direction: column;
   margin: 0px 10%;
   align-items: center;
+  position: relative;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .postBody p {
@@ -1763,14 +1767,6 @@ textarea {
   font-weight: bold;
 }
 
-.postBody {
-  position: relative;
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-}
-
 .postHeader {
   text-align: center;
   margin-bottom: 20px;
@@ -1792,7 +1788,7 @@ textarea {
   right: 20px;
 }
 
-.adoptionFinishButton {
+.deletePostButton {
   background-color: #e94747;
   font-size: 15px;
   padding: 4px 12px;
@@ -1803,38 +1799,8 @@ textarea {
   transition: background-color 0.3s ease;
 }
 
-.adoptionFinishButton:hover {
+.deletePostButton:hover {
   background-color: #d63030;
-}
-
-.inPostImage {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 20px;
-}
-
-.postContent {
-  font-size: 18px;
-  line-height: 1.5;
-}
-
-.postContent p {
-  margin-bottom: 10px;
-}
-
-.postContent a {
-  color: #007bff;
-  text-decoration: underline;
-}
-
-.postContent ul {
-  list-style-type: disc;
-  margin-left: 20px;
-}
-
-.postContent ol {
-  list-style-type: decimal;
-  margin-left: 20px;
 }
 
 @media (max-width: 800px) {
@@ -1939,10 +1905,6 @@ textarea {
     gap: 20px;
   }
 
-  .photoSlider {
-    max-height: 250px;
-  }
-
   .animalPhoto {
     max-height: 100%;
   }
@@ -2039,10 +2001,6 @@ textarea {
 
   .matchButton {
     font-size: 18px;
-  }
-
-  .postBody .adoptionFinishButton {
-    position: relative;
   }
 }
 

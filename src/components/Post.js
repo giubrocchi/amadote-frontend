@@ -61,7 +61,7 @@ export default function Post() {
       </div>
       {isAdmin && (
         <div className="buttonContainer">
-          <button className="adoptionFinishButton" onClick={() => deletePost(post?._id)}>
+          <button className="deletePostButton" onClick={() => deletePost(post?._id)}>
             Deletar
           </button>
         </div>
