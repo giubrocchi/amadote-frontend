@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 
@@ -7,6 +7,11 @@ export default function Header({ path }) {
   const navigate = useNavigate();
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const [isSideBarOpen, setSideBarOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     function handleWindowResize() {
@@ -59,6 +64,7 @@ export default function Header({ path }) {
           >
             <div className="sidebar" onClick={(e) => e.stopPropagation()}>
               <div className="headerTopMobile">
+                <h1 className="headerAmadoteMobile">Amadote</h1>
                 <button className="headerIcon" onClick={() => toggleModal()}>
                   <IconContext.Provider value={{ color: 'black', size: '28px' }}>
                     <AiOutlineMenu />

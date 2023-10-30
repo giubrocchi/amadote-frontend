@@ -289,8 +289,9 @@ function AdoptionCenterSignUp() {
               </IconContext.Provider>
               <h2>Solicitação de cadastro realizada com sucesso!</h2>
             </div>
-            <p style={{ marginBottom: '40px' }}>
-              Fique de olho no seu e-mail, nós te notificaremos quando analisarmos sua solicitação.
+            <p style={{ marginBottom: '40px', lineHeight: 1.5, fontSize: 20 }}>
+              Agora, nossos administradores irão analisar seu perfil. Fique de olho no seu e-mail,
+              nós te notificaremos quando analisarmos sua solicitação.
             </p>
             <button
               type="cancel"

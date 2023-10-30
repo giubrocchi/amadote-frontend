@@ -2,6 +2,8 @@ import { React, useEffect, useState } from 'react';
 import { apiBaseUrl } from '../utils/links';
 import { ColorRing } from 'react-loader-spinner';
 import { useNavigate } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 
 export default function AdoptionList() {
   const [loading, setLoading] = useState(false);
@@ -86,6 +88,14 @@ export default function AdoptionList() {
 
   return (
     <div className="adoptionsBody">
+      <div
+        onClick={() => navigate('/perfil')}
+        style={{ alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer' }}
+      >
+        <IconContext.Provider value={{ color: '#1C3144', size: '40px' }}>
+          <AiOutlineArrowLeft />
+        </IconContext.Provider>
+      </div>
       <h1 style={{ textAlign: 'center', marginBottom: '50px' }}>Suas adoções</h1>
       {loading && (
         <div style={{ display: 'flex', justifyContent: 'center' }}>

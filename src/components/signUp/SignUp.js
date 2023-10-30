@@ -28,7 +28,7 @@ function SignUp() {
   return (
     <div className="signUpBody">
       <div className="signUpTitle">
-        <h1>Se junte a gente!</h1>
+        <h1>Junte-se a nós!</h1>
         <IconContext.Provider value={{ color: '#1C3144', size: '28px' }}>
           <FaPaw style={{ transform: 'rotate(-24deg)', margin: '0px 6px' }} />
         </IconContext.Provider>

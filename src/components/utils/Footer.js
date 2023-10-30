@@ -46,7 +46,9 @@ export default function Footer() {
         <p className="footerCategory" onClick={() => navigate('/institucional')}>
           Institucional
         </p>
-        <p className="footerCategory">FAQ</p>
+        <p className="footerCategory" onClick={() => navigate('/faq')}>
+          FAQ
+        </p>
       </div>
       <div className="footerColumn">
         <p className="footerCategory footerHeader" onClick={() => navigate('/perfil')}>
@@ -58,8 +60,6 @@ export default function Footer() {
         <p className="footerCategory" onClick={() => navigate('/entrar')}>
           Entrar
         </p>
-        <p className="footerCategory">Mensagens</p>
-        <p className="footerCategory">Animais favoritados</p>
       </div>
     </div>
   );

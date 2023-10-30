@@ -12,6 +12,9 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import Select from 'react-select';
+import { useNavigate } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -63,6 +66,7 @@ export default function Dashboard() {
       value: new Date(currentDate.getFullYear() - 5, currentDate.getMonth(), currentDate.getDate()),
     },
   ];
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getAdoptionsData(id) {
@@ -227,6 +231,14 @@ export default function Dashboard() {
 
   return (
     <div className="dashboardBody">
+      <div
+        onClick={() => navigate('/perfil')}
+        style={{ alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer' }}
+      >
+        <IconContext.Provider value={{ color: '#1C3144', size: '40px' }}>
+          <AiOutlineArrowLeft />
+        </IconContext.Provider>
+      </div>
       <h1 style={{ alignSelf: 'center' }}>Dashboard</h1>
       <div className="dashboardData">
         <h1

@@ -44,11 +44,6 @@ p {
   margin-bottom: 50px;
 }
 
-.headerTop {
-  margin-top: 20px;
-  margin-bottom: 25px;
-}
-
 .headerAmadote {
   font-weight: normal;
   font-size: 28px;
@@ -58,7 +53,7 @@ p {
 }
 
 .headerLogo {
-  height: 45px;
+  height: 100%;
 }
 
 .headerAmadoteMobile {
@@ -1195,8 +1190,10 @@ textarea {
 .dashboardBody {
   display: flex;
   flex-direction: column;
-  padding-left: 10%;
-  padding-right: 10%;
+}
+
+.dashboardData {
+  margin: 0px 10%;
 }
 
 .dashboardRowTile {
@@ -1285,7 +1282,6 @@ textarea {
 .adoptionsBody {
   display: flex;
   flex-direction: column;
-  margin: 0px 20%;
   justify-content: center;
 }
 
@@ -1293,7 +1289,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  width: 100%;
+  padding: 0px 10%;
 }
 
 .adoptionBox {
@@ -1340,7 +1336,6 @@ textarea {
 .adoptionBody {
   display: flex;
   flex-direction: column;
-  margin: 0px 10%;
   justify-content: center;
 }
 
@@ -1352,6 +1347,7 @@ textarea {
   padding: 30px;
   height: 65vh;
   gap: 20px;
+  margin: 0px 10%;
 }
 
 .adoptionInfo {
@@ -1675,7 +1671,6 @@ textarea {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  cursor: pointer;
   gap: 15px;
   width: 100%;
 }
@@ -1943,13 +1938,10 @@ textarea {
     border-radius: 20px;
   }
 
-  .adoptionBody {
-    margin: 0px;
-  }
-
   .adoptContainer {
     width: 100%;
     padding: 30px 0px;
+    margin: 0px;
   }
 
   .adoptionAnimalPhoto {

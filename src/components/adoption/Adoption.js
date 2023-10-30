@@ -16,13 +16,17 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css';
 import { houseSituationOptions } from '../utils/constants';
 import FinishAdoptionModal from './FinishAdoptionModal';
+import { useNavigate } from 'react-router-dom';
+import { AiOutlineArrowLeft } from 'react-icons/ai';
 
 export default function Adoption() {
   const { id: adoptionId } = useParams();
   const [userType, setUserType] = useState('');
 
+  const navigate = useNavigate();
   const socket = useRef();
   const [messages, setMessages] = useState([]);
+  const [stringifiedMessages, setStringifiedMessages] = useState('');
   const [adoption, setAdoption] = useState({});
   const [currentMessage, setCurrentMessage] = useState('');
   const [finishModalOpen, setSFinishModalOpen] = useState(false);
@@ -36,6 +40,13 @@ export default function Adoption() {
     inAnalysis: 'Em análise',
     concluded: 'Concluída',
     rejected: 'Rejeitada',
+  };
+
+  const scrollToBottom = () => {
+    const element = document.getElementById('scroll');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
   };
 
   useEffect(() => {
@@ -60,6 +71,7 @@ export default function Adoption() {
       );
 
       setMessages(mappedMessages);
+      setStringifiedMessages(JSON.stringify(mappedMessages));
     }
 
     getMessages();
@@ -68,6 +80,10 @@ export default function Adoption() {
       socket.current.on('messageRecieved', () => getMessages());
     }
   }, [author, receiver]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [stringifiedMessages]);
 
   useEffect(() => {
     async function getAdoption() {
@@ -131,6 +147,7 @@ export default function Adoption() {
       setCurrentMessage('');
       socket.current.emit('sendMessage', body);
       setMessages([...messages, body]);
+      setStringifiedMessages(JSON.stringify([...messages, body]));
 
       return;
     }
@@ -173,6 +190,14 @@ export default function Adoption() {
 
   return (
     <div className="adoptionBody">
+      <div
+        onClick={() => navigate('/perfil/adocoes')}
+        style={{ alignSelf: 'flex-start', marginLeft: '5%', cursor: 'pointer' }}
+      >
+        <IconContext.Provider value={{ color: '#1C3144', size: '40px' }}>
+          <AiOutlineArrowLeft />
+        </IconContext.Provider>
+      </div>
       {finishModalOpen && (
         <FinishAdoptionModal
           setSFinishModalOpen={setSFinishModalOpen}
@@ -392,6 +417,7 @@ ${adoption?.adopter?.address?.city} - ${adoption?.adopter?.address?.state}`}
                 </div>
               );
             })}
+            <div id="scroll"></div>
           </div>
           <div className="adoptionChatInput">
             <textarea
