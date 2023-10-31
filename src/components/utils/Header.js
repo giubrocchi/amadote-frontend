@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineMenu } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
 
 export default function Header({ path }) {
