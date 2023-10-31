@@ -153,19 +153,22 @@ export default function Header({ path }) {
               <h2 className="headerTabName">Institucional</h2>
             </button>
             <div className="headerTab iconTab">
-              <button
-                className={'headerIcon ' + (path === 'entrar')}
-                onClick={() => handleButtonClick('entrar')}
-              >
-                <IconContext.Provider
-                  value={{
-                    color: path === 'entrar' ? '#F9A03F' : 'white',
-                    size: '28px',
-                  }}
-                >
-                  <AiOutlineUser />
-                </IconContext.Provider>
+              <button className="headerIcon" onClick={() => handleButtonClick('cadastrar')}>
+                Cadastro
               </button>
+              <button className="headerIcon" onClick={() => handleButtonClick('entrar')}>
+                Entrar
+              </button>
+              {/* 
+                  <IconContext.Provider
+                    value={{
+                      color: path === 'entrar' ? '#F9A03F' : 'white',
+                      size: '28px',
+                    }}
+                  >
+                    <AiOutlineUser />
+                  </IconContext.Provider>
+              */}
             </div>
           </div>
         </div>
