@@ -112,38 +112,52 @@ export default function Ong() {
             <h2>{ong?.corporateName}</h2>
             <div className="ongInfoContainer">
               <div className="ongInfoColumn">
-                <p>
-                  Endereço:&nbsp;
-                  {`${ong?.address?.streetName}, ${ong?.address?.number} - \
+                <span className="inlineInfo">
+                  <p className="boldInfo">Endereço:</p>
+                  <p>
+                    {`${ong?.address?.streetName}, ${ong?.address?.number} - \
 ${ong?.address?.district}, ${ong?.address?.city} - ${ong?.address?.state}`}
-                </p>
-                <p>
-                  CEP:&nbsp;
-                  {ong?.address?.zipCode
-                    ?.replace(/\D/g, '')
-                    .replace(/(\d{5})(\d)/, '$1-$2')
-                    .replace(/(-\d{3})\d+?$/, '$1')}
-                </p>
-                <p>
-                  CNPJ:&nbsp;
-                  {ong?.CNPJ.replace(/\D+/g, '')
-                    .replace(/(\d{2})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d)/, '$1/$2')
-                    .replace(/(\d{4})(\d)/, '$1-$2')
-                    .replace(/(-\d{2})\d+?$/, '$1')}
-                </p>
+                  </p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">CEP:</p>
+                  <p>
+                    {ong?.address?.zipCode
+                      ?.replace(/\D/g, '')
+                      .replace(/(\d{5})(\d)/, '$1-$2')
+                      .replace(/(-\d{3})\d+?$/, '$1')}
+                  </p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">CNPJ:</p>
+                  <p>
+                    {ong?.CNPJ.replace(/\D+/g, '')
+                      .replace(/(\d{2})(\d)/, '$1.$2')
+                      .replace(/(\d{3})(\d)/, '$1.$2')
+                      .replace(/(\d{3})(\d)/, '$1/$2')
+                      .replace(/(\d{4})(\d)/, '$1-$2')
+                      .replace(/(-\d{2})\d+?$/, '$1')}
+                  </p>
+                </span>
               </div>
               <div className="ongInfoColumn">
-                <p>E-mail: {ong?.email}</p>
-                <p>
-                  Telefone:&nbsp;
-                  {ong?.telephone
-                    ?.replace(/\D/g, '')
-                    .replace(/(\d{2})(\d)/, '($1) $2')
-                    .replace(/(\d)(\d{4})$/, '$1-$2')}
-                </p>
-                <p>Data de cadastro: {new Date(ong?.createdAt)?.toLocaleDateString('en-GB')}</p>
+                <span className="inlineInfo">
+                  <p className="boldInfo">E-mail:</p>
+                  <p>{ong?.email}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Telefone:</p>
+                  <p>
+                    {ong?.telephone
+                      ?.replace(/\D/g, '')
+                      .replace(/(\d{2})(\d)/, '($1) $2')
+                      .replace(/(\d)(\d{4})$/, '$1-$2')}
+                  </p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Data de cadastro:</p>
+                  <p>{new Date(ong?.createdAt)?.toLocaleDateString('en-GB')}</p>
+                </span>
               </div>
             </div>
           </div>

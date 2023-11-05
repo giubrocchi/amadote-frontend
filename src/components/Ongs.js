@@ -106,16 +106,27 @@ export default function Ongs() {
               <div className="ongBox" key={ong?._id} onClick={() => navigate(`/ongs/${ong?._id}`)}>
                 <h1 className="ongCorporateName">{ong?.corporateName}</h1>
                 <div className="ongDetails">
-                  <p>Cidade: {ong?.address?.city}</p>
-                  <p>Estado: {ong?.address?.state}</p>
-                  <p>E-mail: {ong?.email}</p>
-                  <p>
-                    Telefone:&nbsp;
-                    {ong?.telephone
-                      ?.replace(/\D/g, '')
-                      .replace(/(\d{2})(\d)/, '($1) $2')
-                      .replace(/(\d)(\d{4})$/, '$1-$2')}
-                  </p>
+                  <span className="inlineInfo">
+                    <p className="boldInfo">Cidade:</p>
+                    <p>{ong?.address?.city}</p>
+                  </span>
+                  <span className="inlineInfo">
+                    <p className="boldInfo">Estado:</p>
+                    <p>{ong?.address?.state}</p>
+                  </span>
+                  <span className="inlineInfo">
+                    <p className="boldInfo">E-mail:</p>
+                    <p>{ong?.email}</p>
+                  </span>
+                  <span className="inlineInfo">
+                    <p className="boldInfo">Telefone:</p>
+                    <p>
+                      {ong?.telephone
+                        ?.replace(/\D/g, '')
+                        .replace(/(\d{2})(\d)/, '($1) $2')
+                        .replace(/(\d)(\d{4})$/, '$1-$2')}
+                    </p>
+                  </span>
                 </div>
               </div>
             );

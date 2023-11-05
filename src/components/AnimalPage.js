@@ -242,11 +242,11 @@ export default function AnimalsPage() {
         </div>
         <div className="animalAdoptionCenterInfo">
           <div className="orgInfo">
-            <p>Publicado por:</p>
+            <p style={{ fontWeight: 'bold' }}>Publicado por:</p>
             <p>{adoptionCenter?.corporateName}</p>
           </div>
           <div className="orgInfo">
-            <p>Data:</p>
+            <p style={{ fontWeight: 'bold' }}>Data:</p>
             <p>{new Date(animal?.createdAt)?.toLocaleDateString('en-GB')}</p>
           </div>
         </div>
@@ -290,40 +290,40 @@ export default function AnimalsPage() {
         <div className="animalDataSheet">
           <h2 style={{ marginBottom: 10 }}>Ficha técnica</h2>
           <div className="animalData">
-            <p>Espécie:</p>
+            <p style={{ fontWeight: 'bold' }}>Espécie:</p>
             <p>{animal?.species}</p>
           </div>
           <div className="animalData">
-            <p>Raça:</p>
+            <p style={{ fontWeight: 'bold' }}>Raça:</p>
             <p>{animal?.breed}</p>
           </div>
           <div className="animalData">
-            <p>Sexo:</p>
+            <p style={{ fontWeight: 'bold' }}>Sexo:</p>
             <p>
               {animal?.sex === 'M' && 'Macho'}
               {animal?.sex === 'F' && 'Fêmea'}
             </p>
           </div>
           <div className="animalData">
-            <p>Porte:</p>
+            <p style={{ fontWeight: 'bold' }}>Porte:</p>
             <p>{animal?.size}</p>
           </div>
           <div className="animalData">
-            <p>Necessidade especial:</p>
+            <p style={{ fontWeight: 'bold' }}>Necessidade especial:</p>
             <p>
               {animal?.isSpecial && 'Sim'}
               {!animal?.isSpecial && 'Não'}
             </p>
           </div>
           <div className="animalData">
-            <p>Microchipado:</p>
+            <p style={{ fontWeight: 'bold' }}>Microchipado:</p>
             <p>
               {animal?.hasMicrochip && 'Sim'}
               {!animal?.hasMicrochip && 'Não'}
             </p>
           </div>
           <div className="animalData">
-            <p>Idade:</p>
+            <p style={{ fontWeight: 'bold' }}>Idade:</p>
             <p>
               {age > 0
                 ? `${age} ano${age === 1 ? '' : 's'}`
@@ -331,7 +331,7 @@ export default function AnimalsPage() {
             </p>
           </div>
           <div className="animalData">
-            <p>Nascimento:</p>
+            <p style={{ fontWeight: 'bold' }}>Nascimento:</p>
             <p>{birth?.toLocaleDateString('en-GB')}</p>
           </div>
         </div>

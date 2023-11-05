@@ -1070,6 +1070,7 @@ textarea {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  color: #1c3144;
 }
 
 .animalData p {
@@ -1099,6 +1100,7 @@ textarea {
   display: flex;
   flex-direction: row;
   gap: 10px;
+  color: #1c3144;
 }
 
 .orgInfo p {
@@ -1304,7 +1306,6 @@ textarea {
   border-radius: 20px;
   box-shadow: 5px 5px 10px #a9a9a9;
   padding: 15px;
-  cursor: pointer;
 }
 
 .adoptionBox img {
@@ -1461,13 +1462,18 @@ textarea {
   border-radius: 20px;
 }
 
-.adoptionOrganizationInfo p,
 .adoptionAdopterInfo p {
   margin: 10px 0px;
 }
 
+.adoptionAnimalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.adoptionOrganizationInfo p,
 .adoptionAnimalInfo p {
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 
 .adoptionHouseSituation {
@@ -1801,6 +1807,17 @@ textarea {
 
 .deletePostButton:hover {
   background-color: #d63030;
+}
+
+.inlineInfo {
+  display: inline-flex;
+  gap: 6px;
+  color: #1c3144;
+}
+
+.boldInfo {
+  font-weight: bold;
+  color: #1c3144;
 }
 
 @media (max-width: 800px) {

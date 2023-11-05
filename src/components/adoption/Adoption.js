@@ -229,24 +229,42 @@ export default function Adoption() {
                 alt="animal"
               />
               <div className="adoptionAnimalInfo">
-                <p>Espécie: {adoption?.animal?.species}</p>
-                <p>Raça: {adoption?.animal?.breed}</p>
-                <p>
-                  Data da solicitação: {new Date(adoption?.createdAt).toLocaleDateString('en-GB')}
-                </p>
-                <p>Situação: {adoptionStatus[adoption?.status]}</p>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Espécie:</p>
+                  <p>{adoption?.animal?.species}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Raça:</p>
+                  <p>{adoption?.animal?.breed}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Data da solicitação:</p>
+                  <p>{new Date(adoption?.createdAt).toLocaleDateString('en-GB')}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Situação:</p>
+                  <p>{adoptionStatus[adoption?.status]}</p>
+                </span>
               </div>
               <div className="adoptionOrganizationInfo">
                 <h2 style={{ margin: 0 }}>ONG</h2>
-                <p>Nome: {adoption?.adoptionCenter?.corporateName}</p>
-                <p>E-mail: {adoption?.adoptionCenter?.email}</p>
-                <p>
-                  Telefone:
-                  {adoption?.adoptionCenter?.telephone
-                    .replace(/\D/g, '')
-                    .replace(/(\d{2})(\d)/, '($1) $2')
-                    .replace(/(\d)(\d{4})$/, '$1-$2')}
-                </p>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Nome:</p>
+                  <p>{adoption?.adoptionCenter?.corporateName}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">E-mail:</p>
+                  <p>{adoption?.adoptionCenter?.email}</p>
+                </span>
+                <span className="inlineInfo">
+                  <p className="boldInfo">Telefone:</p>
+                  <p>
+                    {adoption?.adoptionCenter?.telephone
+                      .replace(/\D/g, '')
+                      .replace(/(\d{2})(\d)/, '($1) $2')
+                      .replace(/(\d)(\d{4})$/, '$1-$2')}
+                  </p>
+                </span>
               </div>
             </>
           )}
@@ -284,31 +302,36 @@ export default function Adoption() {
                       alt="animal"
                     />
                     <div className="adoptionAnimalInfo">
-                      <p>Espécie: {adoption?.animal?.species}</p>
-                      <p>Raça: {adoption?.animal?.breed}</p>
-                      <p>
-                        Data da solicitação:{' '}
-                        {new Date(adoption?.createdAt).toLocaleDateString('en-GB')}
-                      </p>
-                      <p>Situação: {adoptionStatus[adoption?.status]}</p>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Espécie:</p>
+                        <p>{adoption?.animal?.species}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Raça:</p>
+                        <p>{adoption?.animal?.breed}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Data da solicitação:</p>
+                        <p>{new Date(adoption?.createdAt).toLocaleDateString('en-GB')}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Situação:</p>
+                        <p>{adoptionStatus[adoption?.status]}</p>
+                      </span>
+
                       {adoption?.acceptedAt && (
-                        <div
-                          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-                        >
-                          <p style={{ margin: 0 }}>Documento de confirmação:&nbsp;</p>
+                        <span className="inlineInfo">
+                          <p className="boldInfo">Documento de confirmação:</p>
                           <a href={adoption?.confirmationDocument} style={{ fontSize: 18 }}>
                             Abrir
                           </a>
-                        </div>
+                        </span>
                       )}
                       {adoption?.excludedAt && (
-                        <div
-                          style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}
-                        >
-                          <p style={{ margin: 0 }}>
-                            Motivo da rejeição: {adoption?.exclusionDescription}
-                          </p>
-                        </div>
+                        <span className="inlineInfo">
+                          <p className="boldInfo">Motivo da rejeição:</p>
+                          <p>{adoption?.exclusionDescription}</p>
+                        </span>
                       )}
                     </div>
                   </AccordionItemPanel>
@@ -320,40 +343,56 @@ export default function Adoption() {
                     </AccordionItemButton>
                   </AccordionItemHeading>
                   <AccordionItemPanel>
-                    <p>Nome: {adoption?.adopter?.fullName}</p>
-                    <p>E-mail: {adoption?.adopter?.email}</p>
-                    <p>
-                      Telefone:&nbsp;
-                      {adoption?.adopter?.telephone
-                        .replace(/\D/g, '')
-                        .replace(/(\d{2})(\d)/, '($1) $2')
-                        .replace(/(\d)(\d{4})$/, '$1-$2')}
-                    </p>
-                    <p>
-                      CPF:&nbsp;
-                      {adoption?.adopter?.CPF?.replace(/\D/g, '')
-                        .replace(/(\d{3})(\d)/, '$1.$2')
-                        .replace(/(\d{3})(\d)/, '$1.$2')
-                        .replace(/(\d{3})(\d{1,2})/, '$1-$2')
-                        .replace(/(-\d{2})\d+?$/, '$1')}
-                    </p>
-                    <p>
-                      Endereço:&nbsp;
-                      {`${adoption?.adopter?.address?.streetName}, \
+                    <div className="adoptionAnimalInfo">
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Nome:</p>
+                        <p>{adoption?.adopter?.fullName}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">E-mail:</p>
+                        <p>{adoption?.adopter?.email}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Telefone:</p>
+                        <p>
+                          {adoption?.adopter?.telephone
+                            .replace(/\D/g, '')
+                            .replace(/(\d{2})(\d)/, '($1) $2')
+                            .replace(/(\d)(\d{4})$/, '$1-$2')}
+                        </p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">CPF:</p>
+                        <p>
+                          {adoption?.adopter?.CPF?.replace(/\D/g, '')
+                            .replace(/(\d{3})(\d)/, '$1.$2')
+                            .replace(/(\d{3})(\d)/, '$1.$2')
+                            .replace(/(\d{3})(\d{1,2})/, '$1-$2')
+                            .replace(/(-\d{2})\d+?$/, '$1')}
+                        </p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Endereço:</p>
+                        <p>
+                          {`${adoption?.adopter?.address?.streetName}, \
 ${adoption?.adopter?.address?.number} - ${adoption?.adopter?.address?.district}, \
 ${adoption?.adopter?.address?.city} - ${adoption?.adopter?.address?.state}`}
-                    </p>
-                    <p>
-                      CEP:&nbsp;
-                      {adoption?.adopter?.address?.zipCode
-                        ?.replace(/\D/g, '')
-                        .replace(/(\d{5})(\d)/, '$1-$2')
-                        .replace(/(-\d{3})\d+?$/, '$1')}
-                    </p>
-                    <p>
-                      Data de nascimento:&nbsp;
-                      {new Date(adoption?.adopter?.birthDate)?.toLocaleDateString('en-GB')}
-                    </p>
+                        </p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">CEP:</p>
+                        <p>
+                          {adoption?.adopter?.address?.zipCode
+                            ?.replace(/\D/g, '')
+                            .replace(/(\d{5})(\d)/, '$1-$2')
+                            .replace(/(-\d{3})\d+?$/, '$1')}
+                        </p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Data de nascimento:</p>
+                        <p>{new Date(adoption?.adopter?.birthDate)?.toLocaleDateString('en-GB')}</p>
+                      </span>
+                    </div>
                   </AccordionItemPanel>
                 </AccordionItem>
                 <AccordionItem>
@@ -363,22 +402,30 @@ ${adoption?.adopter?.address?.city} - ${adoption?.adopter?.address?.state}`}
                     </AccordionItemButton>
                   </AccordionItemHeading>
                   <AccordionItemPanel>
-                    <p>Motivo da adoção: {adoption?.adoptionReason}</p>
-                    <p>Quem cuidará do animal: {adoption?.petSitter}</p>
-                    <div>
-                      <p>Situação da residência:</p>
-                      <div style={{ display: 'flex', flexFlow: 'wrap', gap: 10 }}>
-                        {adoption?.houseSituation?.map((situation) => (
-                          <div className="adoptionHouseSituation" key={situation}>
-                            <p>
-                              {
-                                Object.values(houseSituationOptions)
-                                  .flat()
-                                  .find((option) => option?.value === situation)?.label
-                              }
-                            </p>
-                          </div>
-                        ))}
+                    <div className="adoptionAnimalInfo">
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Motivo da adoção:</p>
+                        <p>{adoption?.adoptionReason}</p>
+                      </span>
+                      <span className="inlineInfo">
+                        <p className="boldInfo">Quem cuidará do animal:</p>
+                        <p>{adoption?.petSitter}</p>
+                      </span>
+                      <div>
+                        <p className="boldInfo">Situação da residência:</p>
+                        <div style={{ display: 'flex', flexFlow: 'wrap', gap: 10 }}>
+                          {adoption?.houseSituation?.map((situation) => (
+                            <div className="adoptionHouseSituation" key={situation}>
+                              <p>
+                                {
+                                  Object.values(houseSituationOptions)
+                                    .flat()
+                                    .find((option) => option?.value === situation)?.label
+                                }
+                              </p>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </AccordionItemPanel>

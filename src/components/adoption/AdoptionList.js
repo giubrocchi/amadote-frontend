@@ -118,6 +118,7 @@ export default function AdoptionList() {
                     className="adoptionBox"
                     key={adoption?._id}
                     onClick={() => navigate(`/perfil/adocoes/${adoption?._id}`)}
+                    style={{ cursor: 'pointer' }}
                   >
                     <img src={adoption?.animal?.photos?.[0]} alt="animal" />
                     <div className="adoptionInformation">
@@ -156,6 +157,7 @@ export default function AdoptionList() {
                     className="adoptionBox"
                     key={adoption?._id}
                     onClick={() => navigate(`/perfil/adocoes/${adoption?._id}`)}
+                    style={{ cursor: 'pointer' }}
                   >
                     <img src={adoption?.animal?.photos?.[0]} alt="animal" />
                     <div className="adoptionInformation">

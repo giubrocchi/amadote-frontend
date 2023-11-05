@@ -351,11 +351,7 @@ export default function AdminProfile({ adminName }) {
         <TabPanel>
           <div className="adminAdoptions">
             {adoptions?.map((adoption) => (
-              <div
-                className="adoptionBox"
-                key={adoption?._id}
-                onClick={() => navigate(`/perfil/adocoes/${adoption?._id}`)}
-              >
+              <div className="adoptionBox" key={adoption?._id}>
                 <img
                   src={adoption?.animal?.photos?.[0]}
                   alt="animal"
