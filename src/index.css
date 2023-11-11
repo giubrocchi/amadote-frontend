@@ -89,6 +89,12 @@ p {
   color: #fff;
 }
 
+.loginText {
+  font-family: Inter;
+  color: #fff;
+  width: fit-content;
+}
+
 .true {
   background-color: #fff !important;
   border-top: 1px #1c3144 solid !important;
@@ -124,7 +130,7 @@ button:hover {
   cursor: pointer;
 }
 
-.iconTab {
+.loginTab {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

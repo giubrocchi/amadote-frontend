@@ -53,6 +53,7 @@ export default function AdopterProfile({ adopterName }) {
 
   function logout() {
     localStorage.removeItem('loggedId');
+    window.dispatchEvent(new Event('storage'));
     navigate('/entrar');
   }
 

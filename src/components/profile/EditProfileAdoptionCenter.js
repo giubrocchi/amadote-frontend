@@ -282,6 +282,7 @@ function EditProfileAdoptionCenter({ profileInfos = {} }) {
     if (response.status === 401) showErrorAlert('E-mail já cadastrado.');
     else {
       localStorage.removeItem('loggedId');
+      window.dispatchEvent(new Event('storage'));
       navigate('/perfil');
     }
 

@@ -2,9 +2,11 @@ import { React, useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { IconContext } from 'react-icons';
+import { apiBaseUrl } from './links';
 
 export default function Header({ path }) {
   const navigate = useNavigate();
+  const [name, setName] = useState('');
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const [isSideBarOpen, setSideBarOpen] = useState(false);
   const { pathname } = useLocation();
@@ -23,6 +25,40 @@ export default function Header({ path }) {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
+  }, []);
+
+  useEffect(() => {
+    async function getUserProfile(id) {
+      const adopterUrl = `${apiBaseUrl}/api/adopter/${id}`;
+      const adoptionCenterUrl = `${apiBaseUrl}/api/adoptionCenter/${id}`;
+      const adopterResult = await fetch(adopterUrl);
+
+      if (adopterResult.ok) {
+        const jsonAdopterResult = (await adopterResult?.json()) ?? {};
+
+        setName(jsonAdopterResult.fullName);
+
+        return;
+      }
+      const adoptionCenterResult = await fetch(adoptionCenterUrl);
+      if (adoptionCenterResult.ok) {
+        const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+
+        setName(jsonAdoptionCenterResult.corporateName);
+        return;
+      }
+      setName('');
+    }
+
+    const onStorage = () => {
+      getUserProfile(localStorage.getItem('loggedId'));
+    };
+
+    window.addEventListener('storage', onStorage);
+
+    getUserProfile(localStorage.getItem('loggedId'));
+
+    return () => window.removeEventListener('storage', onStorage);
   }, []);
 
   function getWindowSize() {
@@ -152,23 +188,28 @@ export default function Header({ path }) {
             >
               <h2 className="headerTabName">Institucional</h2>
             </button>
-            <div className="headerTab iconTab">
-              <button className="headerIcon" onClick={() => handleButtonClick('cadastrar')}>
-                Cadastro
-              </button>
-              <button className="headerIcon" onClick={() => handleButtonClick('entrar')}>
-                Entrar
-              </button>
-              {/* 
-                  <IconContext.Provider
-                    value={{
-                      color: path === 'entrar' ? '#F9A03F' : 'white',
-                      size: '28px',
-                    }}
+            <div className="headerTab loginTab">
+              {!name && (
+                <>
+                  <button
+                    className="headerTab loginText"
+                    onClick={() => handleButtonClick('cadastrar')}
                   >
-                    <AiOutlineUser />
-                  </IconContext.Provider>
-              */}
+                    Cadastro
+                  </button>
+                  <button
+                    className="headerTab loginText"
+                    onClick={() => handleButtonClick('entrar')}
+                  >
+                    Entrar
+                  </button>
+                </>
+              )}
+              {name && (
+                <button className="headerTab loginText" onClick={() => handleButtonClick('entrar')}>
+                  Olá {name} ▼
+                </button>
+              )}
             </div>
           </div>
         </div>

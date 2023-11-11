@@ -43,6 +43,7 @@ export default function AdoptionCenterProfile({ corporateName }) {
 
   function logout() {
     localStorage.removeItem('loggedId');
+    window.dispatchEvent(new Event('storage'));
     navigate('/entrar');
   }
 

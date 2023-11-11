@@ -32,6 +32,7 @@ export default function AdminProfile({ adminName }) {
 
   function logout() {
     localStorage.removeItem('loggedId');
+    window.dispatchEvent(new Event('storage'));
     navigate('/entrar');
   }
 
