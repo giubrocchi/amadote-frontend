@@ -89,10 +89,14 @@ p {
   color: #fff;
 }
 
-.loginText {
+.loginButton {
   font-family: Inter;
   color: #fff;
   width: fit-content;
+  background-color: #1c3144;
+  border-radius: 20px;
+  padding: 5px 20px;
+  font-size: 18px;
 }
 
 .true {
@@ -132,8 +136,8 @@ button:hover {
 
 .loginTab {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
 }
 
 .headerTopMobile {
@@ -410,6 +414,7 @@ textarea {
   justify-content: center;
   grid-gap: 30px;
   inline-size: -webkit-fill-available;
+  inline-size: -moz-available;
   margin-top: 50px;
 }
 
@@ -594,12 +599,12 @@ textarea {
 
 .formBody {
   width: 100%;
-  text-align: -webkit-center;
 }
 
 .signUpForm {
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .signUpInput {
@@ -631,7 +636,8 @@ textarea {
   color: #1c3144;
 }
 
-::-webkit-file-upload-button {
+::-webkit-file-upload-button,
+::file-selector-button {
   font-family: Inter;
   background-color: #d2d2d2;
   border: 0px;
@@ -848,6 +854,7 @@ textarea {
   justify-content: center;
   grid-gap: 30px;
   inline-size: -webkit-fill-available;
+  inline-size: -moz-available;
 }
 
 .animalsBody {
@@ -1160,6 +1167,7 @@ textarea {
   justify-content: center;
   grid-gap: 30px;
   inline-size: -webkit-fill-available;
+  inline-size: -moz-available;
   padding-top: 20px;
 }
 
@@ -1226,6 +1234,7 @@ textarea {
   border: #cecece 2px solid;
   border-radius: 20px;
   width: -webkit-fill-available;
+  width: -moz-available;
   padding: 8px 15px;
 }
 
@@ -1379,6 +1388,7 @@ textarea {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
+  height: 100%;
   height: -webkit-fill-available;
   overflow-y: scroll;
 }
@@ -1473,6 +1483,11 @@ textarea {
 }
 
 .adoptionAnimalInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.adoptionOrganizationInfo {
   display: flex;
   flex-direction: column;
 }
@@ -1679,6 +1694,7 @@ textarea {
   justify-content: center;
   grid-gap: 30px;
   inline-size: -webkit-fill-available;
+  inline-size: -moz-available;
 }
 
 .animalsOngInfoBox {

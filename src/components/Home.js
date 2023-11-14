@@ -75,16 +75,18 @@ export default function Home() {
             onClick={() => navigate('/entrar', { state: { path: 'adopter' } })}
           >
             <p className="homePersonType">Sou pessoa física</p>
-            <label className="signUpSubTitle">Quero adotar um animal</label>
+            <p className="signUpSubTitle" style={{ margin: 0 }}>
+              Quero adotar um animal
+            </p>
           </div>
           <div
             className="homeUserType"
             onClick={() => navigate('/entrar', { state: { path: 'adoptionCenter' } })}
           >
             <p className="homePersonType">Sou ONG</p>
-            <label className="signUpSubTitle">
+            <p className="signUpSubTitle" style={{ margin: 0 }}>
               Quero divulgar um animal e ter controle das adoções
-            </label>
+            </p>
           </div>
         </div>
       </div>

@@ -411,20 +411,6 @@ function AdoptionCenterSignUp() {
           placeholder="Bairro*"
           onChange={handleDistrictChange}
         />
-        <div
-          style={{
-            display: invalidPassword ? 'unset' : 'none',
-            color: 'red',
-            textAlign: 'left',
-          }}
-        >
-          <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
-          <ul>
-            <li>Pelo menos uma letra minúscula;</li>
-            <li>Pelo menos um caracter especial;</li>
-            <li>Pelo menos uma letra maiúscula.</li>
-          </ul>
-        </div>
         <input
           type="password"
           maxLength="250"
@@ -435,10 +421,24 @@ function AdoptionCenterSignUp() {
           placeholder="Senha*"
           onChange={handlePasswordChange}
         />
-        <p className="passwordTip">
+        <p className="passwordTip" style={{ display: invalidPassword ? 'none' : 'unset' }}>
           Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo
           menos uma letra maiúscula e uma minúscula.
         </p>
+        <div
+          style={{
+            display: invalidPassword ? 'unset' : 'none',
+            color: 'red',
+            textAlign: 'left',
+          }}
+        >
+          <p>Uma senha deve conter no mínimo 8 caracteres sendo eles:</p>
+          <ul>
+            <li>Pelo menos uma letra minúscula;</li>
+            <li>Pelo menos um caractere especial;</li>
+            <li>Pelo menos uma letra maiúscula.</li>
+          </ul>
+        </div>
         <p className="signUpInputLabel">Documento de registro (PDF)*</p>
         <input
           type="file"

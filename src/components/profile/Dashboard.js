@@ -19,6 +19,7 @@ import { IconContext } from 'react-icons';
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 export default function Dashboard() {
+  const hasWebkit = navigator.userAgent.includes('AppleWebKit');
   const [totalAdoptions, setTotalAdoptions] = useState(0);
   const [adoptionsAmadote, setAdoptionsAmadote] = useState(0);
   const [adoptionsOtherMeans, setAdoptionsOtherMeans] = useState(0);
@@ -338,7 +339,7 @@ export default function Dashboard() {
                 Amadote
               </button>
             </div>
-            <div style={{ height: '-webkit-fill-available' }}>
+            <div style={{ height: hasWebkit ? '-webkit-fill-available' : '100%' }}>
               <Line
                 data={{
                   labels: yearAdoptionsLabels,

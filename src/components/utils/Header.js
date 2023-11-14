@@ -192,13 +192,7 @@ export default function Header({ path }) {
               {!name && (
                 <>
                   <button
-                    className="headerTab loginText"
-                    onClick={() => handleButtonClick('cadastrar')}
-                  >
-                    Cadastro
-                  </button>
-                  <button
-                    className="headerTab loginText"
+                    className="headerTab loginButton"
                     onClick={() => handleButtonClick('entrar')}
                   >
                     Entrar
@@ -206,8 +200,11 @@ export default function Header({ path }) {
                 </>
               )}
               {name && (
-                <button className="headerTab loginText" onClick={() => handleButtonClick('entrar')}>
-                  Olá {name} ▼
+                <button
+                  className="headerTab loginButton"
+                  onClick={() => handleButtonClick('entrar')}
+                >
+                  Perfil
                 </button>
               )}
             </div>

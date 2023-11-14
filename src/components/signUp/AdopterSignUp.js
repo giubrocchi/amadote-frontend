@@ -129,6 +129,20 @@ function AdopterSignUp() {
               placeholder="E-mail*"
               onChange={handleEmailChange}
             />
+            <input
+              type="password"
+              maxLength="250"
+              className={`signUpInput invalid${invalidPassword} inputWithTip`}
+              required
+              id="password"
+              value={password}
+              placeholder="Senha*"
+              onChange={handlePasswordChange}
+            />
+            <p className="passwordTip" style={{ display: invalidPassword ? 'none' : 'unset' }}>
+              Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo
+              menos uma letra maiúscula e uma minúscula.
+            </p>
             <div
               style={{
                 display: invalidPassword ? 'unset' : 'none',
@@ -143,20 +157,6 @@ function AdopterSignUp() {
                 <li>Pelo menos uma letra maiúscula.</li>
               </ul>
             </div>
-            <input
-              type="password"
-              maxLength="250"
-              className={`signUpInput invalid${invalidPassword} inputWithTip`}
-              required
-              id="password"
-              value={password}
-              placeholder="Senha*"
-              onChange={handlePasswordChange}
-            />
-            <p className="passwordTip">
-              Sua senha deve conter no mínimo 8 caracteres, pelo menos um caractere especial e pelo
-              menos uma letra maiúscula e uma minúscula.
-            </p>
             <button type="submit" className="signUpButton">
               {!loading && 'Cadastrar'}
               {loading && (
