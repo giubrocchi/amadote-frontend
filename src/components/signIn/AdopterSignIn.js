@@ -46,7 +46,7 @@ function AdopterSignIn() {
     if (jsonResponse.login) {
       localStorage.setItem('loggedId', jsonResponse.id);
       window.dispatchEvent(new Event('storage'));
-      navigate('/');
+      navigate('/perfil');
       return;
     }
   };

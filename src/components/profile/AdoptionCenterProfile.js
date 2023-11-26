@@ -11,6 +11,7 @@ import AnimalCard from '../utils/AnimalCard';
 export default function AdoptionCenterProfile({ corporateName }) {
   const [isAnimalModalOpen, setAnimalModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [reloadAnimalList, setReloadAnimalList] = useState(false);
   const [animals, setAnimals] = useState([]);
   const [editId, setEditId] = useState('');
   const navigate = useNavigate();
@@ -27,10 +28,11 @@ export default function AdoptionCenterProfile({ corporateName }) {
       const jsonResponse = (await response?.json()) ?? [];
 
       setAnimals(jsonResponse);
+      setReloadAnimalList(false);
     }
 
     getAnimals(localStorage.getItem('loggedId'));
-  }, []);
+  }, [reloadAnimalList]);
 
   function openAnimalModal(value) {
     setAnimalModalOpen(value);
@@ -49,7 +51,12 @@ export default function AdoptionCenterProfile({ corporateName }) {
 
   return (
     <div className="ACProfileBody">
-      {isAnimalModalOpen && <CreateAnimalModal setAnimalModalOpen={setAnimalModalOpen} />}
+      {isAnimalModalOpen && (
+        <CreateAnimalModal
+          setAnimalModalOpen={setAnimalModalOpen}
+          setReloadAnimalList={setReloadAnimalList}
+        />
+      )}
       {isEditModalOpen && <EditAnimalModal editAnimal={editAnimal} id={editId} />}
       <div className="ACProfileHeader">
         <div className="ACProfileNameBox">

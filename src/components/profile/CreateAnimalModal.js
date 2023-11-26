@@ -5,7 +5,7 @@ import { ThreeDots } from 'react-loader-spinner';
 import { apiBaseUrl } from '../utils/links';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function CreateAnimalModal({ setAnimalModalOpen }) {
+export default function CreateAnimalModal({ setAnimalModalOpen, setReloadAnimalList }) {
   const [name, setName] = useState('');
   const [birthDate, setBirthDate] = useState('');
   const [specie, setSpecie] = useState('');
@@ -81,7 +81,7 @@ export default function CreateAnimalModal({ setAnimalModalOpen }) {
       toast.error('Ops! Ocorreu um erro, tente novamente mais tarde.');
     else {
       setAnimalModalOpen(false);
-      window.location.reload();
+      setReloadAnimalList(true);
     }
   }
 
@@ -276,43 +276,88 @@ export default function CreateAnimalModal({ setAnimalModalOpen }) {
             <input
               type="radio"
               name="vaccinated"
+              id="vaccinated"
               onClick={() => handleVaccinatedChange(true)}
               required
             />
-            <label className="animalModalLabelText">Sim</label>
-            <input type="radio" name="vaccinated" onClick={() => handleVaccinatedChange(false)} />
-            <label className="animalModalLabelText">Não</label>
+            <label className="animalModalLabelText" htmlFor="vaccinated">
+              Sim
+            </label>
+            <input
+              type="radio"
+              name="vaccinated"
+              id="notVaccinated"
+              onClick={() => handleVaccinatedChange(false)}
+            />
+            <label className="animalModalLabelText" htmlFor="notVaccinated">
+              Não
+            </label>
           </div>
           <div className="animalModalLabel">
             <p className="animalModalLabelTitle">Castrado:</p>
             <input
               type="radio"
               name="castrated"
+              id="castrated"
               onClick={() => handleCastratedChange(true)}
               required
             />
-            <label className="animalModalLabelText">Sim</label>
-            <input type="radio" name="castrated" onClick={() => handleCastratedChange(false)} />
-            <label className="animalModalLabelText">Não</label>
+            <label className="animalModalLabelText" htmlFor="castrated">
+              Sim
+            </label>
+            <input
+              type="radio"
+              name="castrated"
+              id="notCastrated"
+              onClick={() => handleCastratedChange(false)}
+            />
+            <label className="animalModalLabelText" htmlFor="notCastrated">
+              Não
+            </label>
           </div>
           <div className="animalModalLabel">
             <p className="animalModalLabelTitle">Necessidade especial:</p>
-            <input type="radio" name="special" onClick={() => handleSpecialChange(true)} required />
-            <label className="animalModalLabelText">Sim</label>
-            <input type="radio" name="special" onClick={() => handleSpecialChange(false)} />
-            <label className="animalModalLabelText">Não</label>
+            <input
+              type="radio"
+              name="special"
+              id="special"
+              onClick={() => handleSpecialChange(true)}
+              required
+            />
+            <label className="animalModalLabelText" htmlFor="special">
+              Sim
+            </label>
+            <input
+              type="radio"
+              name="special"
+              id="notSpecial"
+              onClick={() => handleSpecialChange(false)}
+            />
+            <label className="animalModalLabelText" htmlFor="notSpecial">
+              Não
+            </label>
           </div>
           <div className="animalModalLabel">
             <p className="animalModalLabelTitle">Microchipado:</p>
             <input
               type="radio"
               name="microship"
+              id="microship"
               onClick={() => handleMicrochipChange(true)}
               required
             />
-            <label className="animalModalLabelText">Sim</label>
-            <input type="radio" name="microship" onClick={() => handleMicrochipChange(false)} />
-            <label className="animalModalLabelText">Não</label>
+            <label className="animalModalLabelText" htmlFor="microship">
+              Sim
+            </label>
+            <input
+              type="radio"
+              name="microship"
+              id="notMicroship"
+              onClick={() => handleMicrochipChange(false)}
+            />
+            <label className="animalModalLabelText" htmlFor="notMicroship">
+              Não
+            </label>
           </div>
 
           <button type="submit" className="signUpButton animalButton">

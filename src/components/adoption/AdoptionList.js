@@ -31,12 +31,16 @@ export default function AdoptionList() {
         setUserType('adopter');
       } else {
         const adoptionCenterResult = await fetch(adoptionCenterUrl);
-        if (adoptionCenterResult.ok) {
-          const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+        if (!adoptionCenterResult.ok) {
+          navigate('/entrar');
 
-          await getAdoptions({ _idAdoptionCenter: jsonAdoptionCenterResult._id });
-          setUserType('adoptionCenter');
+          return;
         }
+
+        const jsonAdoptionCenterResult = (await adoptionCenterResult?.json()) ?? {};
+
+        await getAdoptions({ _idAdoptionCenter: jsonAdoptionCenterResult._id });
+        setUserType('adoptionCenter');
       }
 
       setLoading(false);
@@ -84,7 +88,7 @@ export default function AdoptionList() {
     }
 
     getUserProfile(localStorage.getItem('loggedId'));
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="adoptionsBody">

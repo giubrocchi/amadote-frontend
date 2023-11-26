@@ -282,7 +282,10 @@ function AdoptionCenterSignUp() {
     <div className="formBody">
       {isConfirmationModalOpen && (
         <div className="animalModal">
-          <div className="deleteAccountModalBody" style={{ maxWidth: '500px', width: '70%' }}>
+          <div
+            className="deleteAccountModalBody"
+            style={{ maxWidth: '500px', width: '70%', textAlign: 'center' }}
+          >
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <IconContext.Provider value={{ color: '#76CA66', size: '40px' }}>
                 <AiFillCheckCircle style={{ marginTop: '0.83em', minWidth: '40px' }} />

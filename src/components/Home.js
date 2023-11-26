@@ -133,7 +133,7 @@ export default function Home() {
         <div className="homeAnimals">
           <div className="homeScroll">
             {posts?.slice(0, 20).map((post) => (
-              <PostCard post={post} />
+              <PostCard post={post} key={post._id} />
             ))}
             {posts?.length === 0 && (
               <div

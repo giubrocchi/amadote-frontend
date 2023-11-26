@@ -7,12 +7,12 @@ const species = [
   'Camundongo',
   'Chinchila',
   'Hamster',
+  'Jabuti',
   'Peixe',
   'Periquito',
   'Papagaio',
   'Porquinho da índia',
   'Tartaruga',
-  'Jabuti',
   'Outro',
 ];
 const sizes = ['Pequeno', 'Médio', 'Grande'];

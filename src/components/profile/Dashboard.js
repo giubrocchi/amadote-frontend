@@ -71,6 +71,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function getAdoptionsData(id) {
+      const adoptionCenterResult = await fetch(`${apiBaseUrl}/api/adoptionCenter/${id}`);
+
+      if (!adoptionCenterResult.ok) navigate('/perfil');
+
       const adoptedAnimals = await fetch(`${apiBaseUrl}/api/adoptionProposal/getDoneOng`, {
         method: 'POST',
         headers: {
@@ -224,7 +228,7 @@ export default function Dashboard() {
     const id = localStorage.getItem('loggedId');
 
     getAdoptionsData(id);
-  }, [dateToCompare.value]);
+  }, [dateToCompare.value, navigate]);
 
   function handleDateChange(newDate) {
     setDateToCompare(newDate);
