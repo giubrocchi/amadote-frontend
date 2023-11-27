@@ -1686,6 +1686,7 @@ textarea {
 .ongDetails p {
   margin: 0px;
   font-size: 18px;
+  overflow-wrap: anywhere;
 }
 
 .ongsList {
@@ -1840,6 +1841,10 @@ textarea {
 .boldInfo {
   font-weight: bold;
   color: #1c3144;
+}
+
+.faqTitle {
+  text-align: center;
 }
 
 @media (max-width: 800px) {
@@ -2080,9 +2085,5 @@ textarea {
 
   .footerBody {
     flex-direction: row;
-  }
-
-  #PergTitle {
-    text-align: center;
   }
 }

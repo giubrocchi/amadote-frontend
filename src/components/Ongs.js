@@ -68,8 +68,6 @@ export default function Ongs() {
     );
   }
 
-  console.log(ongs);
-
   return (
     <div className="ongsBody">
       <div className="animalsHeader">
