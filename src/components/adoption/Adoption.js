@@ -31,6 +31,7 @@ export default function Adoption() {
   const [currentMessage, setCurrentMessage] = useState('');
   const [finishModalOpen, setSFinishModalOpen] = useState(false);
   const [finishMode, setFinishMode] = useState('');
+  const [isSendingMessage, setIsSendingMessage] = useState(false);
 
   const author = localStorage.getItem('loggedId');
   const receiver =
@@ -134,9 +135,14 @@ export default function Adoption() {
   async function handleSendMessage() {
     const trimmedMessage = currentMessage.trim();
 
-    if (!trimmedMessage) return;
+    if (!trimmedMessage || isSendingMessage) return;
 
     const body = { message: trimmedMessage, author, receiver };
+
+    setIsSendingMessage(true);
+    setCurrentMessage('');
+    socket.current.emit('sendMessage', body);
+
     const chatResponse = await fetch(`${apiBaseUrl}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -144,14 +150,14 @@ export default function Adoption() {
     });
 
     if (chatResponse.ok) {
-      setCurrentMessage('');
-      socket.current.emit('sendMessage', body);
       setMessages([...messages, body]);
       setStringifiedMessages(JSON.stringify([...messages, body]));
+      setIsSendingMessage(false);
 
       return;
     }
 
+    setIsSendingMessage(false);
     toast.error('Erro ao enviar mensagem.\nTente novamente mais tarde.');
   }
 
